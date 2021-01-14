@@ -13,6 +13,9 @@ import {
 //assets
 import Logo from "../../../assets/img/Logo.png";
 import bgImg from "../../../assets/img/bgImg.jpg";
+//icons
+import { IconContext } from "react-icons";
+import * as AiIcon from "react-icons/ai";
 
 export default function StripeForm() {
   const [isLoading, setIsLoading] = useState(false);
@@ -38,17 +41,15 @@ export default function StripeForm() {
       if (!error) {
         const { id } = paymentMethod;
         try {
-          const { data } = await axios.post(
-            "https://35.183.174.109:5000/api/pay",
-            {
-              id,
-              amount: 100,
-              email: email,
-              company: company,
-              phone: phone,
-              country: country,
-            }
-          );
+          const { data } = await axios.post("/api/stripe/", {
+            id,
+            amount: 100,
+            email: email,
+            address: address,
+            company: company,
+            phone: phone,
+            country: country,
+          });
           setIsLoading(true);
         } catch (err) {
           console.log(err);
@@ -59,9 +60,11 @@ export default function StripeForm() {
     return (
       <form
         onSubmit={handleStripPayment}
-        className="card p-4 mx-auto"
+        className="card p-4 mt-4 mx-auto"
         style={{ maxWidth: "500px" }}
       >
+        <h2 className="text-center">Billing Information</h2>
+        <hr />
         <Link to="/roofreport" className="text-right mb-4">
           Cancel
         </Link>
@@ -81,9 +84,10 @@ export default function StripeForm() {
         <button
           type="submit"
           disabled={!stripe}
-          className="btn btn-success mt-4"
+          className="btn mt-4 text-white"
+          style={{ backgroundColor: "#e60029" }}
         >
-          Pay
+          Order
         </button>
       </form>
     );
@@ -107,53 +111,82 @@ export default function StripeForm() {
           className="mx-auto"
         />
         {isLoading /*Payment Confirmation */ ? (
-          <div className="text-center mx-auto" style={{ maxWidth: "500px" }}>
-            <h1 className="text-success">Payment Confirmed</h1>
-            <p className="lead">
-              Please check your email or junk mail for confirmation
+          <div
+            className="text-center mx-auto"
+            style={{ maxWidth: "500px", marginTop: "20px" }}
+          >
+            {/*Add Check */}
+            <IconContext.Provider
+              value={{
+                size: "100px",
+                color: "green",
+              }}
+            >
+              <AiIcon.AiOutlineCheckCircle
+                style={{
+                  marginBottom: "20px",
+                }}
+              />
+            </IconContext.Provider>
+
+            <h1
+              style={{
+                fontFamily: "LatoBold",
+                color: "#e60029",
+              }}
+            >
+              Payment Confirmed
+            </h1>
+            <p style={{ fontSize: "16px" }}>
+              An email has been sent to you <br />
+              (Please check your spam and junk mail)
             </p>
-            <Link to="/" className="btn btn-danger w-100">
+            <Link to="/" className="btn btn-danger w-50">
               Head Back
             </Link>
           </div>
         ) : (
           <>
-            <div className="container" style={{ maxWidth: "500px" }}>
+            <div
+              className="container"
+              style={{ maxWidth: "500px", marginTop: "100px" }}
+            >
               <div className="card mx-auto">
                 <div className="card-body">
                   <div className="card-title text-center">
-                    <h2>Details</h2>
+                    <h2>Personal Information</h2>
                   </div>
-                  <table className="table">
-                    <tbody>
-                      <tr>
-                        <td>Address</td>
-                        <td>{address}</td>
-                      </tr>
-                      <tr>
-                        <td>Company Name</td>
-                        <td>{company}</td>
-                      </tr>
-                      <tr>
-                        <td>Phone</td>
-                        <td>{phone}</td>
-                      </tr>
-                      <tr>
-                        <td>Email</td>
-                        <td>{email}</td>
-                      </tr>
-                      <tr>
-                        <td>Country</td>
-                        <td>{country}</td>
-                      </tr>
-                    </tbody>
-                  </table>
+                  <hr />
+                  <div>
+                    <div className="row">
+                      <div className="col-md-4">Report Address:</div>
+                      <div className="col-md-8">{address}</div>
+                    </div>
+                    <hr />
+                    <div className="row">
+                      <div className="col-md-4">Company Name:</div>
+                      <div className="col-md-8">{company}</div>
+                    </div>
+                    <hr />
+                    <div className="row">
+                      <div className="col-md-4">Phone:</div>
+                      <div className="col-md-8">{phone}</div>
+                    </div>
+                    <hr />
+                    <div className="row">
+                      <div className="col-md-4">Email:</div>
+                      <div className="col-md-8">{email}</div>
+                    </div>
+                    <hr />
+                    <div className="row">
+                      <div className="col-md-4">Country:</div>
+                      <div className="col-md-8">{country}</div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-            <h2 className="text-center">Billing Information</h2>
-
-            <div className="container">
+            <div className="container" style={{ maxWidth: "500px" }}>
               <Elements stripe={stripePromise}>
                 <StripeForm />
               </Elements>

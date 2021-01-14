@@ -42,7 +42,7 @@ export default function SubForm() {
     <div>
       <form onSubmit={subscribe}>
         <div className="form-group" style={{ maxWidth: "400px" }}>
-          <label htmlFor="email" className="pr-2">
+          <label htmlFor="email" style={{ color: "#414141" }} className="pr-2">
             Your Email
           </label>
           {errmsg ? (

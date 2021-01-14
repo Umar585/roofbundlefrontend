@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useHistory } from "react-router-dom";
-//axios
-import axios from "axios";
 //google-maps-api
 import { geocodeByAddress, getLatLng } from "react-places-autocomplete";
 //components
@@ -11,6 +9,10 @@ import Footer from "../Home/Foot";
 //assets
 import Logo from "../../assets/img/Logo.png";
 import bgImg from "../../assets/img/bgImg.jpg";
+
+//icons
+import { IconContext } from "react-icons";
+import * as FiIcon from "react-icons/fi";
 
 export default function RoofReport() {
   const history = useHistory();
@@ -121,7 +123,7 @@ export default function RoofReport() {
       //checking if sub is checked
       if (sub === true) {
         if (form.email) {
-          fetch(`https://35.183.174.109:5000/api/mchimp?email=${form.email}`)
+          fetch(`/api/mailchimp?email=${form.email}`)
             .then((res) => {
               if (res.status === 400) {
                 setCheckSub(false);
@@ -163,7 +165,7 @@ export default function RoofReport() {
       </div>
       <div className="container">
         <form onSubmit={handleSubmit}>
-          <div className="row">
+          <div className="row" style={{ marginTop: "100px" }}>
             <div className="col-md-6 mt-2">
               <Maps
                 checkFormaddress={checkForm.address}
@@ -177,7 +179,7 @@ export default function RoofReport() {
 
             <div className="col-md-6 mt-2">
               {/*Billing Info Card */}
-              <h2>Personal Information</h2>
+              <h2 style={{ fontFamily: "LatoBold" }}>Personal Information</h2>
               <div className="mt-3"></div>
               <div className="form-group">
                 {checkForm.company ? (
@@ -249,7 +251,7 @@ export default function RoofReport() {
                   onChange={handleTermsCheck}
                 />
                 <label className="form-check-label" htmlFor="termsCheck">
-                  <a href="#" className="text-muted">
+                  <a href="#" style={{ color: "#414141" }}>
                     I Accept the terms of use
                   </a>
                 </label>
@@ -265,10 +267,11 @@ export default function RoofReport() {
                   onChange={handleSubCheck}
                 />
                 <label
-                  className="form-check-label text-muted"
+                  className="form-check-label"
                   htmlFor="subCheck"
+                  style={{ color: "#414141" }}
                 >
-                  Sign up for email updates
+                  Sign up for updates
                 </label>
                 {checkSub ? (
                   <p className="small text-success">{msg}</p>
@@ -278,7 +281,15 @@ export default function RoofReport() {
               </div>
             </div>
             <div className="col-md-12 mt-4 text-center">
-              <input type="submit" className="btn btn-success w-50" />
+              <button
+                className="btn text-white w-50 mt-4"
+                style={{ backgroundColor: "#e60029" }}
+              >
+                Proceed{" "}
+                <IconContext.Provider value={{ size: "16px" }}>
+                  <FiIcon.FiArrowRightCircle />
+                </IconContext.Provider>
+              </button>
             </div>
           </div>
         </form>

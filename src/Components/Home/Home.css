@@ -1,6 +1,21 @@
-/*Login form page Componrnts/Login/Login*/
-@media only screen and (max-width: 767px) {
-  #my-md-8 {
-    display: none;
+
+/*#myBadge{
+    animation-name: example;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
   }
-}
+  
+  
+  @keyframes example {
+    0%   {background-color: #e60029;}
+    50%  {background-color: darkgray;}
+    100% {background-color: #e60029;}
+  }*/
+  
+  /*Login form page Componrnts/Login/Login*/
+  @media only screen and (max-width: 767px) {
+    #my-md-8{ 
+      display: none;
+    }
+  }

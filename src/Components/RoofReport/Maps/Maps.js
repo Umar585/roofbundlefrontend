@@ -5,7 +5,11 @@ import PlacesAutoComplete from "react-places-autocomplete";
 export default function Maps(props) {
   return (
     <div>
-      <label htmlFor="inputReportAddress" className="h2">
+      <label
+        htmlFor="inputReportAddress"
+        className="h2"
+        style={{ fontFamily: "LatoBold" }}
+      >
         Report Address
       </label>
 
@@ -24,7 +28,7 @@ export default function Maps(props) {
                 {...getInputProps({
                   type: "search",
                   placeholder: "Search Address",
-                  className: "form-control",
+                  className: "form-control mt-2",
                   id: "inputReportAddress",
                   autoComplete: "off",
                 })}
@@ -64,7 +68,7 @@ export default function Maps(props) {
           height: "300px",
           width: "100%",
           maxWidth: "540px",
-          marginTop: "10px",
+          marginTop: "17px",
         }}
       >
         <GoogleMaps lat={props.lat} lng={props.lng} />

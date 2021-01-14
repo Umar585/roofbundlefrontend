@@ -18,7 +18,10 @@ export default function Foot() {
           className="m-3 h3"
         >
           <IconContext.Provider value={{ color: "white", size: "35px" }}>
-            <AiIcon.AiOutlineInstagram className="border rounded-circle bg-dark p-1" />
+            <AiIcon.AiOutlineInstagram
+              className="border rounded-circle p-1"
+              style={{ backgroundColor: "#000" }}
+            />
           </IconContext.Provider>
         </a>
         <a
@@ -28,7 +31,10 @@ export default function Foot() {
           className="p-3 text-dark h3"
         >
           <IconContext.Provider value={{ color: "white", size: "35px" }}>
-            <RiIcon.RiFacebookFill className="border rounded-circle bg-dark p-1" />
+            <RiIcon.RiFacebookFill
+              className="border rounded-circle p-1"
+              style={{ backgroundColor: "#000" }}
+            />
           </IconContext.Provider>
         </a>
         <a
@@ -38,28 +44,33 @@ export default function Foot() {
           className="p-3 text-dark h3"
         >
           <IconContext.Provider value={{ color: "white", size: "35px" }}>
-            <AiIcon.AiOutlineTwitter className="border rounded-circle bg-dark p-1" />
+            <AiIcon.AiOutlineTwitter
+              className="border rounded-circle p-1"
+              style={{ backgroundColor: "#000" }}
+            />
           </IconContext.Provider>
         </a>
       </div>
 
       <div className="list-inline text-center pb-3">
-        <hr style={{ maxWidth: "420px" }} className="bg-dark" />
+        <hr style={{ maxWidth: "420px", backgroundColor: "#000" }} />
         <Link
           to="/terms"
           rel="noreferrer"
-          className="p-3 text-dark list-inline-item"
+          className="p-3 list-inline-item"
+          style={{ color: "#000" }}
         >
           Terms & Conditions
         </Link>
         <Link
           to="/privacy"
           rel="noreferrer"
-          className="p-3 text-dark list-inline-item"
+          className="p-3 list-inline-item"
+          style={{ color: "#000" }}
         >
           Privacy Policy
         </Link>
-        <p className="text-dark list-inline-item">
+        <p className="list-inline-item" style={{ color: "#000" }}>
           Copyright&copy;Roofbundle Inc {currentDate}
         </p>
       </div>

@@ -1,0 +1,10 @@
+
+.toDoList{
+height: 300px;
+overflow: scroll;
+scrollbar-width: none;
+}
+
+.toDoList::-webkit-scrollbar {
+    display: none;
+}

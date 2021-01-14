@@ -2,6 +2,7 @@ import React from "react";
 import SubForm from "./SubForm";
 import Services from "./Services";
 import Foot from "./Foot";
+import { Link } from "react-router-dom";
 
 //assets
 import bgImg from "../../assets/img/bgImg.jpg";
@@ -30,7 +31,7 @@ export default function HomePage() {
       <div className="container">
         <div>
           <img src={Logo} alt="Roofbundle Logo" style={logoStyle} />
-          <h5>
+          {/*<h5>
             <br />
             <a href="/signin" className="btn bg-danger text-white m-1">
               Sign In
@@ -38,11 +39,11 @@ export default function HomePage() {
             <a href="/signup" className="btn bg-dark text-white m-1">
               Sign Up
             </a>
-          </h5>
+          </h5>*/}
         </div>
 
         <div style={{ paddingTop: "50px" }}>
-          <h1>Roofbundle Report</h1>
+          <h1 style={{ fontFamily: "LatoBold" }}>Roofbundle Report</h1>
         </div>
         <div className="text-left">
           <a
@@ -55,11 +56,16 @@ export default function HomePage() {
         </div>
 
         <div style={{ paddingTop: "50px" }}>
-          <h1>Residential Roofing App</h1>
+          <h1 style={{ fontFamily: "LatoBold" }}>
+            Residential Roofing Software
+          </h1>
         </div>
         <div className="text-left">
-          <div className="badge badge-danger" id="myBadge">
-            <span className="h5">Coming Soon</span>
+          <div
+            className="btn bg-danger text-white m-1"
+            style={{ fontSize: "16px", width: "300px" }}
+          >
+            <span>Coming Soon</span>
           </div>
         </div>
 

@@ -2,7 +2,10 @@
   font-family: Lato;
   src: url("./assets//font/Lato-Regular.ttf");
 }
-
+@font-face {
+  font-family: LatoBold;
+  src: url("./assets//font/Lato-Bold.ttf");
+}
 * {
   box-sizing: border-box;
 }
