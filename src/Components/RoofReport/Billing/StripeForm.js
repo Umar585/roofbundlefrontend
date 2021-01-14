@@ -61,11 +61,15 @@ export default function StripeForm() {
       <form
         onSubmit={handleStripPayment}
         className="card p-4 mt-4 mx-auto"
-        style={{ maxWidth: "500px" }}
+        style={{ maxWidth: "500px", marginBottom: "100px" }}
       >
         <h2 className="text-center">Billing Information</h2>
         <hr />
-        <Link to="/roofreport" className="text-right mb-4">
+        <Link
+          to="/roofreport"
+          className="mb-4 text-right"
+          style={{ color: "#414141" }}
+        >
           Cancel
         </Link>
         <CardElement
@@ -199,9 +203,10 @@ export default function StripeForm() {
 }
 
 const logoStyle = {
-  maxWidth: "400px",
+  maxWidth: "800px",
   width: "100%",
   height: "auto",
+  marginTop: "100px",
 };
 const backStyle = {
   backgroundImage: `url(${bgImg})`,
