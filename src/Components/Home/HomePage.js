@@ -31,19 +31,21 @@ export default function HomePage() {
       <div className="container">
         <div>
           <img src={Logo} alt="Roofbundle Logo" style={logoStyle} />
-          {/*<h5>
+          <h5>
             <br />
-            <a href="/signin" className="btn bg-danger text-white m-1">
+            <Link to="/signin" className="btn bg-danger text-white m-1">
               Sign In
-            </a>
-            <a href="/signup" className="btn bg-dark text-white m-1">
+            </Link>
+            <Link to="/signup" className="btn bg-dark text-white m-1">
               Sign Up
-            </a>
-          </h5>*/}
+            </Link>
+          </h5>
         </div>
 
         <div style={{ paddingTop: "50px" }}>
-          <h1 style={{ fontFamily: "LatoBold" }}>Roofbundle Report</h1>
+          <h1 style={{ fontFamily: "LatoBold", color: "black" }}>
+            Roofbundle Report
+          </h1>
         </div>
         <div className="text-left">
           <a
@@ -56,7 +58,7 @@ export default function HomePage() {
         </div>
 
         <div style={{ paddingTop: "50px" }}>
-          <h1 style={{ fontFamily: "LatoBold" }}>
+          <h1 style={{ fontFamily: "LatoBold", color: "black" }}>
             Residential Roofing Software
           </h1>
         </div>

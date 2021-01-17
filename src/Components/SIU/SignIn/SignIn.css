@@ -1,0 +1,22 @@
+.login_form_btns {
+  color: #e60029;
+  border-radius: 25px;
+  width: 100%;
+}
+
+.login_form_btns:hover {
+  background: #e60029 !important;
+  color: white;
+}
+
+.login_form_btns_switch {
+  color: #fff;
+  background-color: #e60029;
+  border-radius: 25px;
+  width: 100%;
+}
+
+.login_form_btns_switch:hover {
+  background: #e60029 !important;
+  color: white;
+}

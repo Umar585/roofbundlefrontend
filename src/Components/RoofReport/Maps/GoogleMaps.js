@@ -4,11 +4,12 @@ import { Map, Marker, GoogleApiWrapper } from "google-maps-react";
 function GoogleMaps(props) {
   const normalMapsStyle = {
     height: "298px",
-    width: "93%",
+    width: "95%",
   };
   return (
     <div>
       <Map
+        className="col-xs-12"
         containerStyle={normalMapsStyle}
         google={props.google}
         defaultZoom={5}

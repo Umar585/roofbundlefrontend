@@ -1,0 +1,12 @@
+.toDoList {
+  max-height: 600px;
+  overflow: scroll;
+  scrollbar-width: none;
+  /*border: 1px solid lightgray;
+  */
+  margin-bottom: 1.5rem;
+}
+
+.toDoList::-webkit-scrollbar {
+  display: none;
+}

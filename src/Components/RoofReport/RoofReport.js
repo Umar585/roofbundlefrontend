@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useHistory, Link } from "react-router-dom";
 //google-maps-api
 import { geocodeByAddress, getLatLng } from "react-places-autocomplete";
 //components
@@ -161,7 +161,9 @@ export default function RoofReport() {
   return (
     <div style={backStyle}>
       <div className="container-fluid">
-        <img src={Logo} alt="Roofbundle Logo" style={logoStyle} />
+        <Link to="/">
+          <img src={Logo} alt="Roofbundle Logo" style={logoStyle} />
+        </Link>
       </div>
       <div className="container">
         <form onSubmit={handleSubmit}>
@@ -251,9 +253,9 @@ export default function RoofReport() {
                   onChange={handleTermsCheck}
                 />
                 <label className="form-check-label" htmlFor="termsCheck">
-                  <a href="#" style={{ color: "#414141" }}>
+                  <Link to="/terms" style={{ color: "#414141" }}>
                     I Accept the terms of use
-                  </a>
+                  </Link>
                 </label>
                 {checkForm.terms ? (
                   <p className="small text-danger">Terms Required</p>

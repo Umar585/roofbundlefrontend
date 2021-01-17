@@ -37,7 +37,7 @@ export default function Maps(props) {
               <div>
                 <div
                   className="border shadow"
-                  style={{ position: "fixed", zIndex: "99" }}
+                  style={{ position: "relative", zIndex: "99" }}
                 >
                   {suggestions.map((suggestion) => {
                     const style = {
@@ -66,8 +66,6 @@ export default function Maps(props) {
         className="mx-auto"
         style={{
           height: "300px",
-          width: "100%",
-          maxWidth: "540px",
           marginTop: "17px",
         }}
       >
