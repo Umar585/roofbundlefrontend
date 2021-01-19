@@ -32,6 +32,7 @@ export default function Maps(props) {
                   id: "inputReportAddress",
                   autoComplete: "off",
                 })}
+                style={inputStyle}
               />
 
               <div>
@@ -74,3 +75,9 @@ export default function Maps(props) {
     </div>
   );
 }
+
+const inputStyle = {
+  outline: "none",
+  boxShadow: "none",
+  border: "1px solid #d8dbe0",
+};

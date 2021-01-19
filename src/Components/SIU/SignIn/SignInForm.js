@@ -10,7 +10,7 @@ import "./SignIn.css";
 export default function SignInForm() {
   //temp onclick function
   const sendToDashboard = () => {
-    window.location.href = "/dashboard";
+    window.location.href = "/customer";
   };
   return (
     <div>

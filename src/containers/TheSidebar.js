@@ -31,7 +31,11 @@ const TheSidebar = () => {
         to="/dashboard"
         style={{ backgroundColor: "#fff" }}
       >
-        <img src={Logo} alt="Logo" style={{ width: "150px" }} />
+        <img
+          src={Logo}
+          alt="Logo"
+          style={{ maxWidth: "150px", width: "100%" }}
+        />
       </CSidebarBrand>
       <CSidebarNav>
         <CCreateElement

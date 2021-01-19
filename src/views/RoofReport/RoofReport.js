@@ -197,6 +197,7 @@ export default function RoofReport() {
                   onChange={handleCompany}
                   value={form.company}
                   autoComplete="off"
+                  style={inputStyle}
                 />
               </div>
               <div className="form-group">
@@ -214,6 +215,7 @@ export default function RoofReport() {
                   onChange={handlePhone}
                   value={form.phone}
                   autoComplete="off"
+                  style={inputStyle}
                 />
               </div>
               <div className="form-group">
@@ -228,6 +230,7 @@ export default function RoofReport() {
                   onChange={handleEmail}
                   value={form.email}
                   autoComplete="off"
+                  style={inputStyle}
                 />
               </div>
               <div className="form-group">
@@ -239,6 +242,7 @@ export default function RoofReport() {
                   id="country"
                   onChange={handleCountry}
                   value={form.country}
+                  style={inputStyle}
                 >
                   <option value="">Country</option>
                   <option value="Canada">Canada</option>
@@ -315,4 +319,9 @@ const backStyle = {
   backgroundPosition: "center",
   backgroundRepeat: "no-repeat",
   backgroundSize: "cover",
+};
+const inputStyle = {
+  outline: "none",
+  boxShadow: "none",
+  border: "1px solid #d8dbe0",
 };

@@ -1,3 +1,15 @@
+.c-active {
+  background-color: white !important;
+  color: #e60029 !important;
+  .c-sidebar-nav-icon {
+    color: #e60029 !important;
+  }
+  .badge {
+    background-color: #e60029 !important;
+    color: #fff !important;
+  }
+}
+
 .c-sidebar-nav-link:hover {
   background-color: white !important;
   color: #e60029 !important;

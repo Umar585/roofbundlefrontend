@@ -8,20 +8,16 @@ const TheFooter = () => {
   return (
     <CFooter fixed={false}>
       <div>
-        <a href="https://coreui.io" target="_blank" rel="noopener noreferrer">
-          Roofbundle Inc
-        </a>
-        <span className="ml-1">&copy; {currentDate} creativeLabs.</span>
-      </div>
-      <div className="mfs-auto">
-        <span className="mr-1">Powered by</span>
+        Copyright&copy;
         <a
-          href="https://coreui.io/react"
+          href="https://coreui.io"
           target="_blank"
           rel="noopener noreferrer"
+          style={{ color: "#e60029" }}
         >
-          CoreUI for React
+          Roofbundle Inc
         </a>
+        <span className="ml-1"> {currentDate}</span>
       </div>
     </CFooter>
   );

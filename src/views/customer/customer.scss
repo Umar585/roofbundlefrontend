@@ -1,0 +1,40 @@
+.nav-link {
+  color: #e60029;
+}
+.nav-link:hover {
+  background-color: #e60029;
+  color: #fff;
+}
+
+.justify-content-start {
+  justify-content: flex-end !important;
+  color: black !important;
+}
+.page-link {
+  color: gray !important;
+  margin: 2px;
+}
+.page-link:hover {
+  color: #fff !important;
+  background-color: #e60029 !important;
+}
+
+.page-item.active .page-link {
+  color: #fff !important;
+  background-color: #e60029 !important;
+  border: 1px solid #e60029 !important;
+}
+
+//search bar
+.input-group-prepend {
+  border-radius: 25px;
+}
+.searchIcon {
+  background-color: #fff !important;
+  border-left: none;
+  border-radius: 0px 25px 25px 0px !important;
+}
+
+.custTable td {
+  min-width: 200px !important;
+}

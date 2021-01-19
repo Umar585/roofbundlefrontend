@@ -9,22 +9,27 @@ import {
   CImg,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
+import { IconContext } from "react-icons";
+import * as CgIcon from "react-icons/cg";
 
 const TheHeaderDropdown = () => {
   return (
     <CDropdown inNav className="c-header-nav-items mx-2" direction="down">
       <CDropdownToggle className="c-header-nav-link" caret={false}>
         <div className="c-avatar">
-          <CImg
+          {/*<CImg
             src={"avatars/6.jpg"}
             className="c-avatar-img"
             alt="admin@bootstrapmaster.com"
-          />
+          />*/}
+          <IconContext.Provider value={{ size: "35px" }}>
+            <CgIcon.CgProfile />
+          </IconContext.Provider>
         </div>
-        <div className="ml-2">Ronnie Woodkins</div>
+        <div className="ml-2">Username</div>
       </CDropdownToggle>
       <CDropdownMenu className="pt-0" placement="bottom-end">
-        <CDropdownItem header tag="div" color="light" className="text-center">
+        {/* <CDropdownItem header tag="div" color="light" className="text-center">
           <strong>Account</strong>
         </CDropdownItem>
         <CDropdownItem>
@@ -80,7 +85,7 @@ const TheHeaderDropdown = () => {
             42
           </CBadge>
         </CDropdownItem>
-        <CDropdownItem divider />
+  <CDropdownItem divider />*/}
 
         <CDropdownItem>
           <Link to="/signout">

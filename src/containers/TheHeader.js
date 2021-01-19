@@ -84,18 +84,18 @@ const TheHeader = () => {
       </CHeaderBrand>
 
       <CHeaderNav className="d-md-down-none mr-auto">
-        <CInput
+        {/*<CInput
           type="search"
           id="nf-search"
           name="nf-search"
           placeholder="Search.."
           autoComplete="off"
-        />
+  />*/}
       </CHeaderNav>
 
       <CHeaderNav className="px-3">
-        <TheHeaderDropdownNotif />
-        <TheHeaderDropdownMssg />
+        {/*<TheHeaderDropdownNotif />
+        <TheHeaderDropdownMssg />*/}
         <TheHeaderDropdown />
       </CHeaderNav>
 
@@ -104,7 +104,7 @@ const TheHeader = () => {
           className="border-0 c-subheader-nav m-0 px-0 px-md-3"
           routes={routes}
         />
-        <div className="mfe-2 c-subheader-nav">
+        {/*<div className="mfe-2 c-subheader-nav">
           <CButtonGroup>
             <CButton>Day</CButton>
             <CButton>Week</CButton>
@@ -115,7 +115,7 @@ const TheHeader = () => {
               <CIcon name="cil-calendar" /> {`${m}, ${currentDate}`}
             </CButton>
           </div>
-        </div>
+      </div>*/}
       </CSubheader>
     </CHeader>
   );
