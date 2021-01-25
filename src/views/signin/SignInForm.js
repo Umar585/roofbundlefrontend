@@ -3,47 +3,23 @@ import { Link } from "react-router-dom";
 import { IconContext } from "react-icons";
 import * as IoIcon from "react-icons/io";
 import * as GiIcon from "react-icons/gi";
-import * as FaIcon from "react-icons/fa";
 
 //css
-import "../SignIn/SignIn.css";
+import "./SignIn.css";
 
-export default function SignUpForm() {
+export default function SignInForm() {
+  //temp onclick function
+  const sendToDashboard = () => {
+    window.location.href = "/";
+  };
   return (
     <div>
       <div
         className="mx-auto"
         style={{ maxWidth: "500px", marginTop: "100px" }}
       >
-        <h1>Welcome!</h1>
+        <h1>Welcome Back!</h1>
         <form>
-          <div className="mt-4">
-            <label className="sr-only" for="Name_Input">
-              Email
-            </label>
-            <div className="input-group mb-2">
-              <div className="input-group-prepend">
-                <div
-                  className="input-group-text bg-white border-right-0"
-                  style={{ borderRadius: "25px 0px 0px 25px" }}
-                >
-                  <IconContext.Provider
-                    value={{ color: "#e60029", size: "20px" }}
-                  >
-                    <FaIcon.FaUser />
-                  </IconContext.Provider>
-                </div>
-              </div>
-              <input
-                type="text"
-                className="form-control border-left-0"
-                id="Name_Input"
-                placeholder="Your Name"
-                style={{ borderRadius: "0px 25px 25px 0px" }}
-              />
-            </div>
-          </div>
-
           <div className="mt-4">
             <label className="sr-only" for="Email_Input">
               Email
@@ -99,12 +75,20 @@ export default function SignUpForm() {
           </div>
           <div className="row custome_col">
             <div className="col-lg-6 mt-4">
-              <Link to="/signin" className="login_form_btns_switch btn">
-                Sign In
+              <Link to="/signup" className="login_form_btns_switch btn">
+                Sign Up
               </Link>
             </div>
             <div className="col-lg-6 mt-4">
-              <button className="login_form_btns btn bg-white">Sign Up</button>
+              <button
+                className="login_form_btns btn bg-white"
+                onClick={sendToDashboard}
+              >
+                Sign In
+              </button>
+              <Link to="/" className="small text-white">
+                Forgot Password?
+              </Link>
             </div>
           </div>
         </form>

@@ -3,9 +3,9 @@ import { CCard, CCardBody } from "@coreui/react";
 import { IconContext } from "react-icons";
 import * as AiIcon from "react-icons/ai";
 //TableComponent
-import TableComponent from "./TableComponent/Table";
+import TableComponent from "../TableComponent/Table";
 
-const CustomerTables = () => {
+const EstimatesTables = () => {
   return (
     <>
       <CCard className="shadow">
@@ -47,4 +47,4 @@ const inputStyle = {
   boxShadow: "none",
   border: "1px solid #d8dbe0",
 };
-export default CustomerTables;
+export default EstimatesTables;

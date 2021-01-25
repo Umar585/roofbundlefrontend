@@ -1,30 +1,25 @@
 import React from "react";
 import {
   CButton,
-  CCol,
   CNav,
   CNavItem,
   CNavLink,
-  CRow,
   CTabContent,
   CTabPane,
-  CCard,
-  CCardBody,
   CTabs,
-  CCardHeader,
 } from "@coreui/react";
 //tabs Content
-import CustomerTab from "./CustomerTab";
-import NewCustomersTab from "./NewCustomerTab";
-import EstimatesTab from "./EstimatesTab";
-import ProjectTab from "./ProjectTab";
-import CompletedTab from "./CompletedTab";
+import CustomerTab from "./Tabs/CustomerTab";
+import NewCustomersTab from "./Tabs/NewCustomerTab";
+import EstimatesTab from "./Tabs/EstimatesTab";
+import ProjectTab from "./Tabs/ProjectTab";
+import CompletedTab from "./Tabs/CompletedTab";
 //scss
 import "./customer.scss";
 
 const customer = () => {
   const handleNewCust = () => {
-    window.location.href = "/customer/new";
+    window.location.href = "/new";
   };
   return (
     <>
@@ -35,7 +30,7 @@ const customer = () => {
       >
         New Customer
       </CButton>
-      <div style={{ marginTop: "50px" }}>
+      <div style={{ marginTop: "50px" }} className="test">
         <CTabs>
           <CNav variant="tabs">
             <CNavItem>

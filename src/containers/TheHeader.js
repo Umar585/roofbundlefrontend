@@ -8,19 +8,13 @@ import {
   CSubheader,
   CBreadcrumbRouter,
   CButton,
-  CButtonGroup,
-  CInput,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 
 // routes config
 import routes from "../routes";
 
-import {
-  TheHeaderDropdown,
-  TheHeaderDropdownMssg,
-  TheHeaderDropdownNotif,
-} from "./index";
+import { TheHeaderDropdown } from "./index";
 
 //style scss
 import "./style.scss";
@@ -67,6 +61,9 @@ const TheHeader = () => {
   const currentMonth = new Date();
   const m = monthNames[currentMonth.getMonth()];
 
+  const day = new Date();
+  const newDay = day.getDate();
+
   return (
     <CHeader withSubheader>
       <CToggler
@@ -104,21 +101,20 @@ const TheHeader = () => {
           className="border-0 c-subheader-nav m-0 px-0 px-md-3"
           routes={routes}
         />
-        {/*<div className="mfe-2 c-subheader-nav">
-          <CButtonGroup>
+        <div className="mfe-2 c-subheader-nav">
+          {/* <CButtonGroup>
             <CButton>Day</CButton>
             <CButton>Week</CButton>
             <CButton>Month</CButton>
-          </CButtonGroup>
+          </CButtonGroup>*/}
           <div style={{ border: "1px solid lightgray", marginLeft: "10px" }}>
             <CButton disabled>
-              <CIcon name="cil-calendar" /> {`${m}, ${currentDate}`}
+              <CIcon name="cil-calendar" /> {`${m}, ${newDay}, ${currentDate}`}
             </CButton>
           </div>
-      </div>*/}
+        </div>
       </CSubheader>
     </CHeader>
   );
 };
-
 export default TheHeader;

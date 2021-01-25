@@ -1,0 +1,38 @@
+.btn {
+  outline: none;
+  box-shadow: none;
+  border: none;
+}
+
+.custTable td {
+  min-width: 100px !important;
+}
+
+.cost_Table {
+  max-width: 220px;
+  float: left;
+  margin-right: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .cost_Table {
+    float: none;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .cost_Table {
+    max-width: 100% !important;
+  }
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}

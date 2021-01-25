@@ -1,21 +1,21 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import {
-  CBadge,
   CDropdown,
   CDropdownItem,
   CDropdownMenu,
   CDropdownToggle,
-  CImg,
+  CLink,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import { IconContext } from "react-icons";
 import * as CgIcon from "react-icons/cg";
+//scss
+import "./TheHeaderDropdown.scss";
 
 const TheHeaderDropdown = () => {
   return (
     <CDropdown inNav className="c-header-nav-items mx-2" direction="down">
-      <CDropdownToggle className="c-header-nav-link" caret={false}>
+      <CDropdownToggle className="c-header-nav-link test" caret={false}>
         <div className="c-avatar">
           {/*<CImg
             src={"avatars/6.jpg"}
@@ -87,11 +87,15 @@ const TheHeaderDropdown = () => {
         </CDropdownItem>
   <CDropdownItem divider />*/}
 
-        <CDropdownItem>
-          <Link to="/signout">
-            <CIcon name="cil-lock-locked" className="mfe-2" />
-            Lock Account
-          </Link>
+        <CDropdownItem
+          onClick={() =>
+            (window.location.href = "http://localhost:3000/signout")
+          }
+        >
+          {/*<CLink to="/signout">*/}
+          <CIcon name="cil-lock-locked" className="mfe-2" />
+          Lock Account
+          {/*</CLink>*/}
         </CDropdownItem>
       </CDropdownMenu>
     </CDropdown>

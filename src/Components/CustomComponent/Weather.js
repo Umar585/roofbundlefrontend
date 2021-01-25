@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { CCard, CCardHeader, CCardBody, Cul } from "@coreui/react";
+import React from "react";
 import ReactWeather, { useWeatherBit } from "react-open-weather";
 
 //scss

@@ -1,4 +1,6 @@
 import React from "react";
+//icons
+import * as TiIcon from "react-icons/ti";
 //assets
 import mapsImg from "../../../assets/img/mapPlace.png";
 
@@ -12,11 +14,12 @@ export default function Table() {
             <td>Address</td>
             <td>Phone</td>
             <td>Stage</td>
+            <td className="text-right">Delete</td>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>
+            <td onClick={() => (window.location.href = "/file")}>
               <div className="list-inline">
                 <img src={mapsImg} alt="map img" style={mapsImgStyle} />
                 <div>
@@ -37,8 +40,10 @@ export default function Table() {
                 </div>
               </div>
             </td>
-            <td>address asdf asdfsfsdfasf sdf assd as ad fdf d </td>
-            <td>
+            <td onClick={() => (window.location.href = "/file")}>
+              address asdf asdfsfsdfasf sdf assd as ad fdf d{" "}
+            </td>
+            <td onClick={() => (window.location.href = "/file")}>
               <a href={`tel:123-456-8915`}>123-123-4898</a>
             </td>
             <td>
@@ -56,9 +61,31 @@ export default function Table() {
                 </select>
               </div>
             </td>
+            <td className="text-right">
+              <TiIcon.TiDelete
+                onClick={() => alert("delete function")}
+                style={{
+                  cursor: "pointer",
+                  fontSize: "40px",
+                  color: "red",
+                }}
+              />
+            </td>
           </tr>
         </tbody>
       </table>
+      {/*
+      <div className="text-center">
+        <h5>No Data</h5>
+        <br />
+        <CButton
+          className="btn text-white"
+          style={{ backgroundColor: "#e60029" }}
+          onClick={() => (window.location.href = "/new")}
+        >
+          Add New Customer
+        </CButton>
+      </div>*/}
     </div>
   );
 }

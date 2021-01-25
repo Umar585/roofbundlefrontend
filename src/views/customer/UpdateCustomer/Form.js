@@ -331,14 +331,14 @@ export default function Form() {
         <CRow>
           <CCol sm="12" className="mt-3">
             <div className="list-inline text-right">
-              <Link to="/" className="list-inline-item">
+              <Link to="/file" className="list-inline-item">
                 Cancel
               </Link>
               <span className="mr-2">|</span>
               <input
                 type="submit"
                 className="form-control list-inline-item"
-                value="Submit"
+                value="Update"
                 style={{
                   maxWidth: "150px",
                   backgroundColor: "#e60029",

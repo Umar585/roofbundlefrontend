@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import SignUpForm from "./SignUpForm";
-import bgImg from "../../../assets/img/roofconsturction.jpg";
+import SignInForm from "./SignInForm";
+import bgImg from "../../assets/img/shakesreallydark.jpg";
 //assets
-import BadgeLogo from "../../../assets/img/BadgeWhite.png";
+import BadgeLogo from "../../assets/img/BadgeWhite.png";
 
-export default function SignUp() {
+export default function SignIn() {
   const login_bg = {
     backgroundImage: `url(${bgImg})`,
     height: "100vh",
@@ -43,8 +43,8 @@ export default function SignUp() {
           </p>
           {/*</div>
             <div className="col-md-4">*/}
-          <SignUpForm />
-          {/*</div>
+          <SignInForm />
+          {/* </div>
           </div>*/}
         </div>
       </div>

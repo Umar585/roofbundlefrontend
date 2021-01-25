@@ -2,17 +2,13 @@ import React from "react";
 import GoogleMaps from "./GoogleMaps";
 import PlacesAutoComplete from "react-places-autocomplete";
 
+import { IconContext } from "react-icons";
+import * as BiIcon from "react-icons/bi";
+
 export default function Maps(props) {
+  const checkAddress = props.checkFormaddress;
   return (
     <div>
-      <label
-        htmlFor="inputReportAddress"
-        className="h2"
-        style={{ fontFamily: "LatoBold" }}
-      >
-        Report Address
-      </label>
-
       <PlacesAutoComplete
         value={props.address}
         onChange={props.handleAddress}
@@ -21,19 +17,43 @@ export default function Maps(props) {
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => {
           return (
             <div>
-              {props.checkFormaddress ? (
-                <label className="small text-danger">Address Required</label>
-              ) : null}
-              <input
-                {...getInputProps({
-                  type: "search",
-                  placeholder: "Search Address",
-                  className: "form-control mt-2",
-                  id: "inputReportAddress",
-                  autoComplete: "off",
-                })}
-                style={inputStyle}
-              />
+              <div className="input-group mb-2">
+                <div className="input-group-prepend">
+                  <div
+                    className="input-group-text"
+                    style={{
+                      backgroundColor: "#fff",
+                      borderRight: "none",
+                    }}
+                  >
+                    <IconContext.Provider value={{ size: "20px" }}>
+                      <BiIcon.BiMap
+                        style={{
+                          color: "#fff",
+                          backgroundColor: "#e60029",
+                          padding: "3px",
+                          borderRadius: "25px",
+                        }}
+                      />
+                    </IconContext.Provider>
+                  </div>
+                </div>{" "}
+                <input
+                  {...getInputProps({
+                    type: "search",
+                    placeholder: "Search Address",
+
+                    id: "inputReportAddress",
+                    autoComplete: "off",
+                  })}
+                  className={
+                    checkAddress
+                      ? "form-control border-left-0 border-danger"
+                      : "form-control border-left-0"
+                  }
+                  style={inputStyle}
+                />
+              </div>
 
               <div>
                 <div
@@ -67,7 +87,7 @@ export default function Maps(props) {
         className="mx-auto"
         style={{
           height: "300px",
-          marginTop: "17px",
+          marginTop: "10px",
         }}
       >
         <GoogleMaps lat={props.lat} lng={props.lng} />

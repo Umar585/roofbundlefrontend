@@ -1,5 +1,5 @@
 import React from "react";
-import { CCard, CCardHeader, CCardBody, Cul } from "@coreui/react";
+import { CCard, CCardBody } from "@coreui/react";
 
 export default function ToDoCard() {
   return (

@@ -1,25 +1,25 @@
-.nav-link {
+.test .nav-link {
   color: #e60029;
 }
-.nav-link:hover {
+.test .nav-link:hover {
   background-color: #e60029;
   color: #fff;
 }
 
-.justify-content-start {
+.test .justify-content-start {
   justify-content: flex-end !important;
   color: black !important;
 }
-.page-link {
+.test .page-link {
   color: gray !important;
   margin: 2px;
 }
-.page-link:hover {
+.test .page-link:hover {
   color: #fff !important;
   background-color: #e60029 !important;
 }
 
-.page-item.active .page-link {
+.test .page-item.active .page-link {
   color: #fff !important;
   background-color: #e60029 !important;
   border: 1px solid #e60029 !important;
