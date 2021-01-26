@@ -4,6 +4,7 @@ import { CButton, CCard, CCardBody, CCollapse } from "@coreui/react";
 import Input from "../Components/Input";
 import Select from "../Components/Select";
 import CheckBox from "../Components/CheckBox";
+import CalculationsTable from "./CalculationsTable/CalculationsTable";
 //scss
 import "./style.scss";
 //icons
@@ -31,17 +32,39 @@ export default function Form() {
     ridge: 0,
     wall: 0,
     chimney: 0,
+
     replace: 0,
     remove: 0,
     new: 0,
     exhaust: 0,
     basicRidge: 0,
+
     reSeal: 0,
     conversions: 0,
     oneMat: 0,
     twoMat: 0,
     threeMat: 0,
     fourMat: 0,
+
+    adjOneStory: 0,
+    adjTwoStory: 0,
+    corners: 0,
+    oneStoryDown: 0,
+    twoStoryDown: 0,
+    extraExtensions: 0,
+    difficulty: 0,
+    margin: 0,
+
+    oneStoryPrice: 0,
+    adjOneStoryPrice: 0,
+    twoStoryPrice: 0,
+    adjTwoStoryPrice: 0,
+    cornersPrice: 0,
+    oneStoryDownPrice: 0,
+    twoStoryDownPrice: 0,
+    extraExtensionsPrice: 0,
+    difficultyPrice: 0,
+    marginPrice: 0,
   });
 
   //clear RoofData Function
@@ -189,6 +212,7 @@ export default function Form() {
       t.push(parseFloat(singleElement.eave));
       return t;
     });
+
     setSecondStoryEaves(t.reduce((a, b) => a + b, 0));
   };
 
@@ -220,7 +244,10 @@ export default function Form() {
                     >
                       Add Row +
                     </CButton>
-                    <div className="table-responsive custTable">
+                    <div
+                      className="table-responsive custTable"
+                      style={{ maxHeight: "400px", overflow: "scroll" }}
+                    >
                       <table className="table table-responsive-lg ">
                         <thead>
                           <tr>
@@ -246,18 +273,41 @@ export default function Form() {
                           <tr>
                             <td>#</td>
                             <td>
-                              <Select
-                                id="pitch"
-                                value={form.pitch}
-                                onChange={(e) =>
-                                  setForm({
-                                    ...form,
-                                    pitch: e.target.value,
-                                  })
-                                }
-                                title="Pitch"
-                                array={[1, 2, 3, 4]}
-                              />
+                              <div className="form-group">
+                                <select
+                                  className="form-control"
+                                  id="pitch"
+                                  name="pitch"
+                                  style={inputStyle}
+                                  value={form.pitch}
+                                  onChange={(e) =>
+                                    setForm({
+                                      ...form,
+                                      pitch: e.target.value,
+                                    })
+                                  }
+                                >
+                                  <option value="">Pitch</option>
+                                  <option value="1">1</option>
+                                  <option value="2">2</option>
+                                  <option value="3">3</option>
+                                  <option value="4">4</option>
+                                  <option value="5">5</option>
+                                  <option value="6">6</option>
+                                  <option value="7">7</option>
+                                  <option value="8">8</option>
+                                  <option value="9">9</option>
+                                  <option value="10">10</option>
+                                  <option value="11">11</option>
+                                  <option value="12">12</option>
+                                  <option value="13">13</option>
+                                  <option value="14">14</option>
+                                  <option value="15">15</option>
+                                  <option value="16">16</option>
+                                  <option value="17">17</option>
+                                  <option value="18">18</option>
+                                </select>
+                              </div>
                             </td>
                             <td>
                               <Input
@@ -728,30 +778,309 @@ export default function Form() {
                         </thead>
                         <tbody>
                           <tr>
-                            <th>Total</th>
-                            <td>{firstStoryEaves}</td>
-                            <td>0</td>
-                            <td>{secondStoryEaves}</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
+                            <th>Measurement</th>
+                            <td>
+                              {form.adjOneStory
+                                ? firstStoryEaves + parseFloat(form.adjOneStory)
+                                : firstStoryEaves}
+                            </td>
+                            <td>
+                              <Input
+                                type="number"
+                                id="adjOneStory"
+                                value={form.adjOneStory}
+                                onChange={(e) =>
+                                  setForm({
+                                    ...form,
+                                    adjOneStory: e.target.value,
+                                  })
+                                }
+                                onKeyDown={handleEnter}
+                              />
+                            </td>
+                            <td>
+                              {form.adjTwoStory
+                                ? secondStoryEaves +
+                                  parseFloat(form.adjTwoStory)
+                                : secondStoryEaves}
+                            </td>
+                            <td>
+                              <Input
+                                type="number"
+                                id="adjTwoStory"
+                                value={form.adjTwoStory}
+                                onChange={(e) =>
+                                  setForm({
+                                    ...form,
+                                    adjTwoStory: e.target.value,
+                                  })
+                                }
+                                onKeyDown={handleEnter}
+                              />
+                            </td>
+                            <td>
+                              <Input
+                                type="number"
+                                id="corners"
+                                value={form.corners}
+                                onChange={(e) =>
+                                  setForm({
+                                    ...form,
+                                    corners: e.target.value,
+                                  })
+                                }
+                                onKeyDown={handleEnter}
+                              />
+                            </td>
+                            <td>
+                              <Input
+                                type="number"
+                                id="oneStoryDown"
+                                value={form.oneStoryDown}
+                                onChange={(e) =>
+                                  setForm({
+                                    ...form,
+                                    oneStoryDown: e.target.value,
+                                  })
+                                }
+                                onKeyDown={handleEnter}
+                              />
+                            </td>
+                            <td>
+                              <Input
+                                type="number"
+                                id="twoStoryDown"
+                                value={form.twoStoryDown}
+                                onChange={(e) =>
+                                  setForm({
+                                    ...form,
+                                    twoStoryDown: e.target.value,
+                                  })
+                                }
+                                onKeyDown={handleEnter}
+                              />
+                            </td>
+                            <td>
+                              <Input
+                                type="number"
+                                id="extraExtensions"
+                                value={form.extraExtensions}
+                                onChange={(e) =>
+                                  setForm({
+                                    ...form,
+                                    extraExtensions: e.target.value,
+                                  })
+                                }
+                                onKeyDown={handleEnter}
+                              />
+                            </td>
+                            <td>
+                              <Input
+                                type="number"
+                                id="difficulty"
+                                value={form.difficulty}
+                                onChange={(e) =>
+                                  setForm({
+                                    ...form,
+                                    difficulty: e.target.value,
+                                  })
+                                }
+                                onKeyDown={handleEnter}
+                              />
+                            </td>
+                            <td>
+                              <Input
+                                type="number"
+                                id="margin"
+                                value={form.margin}
+                                onChange={(e) =>
+                                  setForm({
+                                    ...form,
+                                    margin: e.target.value,
+                                  })
+                                }
+                                onKeyDown={handleEnter}
+                              />
+                            </td>
                           </tr>
                           <tr>
-                            <th>Cost</th>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
+                            <th>Price</th>
+                            <td>
+                              <Input
+                                type="number"
+                                id="oneStoryPrice"
+                                value={form.oneStoryPrice}
+                                onChange={(e) =>
+                                  setForm({
+                                    ...form,
+                                    oneStoryPrice: e.target.value,
+                                  })
+                                }
+                                onKeyDown={handleEnter}
+                              />
+                            </td>
+                            <td></td>
+                            <td>
+                              <Input
+                                type="number"
+                                id="twoStoryPrice"
+                                value={form.twoStoryPrice}
+                                onChange={(e) =>
+                                  setForm({
+                                    ...form,
+                                    twoStoryPrice: e.target.value,
+                                  })
+                                }
+                                onKeyDown={handleEnter}
+                              />
+                            </td>
+                            <td></td>
+                            <td>
+                              <Input
+                                type="number"
+                                id="cornersPrice"
+                                value={form.cornersPrice}
+                                onChange={(e) =>
+                                  setForm({
+                                    ...form,
+                                    cornersPrice: e.target.value,
+                                  })
+                                }
+                                onKeyDown={handleEnter}
+                              />
+                            </td>
+                            <td>
+                              <Input
+                                type="number"
+                                id="oneStoryDownPrice"
+                                value={form.oneStoryDownPrice}
+                                onChange={(e) =>
+                                  setForm({
+                                    ...form,
+                                    oneStoryDownPrice: e.target.value,
+                                  })
+                                }
+                                onKeyDown={handleEnter}
+                              />
+                            </td>
+                            <td>
+                              <Input
+                                type="number"
+                                id="twoStoryDownPrice"
+                                value={form.twoStoryDownPrice}
+                                onChange={(e) =>
+                                  setForm({
+                                    ...form,
+                                    twoStoryDownPrice: e.target.value,
+                                  })
+                                }
+                                onKeyDown={handleEnter}
+                              />
+                            </td>
+                            <td>
+                              <Input
+                                type="number"
+                                id="extraExtensionsPrice"
+                                value={form.extraExtensionsPrice}
+                                onChange={(e) =>
+                                  setForm({
+                                    ...form,
+                                    extraExtensionsPrice: e.target.value,
+                                  })
+                                }
+                                onKeyDown={handleEnter}
+                              />
+                            </td>
+                            <td>
+                              <Input
+                                type="number"
+                                id="difficultyPrice"
+                                value={form.difficultyPrice}
+                                onChange={(e) =>
+                                  setForm({
+                                    ...form,
+                                    difficultyPrice: e.target.value,
+                                  })
+                                }
+                                onKeyDown={handleEnter}
+                              />
+                            </td>
+                            <td>
+                              <Input
+                                type="number"
+                                id="marginPrice"
+                                value={form.marginPrice}
+                                onChange={(e) =>
+                                  setForm({
+                                    ...form,
+                                    marginPrice: e.target.value,
+                                  })
+                                }
+                                onKeyDown={handleEnter}
+                              />
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>Total</th>
+                            <td>
+                              $
+                              {form.oneStoryPrice
+                                ? form.adjOneStory
+                                  ? (firstStoryEaves +
+                                      parseFloat(form.adjOneStory)) *
+                                    form.oneStoryPrice
+                                  : firstStoryEaves * form.oneStoryPrice
+                                : 0}
+                            </td>
+                            <td></td>
+                            <td>
+                              $
+                              {form.twoStoryPrice
+                                ? form.adjTwoStory
+                                  ? (secondStoryEaves +
+                                      parseFloat(form.adjTwoStory)) *
+                                    form.twoStoryPrice
+                                  : secondStoryEaves * form.twoStoryPrice
+                                : 0}
+                            </td>
+                            <td></td>
+                            <td>
+                              $
+                              {form.cornersPrice
+                                ? form.corners * form.cornersPrice
+                                : 0}
+                            </td>
+                            <td>
+                              $
+                              {form.oneStoryDownPrice
+                                ? form.oneStoryDown * form.oneStoryDownPrice
+                                : 0}
+                            </td>
+                            <td>
+                              $
+                              {form.twoStoryDownPrice
+                                ? form.twoStoryDown * form.twoStoryDownPrice
+                                : 0}
+                            </td>
+                            <td>
+                              $
+                              {form.extraExtensionsPrice
+                                ? form.extraExtensions *
+                                  form.extraExtensionsPrice
+                                : 0}
+                            </td>
+                            <td>
+                              $
+                              {form.difficultyPrice
+                                ? form.difficulty * form.difficultyPrice
+                                : 0}
+                            </td>
+                            <td>
+                              $
+                              {form.marginPrice
+                                ? form.margin * form.marginPrice
+                                : 0}
+                            </td>
                           </tr>
                         </tbody>
                       </table>
@@ -769,8 +1098,18 @@ export default function Form() {
             </div>
           </form>
           {/*-<CalculationsTable />*/}
+          {/* if Ptich = 1 = 0.003
+           */}
         </>
       )}
+
+      <CalculationsTable
+        pitchFactor={form.pitch}
+        items={items}
+        lengthGrnd={items.lengthGrnd}
+        width={items.width}
+        valleyRM={items.valleyRM}
+      />
     </div>
   );
 }
@@ -786,4 +1125,11 @@ const btnStyle = {
   outline: "none",
   boxShadow: "none",
   border: "none",
+};
+
+const inputStyle = {
+  margin: "2px",
+  outline: "none",
+  boxShadow: "none",
+  border: "1px solid lightgray",
 };

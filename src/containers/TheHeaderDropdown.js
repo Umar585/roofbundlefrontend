@@ -4,7 +4,6 @@ import {
   CDropdownItem,
   CDropdownMenu,
   CDropdownToggle,
-  CLink,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import { IconContext } from "react-icons";
