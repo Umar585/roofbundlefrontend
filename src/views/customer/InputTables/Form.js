@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import { CButton, CCard, CCardBody, CCollapse } from "@coreui/react";
 //custom Components
 import Input from "../Components/Input";
-import Select from "../Components/Select";
+//import Select from "../Components/Select";
 import CheckBox from "../Components/CheckBox";
 import CalculationsTable from "./CalculationsTable/CalculationsTable";
+import AccessoriesTable from "./CalculationsTable/AccessoriesTable";
 //scss
 import "./style.scss";
 //icons
@@ -246,7 +247,10 @@ export default function Form() {
                     </CButton>
                     <div
                       className="table-responsive custTable"
-                      style={{ maxHeight: "400px", overflow: "scroll" }}
+                      style={{
+                        maxHeight: "400px",
+                        overflowY: "auto",
+                      }}
                     >
                       <table className="table table-responsive-lg ">
                         <thead>
@@ -1097,19 +1101,11 @@ export default function Form() {
               </CCard>
             </div>
           </form>
-          {/*-<CalculationsTable />*/}
-          {/* if Ptich = 1 = 0.003
-           */}
         </>
       )}
 
-      <CalculationsTable
-        pitchFactor={form.pitch}
-        items={items}
-        lengthGrnd={items.lengthGrnd}
-        width={items.width}
-        valleyRM={items.valleyRM}
-      />
+      <CalculationsTable pitchFactor={form.pitch} items={items} />
+      <AccessoriesTable />
     </div>
   );
 }
