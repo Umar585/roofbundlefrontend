@@ -1,3 +1,15 @@
+.c-main {
+  background-color: #fff !important;
+}
+.c-footer {
+  background: #414141 !important;
+}
+.c-header {
+  background-color: #414141 !important;
+}
+.c-header-toggler span {
+  color: #fff !important;
+}
 .c-active {
   background-color: white !important;
   color: #e60029 !important;
@@ -32,4 +44,9 @@
     background-color: #e60029;
     color: #fff;
   }
+}
+
+.userLink {
+  position: absolute;
+  right: 2px;
 }

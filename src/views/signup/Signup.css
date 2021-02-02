@@ -1,0 +1,65 @@
+.signUp {
+  background-color: #fff;
+  min-height: 100vh;
+  max-height: 100%;
+}
+.signUp .SignInLogo {
+  padding-top: 100px;
+  max-width: 500px;
+  width: 100%;
+  height: auto;
+}
+.signUp h6 {
+  color: #414141;
+  opacity: 40%;
+}
+.SignUpForm {
+  margin-top: 50px;
+  padding-bottom: 50px;
+}
+
+.SignUpForm input[type="text"] {
+  outline: none !important;
+  box-shadow: none !important;
+  border: 0px;
+  margin-top: 20px;
+}
+.SignUpForm input[type="email"] {
+  outline: none !important;
+  box-shadow: none !important;
+  border: 0px;
+  margin-top: 20px;
+}
+.SignUpForm input[type="password"] {
+  outline: none !important;
+  box-shadow: none !important;
+  border: 0px;
+  margin-top: 20px;
+}
+
+.SignUpForm hr {
+  margin-top: 0px;
+  background-color: #fff !important;
+}
+.SignUpForm .SignInBtn {
+  margin-top: 50px;
+}
+.SignUpForm .SignInBtn input[type="submit"] {
+  background-color: #e60029;
+  color: #fff;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.SignUpForm a {
+  color: #414141;
+}
+
+@media only screen and (max-width: 320px) {
+  .signUp h6 {
+    font-family: PoppinsMed !important;
+    font-size: 13px !important;
+  }
+}

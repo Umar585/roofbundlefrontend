@@ -1,15 +1,24 @@
 import React from "react";
+import { Link, useHistory } from "react-router-dom";
 import { CCard, CCardBody } from "@coreui/react";
 
 import Form from "./Form";
+import * as AiIcon from "react-icons/ai";
 
 export default function NewCustomer() {
+  const history = useHistory();
   return (
     <div>
       <CCard className="shadow">
         <CCardBody>
-          <div style={{ maxWidth: "1000px" }} className="mx-auto">
-            <h3>New Customer</h3>
+          <div className="mb-2 float-left">
+            <AiIcon.AiOutlineArrowLeft
+              className="h3"
+              onClick={() => history.goBack()}
+            />
+          </div>
+          <div style={{ maxWidth: "1000px" }} className="text-right">
+            <h5>New Customer</h5>
           </div>
           <Form />
         </CCardBody>

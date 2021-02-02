@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./scss/style.scss";
 import { CContainer } from "@coreui/react";
 //Signup and Signin
 import SignIn from "./views/signin/SignIn";
+import SignUp from "./views/signup/Signup";
+import ForgotPass from "./views/ForgotPass/ForgotPass";
 //Terms and conditions
 /*import Terms from "./Components/TermsCond/Terms";
 import Privacy from "./Components/TermsCond/Privacy";*/
@@ -78,7 +80,17 @@ function App() {
           ) : (
             <>
               <Route path="/signin" exact={true} component={SignIn} />
-              <Route path="*" component={NotFound} />
+              <Route path="/signup" exact={true} component={SignUp} />
+              <Route
+                path="/forgotpassword"
+                exact={true}
+                component={ForgotPass}
+              />
+              {window.location.pathname === "/signin" ||
+              window.location.pathname === "/signup" ||
+              window.location.pathname === "/forgotpassword" ? null : (
+                <Route path="*" component={NotFound} />
+              )}
             </>
           )}
         </Switch>

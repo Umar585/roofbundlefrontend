@@ -1,20 +1,53 @@
-.test .nav-link {
+.newtabs .list-inline {
+  margin-top: 20px;
+  overflow-x: auto;
+  white-space: nowrap;
+  text-align: center;
+}
+.newtabs .list-inline .list-inline-item {
+  margin-right: 0px;
+}
+
+.newtabs .list-inline .list-inline-item p {
+  cursor: pointer;
+  text-align: center;
+  min-width: 100px;
+  display: inline-block;
+  border: 1px solid lightgray;
+  padding: 10px;
+  margin-bottom: 0px;
+  margin: 0px;
+}
+.newtabs .list-inline .list-inline-item #mostLeft {
+  border-radius: 4px 0 0 4px !important;
+}
+.newtabs .list-inline .list-inline-item #mostRight {
+  border-radius: 0px 4px 4px 0px !important;
+}
+.newtabs .list-inline .list-inline-item .active {
+  background-color: #414141;
+  color: #fff;
+  font-size: 13px;
+  font-family: PoppinsSemiBold;
+}
+
+.tabs .nav-link {
   color: #e60029;
 }
-.test .nav-link:hover {
+.tabs .nav-link:hover {
   background-color: #e60029;
   color: #fff;
 }
 
-.test .justify-content-start {
+.tabs .justify-content-start {
   justify-content: flex-end !important;
   color: black !important;
 }
-.test .page-link {
+.tabs .page-link {
   color: gray !important;
   margin: 2px;
 }
-.test .page-link:hover {
+.tabs .page-link:hover {
   color: #fff !important;
   background-color: #e60029 !important;
 }

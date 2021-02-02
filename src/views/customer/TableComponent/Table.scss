@@ -1,0 +1,26 @@
+.customerComponentList .dropleft .dropdown-toggle::before {
+  content: none !important;
+}
+
+.customerComponentList .dropleft .dropdown-menu a:hover {
+  background-color: #e60029 !important;
+  color: #fff !important;
+}
+
+.customerComponentList .address {
+  margin-bottom: -20px !important;
+}
+
+@media only screen and (max-width: 375px) {
+  .customerComponentList .address {
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.pages .pages-list {
+  padding: 10px;
+  border-bottom: 1px solid lightgray;
+}

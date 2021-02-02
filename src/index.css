@@ -1,10 +1,14 @@
 @font-face {
-  font-family: Lato;
-  src: url("./assets//font/Lato-Regular.ttf");
+  font-family: PoppinsReg;
+  src: url("./assets/font/Poppins-Regular.ttf");
 }
 @font-face {
-  font-family: LatoBold;
-  src: url("./assets//font/Lato-Bold.ttf");
+  font-family: PoppinsMed;
+  src: url("./assets/font/Poppins-Medium.ttf");
+}
+@font-face {
+  font-family: PoppinsSemiBold;
+  src: url("./assets/font/Poppins-SemiBold.ttf");
 }
 * {
   box-sizing: border-box;
@@ -12,10 +16,33 @@
 
 html,
 body {
-  font-family: Lato;
+  font-family: PoppinsReg !important;
   margin: 0;
   padding: 0;
   height: 100%;
+}
+
+body p {
+  font-size: 13px;
+}
+body .p2 {
+  font-family: PoppinsMed !important;
+  font-size: 13px;
+}
+body .p3 {
+  font-family: PoppinsMed !important;
+  font-size: 11px;
+}
+body span {
+  font-size: 13px;
+}
+body h5 {
+  font-family: PoppinsSemiBold !important;
+  font-size: 20px !important;
+}
+body h6 {
+  font-family: PoppinsSemiBold !important;
+  font-size: 15px !important;
 }
 
 .container-fluid-container {

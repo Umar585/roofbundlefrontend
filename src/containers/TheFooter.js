@@ -7,7 +7,8 @@ const TheFooter = () => {
 
   return (
     <CFooter fixed={false}>
-      <div>
+      <h6 className="text-center text-white">Roofbundle</h6>
+      {/*} <div>
         Copyright&copy;
         <a
           href="https://coreui.io"
@@ -18,7 +19,7 @@ const TheFooter = () => {
           Roofbundle Inc
         </a>
         <span className="ml-1"> {currentDate}</span>
-      </div>
+      </div>*/}
     </CFooter>
   );
 };

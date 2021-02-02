@@ -1,0 +1,53 @@
+.forgotpass {
+  background-color: #fff;
+  min-height: 100vh;
+  max-height: 100%;
+}
+.forgotpass .SignInLogo {
+  padding-top: 100px;
+  max-width: 500px;
+  width: 100%;
+  height: auto;
+}
+.forgotpass h6 {
+  color: #414141;
+  opacity: 40%;
+}
+.ForgotPassForm {
+  margin-top: 50px;
+  padding-bottom: 50px;
+}
+
+.ForgotPassForm input[type="email"] {
+  outline: none !important;
+  box-shadow: none !important;
+  border: 0px;
+  margin-top: 20px;
+}
+
+.ForgotPassForm hr {
+  margin-top: 0px;
+  background-color: #fff !important;
+}
+.ForgotPassForm .SignInBtn {
+  margin-top: 50px;
+}
+.ForgotPassForm .SignInBtn input[type="submit"] {
+  background-color: #e60029;
+  color: #fff;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.ForgotPassForm a {
+  color: #414141;
+}
+
+@media only screen and (max-width: 320px) {
+  .forgotpass h6 {
+    font-family: PoppinsMed !important;
+    font-size: 13px !important;
+  }
+}

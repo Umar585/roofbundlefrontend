@@ -4,7 +4,21 @@
   border: none;
 }
 
+.btnStyle {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  border-radius: 0px !important;
+}
+.btnStyle:hover {
+  background-color: #e60029 !important;
+  color: #fff !important;
+}
+
 .custTable td {
+  min-width: 100px !important;
+}
+.custTable th {
   min-width: 100px !important;
 }
 
@@ -14,17 +28,6 @@
   margin-right: 20px;
 }
 
-@media screen and (max-width: 768px) {
-  .cost_Table {
-    float: none;
-  }
-}
-
-@media screen and (max-width: 425px) {
-  .cost_Table {
-    max-width: 100% !important;
-  }
-}
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

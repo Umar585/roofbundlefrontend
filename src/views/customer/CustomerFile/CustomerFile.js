@@ -1,124 +1,142 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { CButton, CCard, CCardBody } from "@coreui/react";
 import * as FaIcon from "react-icons/fa";
 import * as AiIcon from "react-icons/ai";
-import * as ImIcon from "react-icons/im";
-import * as BiIcon from "react-icons/bi";
-import * as GiIcon from "react-icons/gi";
-import * as RiIcon from "react-icons/ri";
-import * as GrIcon from "react-icons/gr";
-
+import * as BsIcon from "react-icons/bs";
 //assets
-import MapsImg from "../../../assets/img/mapPlace.png";
+import mapsImg from "../../../assets/img/mapPlace.png";
+import "../TableComponent/Table.scss";
 
 export default function CustomerFile() {
   return (
-    <div>
-      <div>
-        <CCard className="shadow">
-          <CCardBody>
-            <h1>Customer File</h1>
-            <div className="mt-4">
-              <div className="list-inline float-left">
-                <img
-                  src={MapsImg}
-                  alt="Profile Img"
-                  className="list-inline-item"
-                  style={mapsImgStyle}
-                />
-                <div className="list-inline-item">
-                  <h3>
-                    Umar Syed - <span className="small">Completed</span>
-                  </h3>
-                  <p>
-                    <FaIcon.FaMapMarkerAlt style={iconStyle} /> 123 Down the st
-                    <br />
-                    <AiIcon.AiFillMail style={iconStyle} />{" "}
-                    <a href="mailto:umarstest@gmail.com">umarstest@gmail.com</a>
-                    <br />
-                    <ImIcon.ImPhone style={iconStyle} />{" "}
-                    <a href="tel:+1-123-546-7890">123-546-7890</a>
-                  </p>
+    <div className="pages">
+      <div className="card">
+        <div className="card-body">
+          <div className="mb-2">
+            <Link to="/" style={{ color: "#3c4b64" }}>
+              <AiIcon.AiOutlineArrowLeft className="h3" />
+            </Link>
+          </div>
+          <div className="customerComponentList">
+            <div
+              style={{
+                color: "red",
+                position: "absolute",
+                right: "10px",
+              }}
+            >
+              <div class="dropdown dropleft">
+                <button
+                  class="btn btn-sm btn-secondary dropdown-toggle p2"
+                  type="button"
+                  id="dropdownMenuButton"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  style={inputStyle}
+                >
+                  Customer <BsIcon.BsChevronRight className="small" />
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <Link to="/updatecustomer" class="dropdown-item p3">
+                    Edit
+                  </Link>
+                  <a
+                    class="dropdown-item p3"
+                    onClick={() => alert("delete function")}
+                  >
+                    Delete
+                  </a>
                 </div>
               </div>
-              <div className="text-right">
-                <CButton
-                  className="btn btn-info"
-                  onClick={() => (window.location.href = "/updatecustomer")}
-                >
-                  <AiIcon.AiFillEdit /> Edit
-                </CButton>
+            </div>
+            <div className="list-inline">
+              <div className="list-inline-item">
+                <img src={mapsImg} alt="maps img" style={mapsImgStyle} />
+              </div>
+              <div className="list-inline-item">
+                <div>
+                  <span style={{ fontSize: "15px" }}>
+                    <b>Stan Guinter</b>
+                  </span>
+                  <br />
+                  <p className="address text-muted">
+                    48 Kilkenny Lane Winnipeg, MB, L5A 1A7
+                  </p>
+                  <br />
+                  <span className="text-muted">204 922 1836</span>
+                  <br />
+                  <span className="text-muted">stan_guinter@gmail.com</span>
+                </div>
               </div>
             </div>
-          </CCardBody>
-        </CCard>
-
-        {/*Buttons */}
-        <div className="row no-gutters">
-          <div className="col-md-2">
-            <ProjectButton
-              to="/customertables"
-              title="Table"
-              subTitle="Table"
-              icon={<AiIcon.AiOutlineTable style={{ fontSize: "40px" }} />}
-            />
           </div>
-          <div className="col-md-2">
-            <ProjectButton
-              to="/customertables"
-              title="Photos"
-              subTitle="Photos"
-              icon={<BiIcon.BiPhotoAlbum style={{ fontSize: "40px" }} />}
-            />
+          {/* Pages*/}
+          <div className="pages-list mt-4">
+            <div className="list-inline">
+              <div className="list-inline-item">
+                <FaIcon.FaFileContract style={{ fontSize: "60px" }} />
+              </div>
+              <div className="list-inline-item h4">Photos</div>
+            </div>
           </div>
-          <div className="col-md-2">
-            <ProjectButton
-              to="/customertables"
-              title="Diagram"
-              subTitle="Diagram"
-              icon={<FaIcon.FaProjectDiagram style={{ fontSize: "40px" }} />}
-            />
+          <div className="pages-list">
+            <div className="list-inline">
+              <div className="list-inline-item">
+                <FaIcon.FaFileContract style={{ fontSize: "60px" }} />
+              </div>
+              <div className="list-inline-item h4">Diagrams</div>
+            </div>
           </div>
-          <div className="col-md-2">
-            <ProjectButton
-              to="/customertables"
-              title="Estimate"
-              subTitle="Estimate"
-              icon={<RiIcon.RiCalculatorLine style={{ fontSize: "40px" }} />}
-            />
+          <Link to="/customertables" style={{ color: "#3c4b64" }}>
+            <div className="pages-list">
+              <div className="list-inline">
+                <div className="list-inline-item">
+                  <FaIcon.FaFileContract style={{ fontSize: "60px" }} />
+                </div>
+                <div className="list-inline-item h4">Calculations</div>
+              </div>
+            </div>
+          </Link>
+          <div className="pages-list">
+            <div className="list-inline">
+              <div className="list-inline-item">
+                <FaIcon.FaFileContract style={{ fontSize: "60px" }} />
+              </div>
+              <div className="list-inline-item h4">Estimates</div>
+            </div>
           </div>
-          <div className="col-md-2">
-            <ProjectButton
-              to="/customertables"
-              title="Contract"
-              subTitle="Contract"
-              icon={<FaIcon.FaFileContract style={{ fontSize: "40px" }} />}
-            />
+          <div className="pages-list">
+            <div className="list-inline">
+              <div className="list-inline-item">
+                <FaIcon.FaFileContract style={{ fontSize: "60px" }} />
+              </div>
+              <div className="list-inline-item h4">Contract</div>
+            </div>
           </div>
-          <div className="col-md-2">
-            <ProjectButton
-              to="/customertables"
-              title="Material List"
-              subTitle="Material List"
-              icon={<FaIcon.FaBoxes style={{ fontSize: "40px" }} />}
-            />
+          <div className="pages-list">
+            <div className="list-inline">
+              <div className="list-inline-item">
+                <FaIcon.FaFileContract style={{ fontSize: "60px" }} />
+              </div>
+              <div className="list-inline-item h4">Materials List</div>
+            </div>
           </div>
-          <div className="col-md-2">
-            <ProjectButton
-              to="/customertables"
-              title="Work Order"
-              subTitle="Work Order"
-              icon={<GiIcon.GiPapers style={{ fontSize: "40px" }} />}
-            />
+          <div className="pages-list">
+            <div className="list-inline">
+              <div className="list-inline-item">
+                <FaIcon.FaFileContract style={{ fontSize: "60px" }} />
+              </div>
+              <div className="list-inline-item h4">Work Order</div>
+            </div>
           </div>
-          <div className="col-md-2">
-            <ProjectButton
-              to="/customertables"
-              title="Change Order"
-              subTitle="Change Order"
-              icon={<GrIcon.GrWorkshop style={{ fontSize: "40px" }} />}
-            />
+          <div className="pages-list">
+            <div className="list-inline">
+              <div className="list-inline-item">
+                <FaIcon.FaFileContract style={{ fontSize: "60px" }} />
+              </div>
+              <div className="list-inline-item h4">Change Order</div>
+            </div>
           </div>
         </div>
       </div>
@@ -126,47 +144,15 @@ export default function CustomerFile() {
   );
 }
 
-//button component
-const ProjectButton = (props) => {
-  return (
-    <CCard className="shadow" style={{ maxWidth: "300px", maxHeight: "300px" }}>
-      <CCardBody>
-        {/*Icons */}
-        <CCard
-          className="shadow text-center mx-auto"
-          style={{ maxWidth: "80px", borderRadius: "10px" }}
-        >
-          <CCardBody>{props.icon}</CCardBody>
-        </CCard>
-        {/*Title */}
-        <div className="text-center">
-          <h4>{props.title}</h4>
-          <p className="text-muted">client {props.subTitle}</p>
-          <Link
-            to={props.to}
-            className="btn w-100 text-white"
-            style={{ borderRadius: "25px", backgroundColor: "#e60029" }}
-          >
-            Continue
-          </Link>
-        </div>
-      </CCardBody>
-    </CCard>
-  );
+const inputStyle = {
+  outline: "none",
+  boxShadow: "none",
+  border: "none",
+  backgroundColor: "transparent",
 };
-
 const mapsImgStyle = {
-  maxWidth: "100px",
-  height: "100px",
-  borderRadius: "25px",
-  float: "left",
-  marginRight: "10px",
-};
-
-const iconStyle = {
-  color: "#e60029",
-  border: "1px solid #e60029",
-  padding: "3px",
-  fontSize: "20px",
-  borderRadius: "25px",
+  maxWidth: "50px",
+  height: "50px",
+  marginTop: "-60px",
+  borderRadius: "5px",
 };
