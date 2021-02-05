@@ -7,7 +7,7 @@ import * as BsIcon from "react-icons/bs";
 import mapsImg from "../../../assets/img/mapPlace.png";
 import "./Table.scss";
 
-export default function Table() {
+export default function Table(props) {
   return (
     <>
       <Link
@@ -27,10 +27,10 @@ export default function Table() {
               top: "6px",
             }}
           >
-            <div class="dropdown dropleft">
+            <div className="dropdown dropleft">
               <button
                 onClick={(e) => e.preventDefault()}
-                class="btn btn-sm btn-secondary dropdown-toggle p2"
+                className="btn btn-sm btn-secondary dropdown-toggle p2"
                 type="button"
                 id="dropdownMenuButton"
                 data-toggle="dropdown"
@@ -40,25 +40,18 @@ export default function Table() {
               >
                 Invoiced <BsIcon.BsChevronRight className="small" />
               </button>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item p3" href="#">
+              <div
+                className="dropdown-menu"
+                aria-labelledby="dropdownMenuButton"
+              >
+                <span className="dropdown-item p3" href="#">
                   New
-                </a>
-                <a class="dropdown-item p3" href="#">
-                  Quoted
-                </a>
-                <a class="dropdown-item p3" href="#">
-                  Signed
-                </a>
-                <a class="dropdown-item p3" href="#">
-                  InProgress
-                </a>
-                <a class="dropdown-item p3" href="#">
-                  Completed
-                </a>
-                <a class="dropdown-item p3" href="#">
-                  Invoiced
-                </a>
+                </span>
+                <span className="dropdown-item p3">Quoted</span>
+                <span className="dropdown-item p3">Signed</span>
+                <span className="dropdown-item p3">InProgress</span>
+                <span className="dropdown-item p3">Completed</span>
+                <span className="dropdown-item p3">Invoiced</span>
               </div>
             </div>
           </div>
@@ -70,31 +63,30 @@ export default function Table() {
                 style={mapsImgStyle}
                 onClick={(e) => {
                   e.preventDefault();
-                  window.location.href =
-                    "https://www.google.com/maps/place/636+St+Anne's+Rd,+Winnipeg,+MB+R2M+3H1/@49.8296232,-97.0894844";
+                  window.location.href = `https://www.google.com/maps/place/${props.address}/@${props.lat},${props.lng}`;
                 }}
               />
             </div>
             <div className="list-inline-item" style={{ marginLeft: "1px" }}>
               <div>
                 <h6 style={{ marginBottom: "-15px" }}>
-                  Stan Guinter <AiIcon.AiFillCheckCircle />
+                  {props.fullname} <AiIcon.AiFillCheckCircle />
                 </h6>
                 <br />
                 <p className="address text-muted" style={{ color: "#8d8d8d" }}>
-                  48 Kilkenny Lane Winnipeg, MB, L5A 1A7
+                  {props.address}
                 </p>
                 <br />
                 <span>
-                  <a
+                  <span
                     style={{ color: "#e60029" }}
                     onClick={(e) => {
                       e.preventDefault();
-                      window.location.href = "tel:1231234561";
+                      window.location.href = `tel:${props.phone}`;
                     }}
                   >
-                    204 922 1836
-                  </a>
+                    {props.phone}
+                  </span>
                 </span>
               </div>
             </div>

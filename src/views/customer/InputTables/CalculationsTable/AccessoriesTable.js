@@ -4,7 +4,7 @@ import React from "react";
 import "../style.scss";
 
 export default function AccessoriesTable(props) {
-  const form = props.form;
+  //const form = props.form;
   return (
     <div>
       <div className="table-responsive custTable">

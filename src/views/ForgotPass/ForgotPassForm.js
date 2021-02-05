@@ -34,11 +34,7 @@ export default function SignInForm() {
     };
 
     try {
-      const { data } = await Axios.post(
-        "/api/auth/forgotpassword",
-        { email },
-        config
-      );
+      Axios.post("/api/auth/forgotpassword", { email }, config);
 
       setSuccess(true);
       setTimeout(() => {

@@ -1,5 +1,5 @@
 import React from "react";
-import { Map, Marker, GoogleApiWrapper, _mapLoaded } from "google-maps-react";
+import { Map, Marker, GoogleApiWrapper } from "google-maps-react";
 
 function GoogleMaps(props) {
   const coords = { lat: 49.8143, lng: -97.1531 };

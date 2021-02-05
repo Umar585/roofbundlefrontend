@@ -1,12 +1,11 @@
 import React from "react";
-import { Redirect, Route, useHistory } from "react-router-dom";
+import { Redirect, Route } from "react-router-dom";
 import TheSidebar from "../containers/TheSidebar";
 import TheHeader from "../containers/TheHeader";
 import TheFooter from "../containers/TheFooter";
 import { CContainer } from "@coreui/react";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
-  const history = useHistory();
   return (
     <Route
       {...rest}
@@ -23,6 +22,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
                   </CContainer>
                 </main>
               </div>
+              <TheFooter />
             </div>
           </div>
         ) : (

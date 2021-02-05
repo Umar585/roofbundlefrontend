@@ -47,7 +47,7 @@ export default function SignInForm({ match }) {
         setLoading(false);
         history.push("/signin");
       }, 4000);
-      //setSuccess(data.data);
+      setSuccess(data.data);
     } catch (error) {
       setError("Somethign went wrong. Try again!");
     }

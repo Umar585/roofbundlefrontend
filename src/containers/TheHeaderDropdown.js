@@ -1,13 +1,11 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import Axios from "axios";
 import {
   CDropdown,
   CDropdownItem,
   CDropdownMenu,
   CDropdownToggle,
 } from "@coreui/react";
-import CIcon from "@coreui/icons-react";
 import { IconContext } from "react-icons";
 import * as CgIcon from "react-icons/cg";
 
@@ -17,6 +15,7 @@ const TheHeaderDropdown = () => {
   const history = useHistory();
   const logoutHandler = () => {
     localStorage.removeItem("authToken");
+    localStorage.removeItem("email");
     history.push("/signin");
   };
   return (
@@ -29,11 +28,7 @@ const TheHeaderDropdown = () => {
         </div>
       </CDropdownToggle>
       <CDropdownMenu className="pt-0" placement="bottom-end">
-        <CDropdownItem onClick={logoutHandler}>
-          {/*<CLink to="/signout">*/}
-          Sign Out
-          {/*</CLink>*/}
-        </CDropdownItem>
+        <CDropdownItem onClick={logoutHandler}>Sign Out</CDropdownItem>
       </CDropdownMenu>
     </CDropdown>
   );

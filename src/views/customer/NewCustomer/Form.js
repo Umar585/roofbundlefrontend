@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import Maps from "./Maps/Maps";
+import Axios from "axios";
 //google-maps-api
 import { geocodeByAddress, getLatLng } from "react-places-autocomplete";
 import { Link } from "react-router-dom";
@@ -10,6 +12,7 @@ import * as HiIcon from "react-icons/hi";
 import * as BsIcon from "react-icons/bs";
 
 export default function Form() {
+  const history = useHistory();
   const [form, setForm] = useState({
     fname: "",
     lname: "",
@@ -31,22 +34,8 @@ export default function Form() {
     lat: null,
     lng: null,
   });
+  const [errMsg, setErrMsg] = useState(false);
 
-  const handleFName = (e) => {
-    setForm({ ...form, fname: e.target.value });
-  };
-  const handleLName = (e) => {
-    setForm({ ...form, lname: e.target.value });
-  };
-  const handlePhone = (e) => {
-    setForm({ ...form, phone: e.target.value });
-  };
-  const handleEmail = (e) => {
-    setForm({ ...form, email: e.target.value });
-  };
-  const handleScope = (e) => {
-    setForm({ ...form, scope: e.target.value });
-  };
   const handleSelect = async (val) => {
     const results = await geocodeByAddress(val);
     const latLng = await getLatLng(results[0]);
@@ -94,14 +83,7 @@ export default function Form() {
       setCheckForm({ checkForm, address: true });
       isValid = false;
     } else {
-      setCheckForm({
-        fname: false,
-        lname: false,
-        phone: false,
-        email: false,
-        scope: false,
-        address: false,
-      });
+      setCheckForm(false);
       isValid = true;
     }
     return isValid;
@@ -111,11 +93,29 @@ export default function Form() {
     e.preventDefault();
     const isValid = checkFormFields();
     if (isValid) {
-      console.log(form, address);
+      let email = localStorage.getItem("email");
+      let lats = coords.lat;
+      let lngs = coords.lng;
+      Axios.post("/api/customer/adduser", { form, address, lats, lngs, email })
+        .then((res) => {
+          history.push("/");
+        })
+        .catch((error) => {
+          console.log(error.response.data.success);
+          if (error.response.data.success === false) {
+            setErrMsg(true);
+            setTimeout(() => {
+              setErrMsg(false);
+            }, 8000);
+          }
+        });
     }
   };
   return (
     <div>
+      {errMsg ? (
+        <p className="text-danger">There was an error. Try again!</p>
+      ) : null}
       <form
         className="mx-auto mt-4"
         style={{ maxWidth: "1000px" }}
@@ -155,7 +155,7 @@ export default function Form() {
                 id="newCustFName"
                 style={inputStyle}
                 value={form.fname}
-                onChange={handleFName}
+                onChange={(e) => setForm({ ...form, fname: e.target.value })}
               />
             </div>
           </CCol>
@@ -193,7 +193,7 @@ export default function Form() {
                 id="newCustLName"
                 style={inputStyle}
                 value={form.lname}
-                onChange={handleLName}
+                onChange={(e) => setForm({ ...form, lname: e.target.value })}
               />
             </div>
           </CCol>
@@ -232,7 +232,7 @@ export default function Form() {
                 id="newCustPhone"
                 placeholder="Phone Number"
                 value={form.phone}
-                onChange={handlePhone}
+                onChange={(e) => setForm({ ...form, phone: e.target.value })}
                 style={inputStyle}
               />
             </div>
@@ -271,7 +271,7 @@ export default function Form() {
                 id="newCustEmail"
                 style={inputStyle}
                 value={form.email}
-                onChange={handleEmail}
+                onChange={(e) => setForm({ ...form, email: e.target.value })}
               />
             </div>
           </CCol>
@@ -308,7 +308,7 @@ export default function Form() {
                 id="newCustScope"
                 style={inputStyle}
                 value={form.scope}
-                onChange={handleScope}
+                onChange={(e) => setForm({ ...form, scope: e.target.value })}
               >
                 <option value="">Scope</option>
                 <option value="ABC">ABC</option>

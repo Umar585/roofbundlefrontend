@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./scss/style.scss";
-import { CContainer } from "@coreui/react";
 //Signup and Signin
 import SignIn from "./views/signin/SignIn";
 import SignUp from "./views/signup/Signup";

@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Axios from "axios";
 //tabs Content
 import CustomerTab from "./Tabs/NewCust";
 //scss
 import "./customer.scss";
 import * as GrIcon from "react-icons/gr";
-import axios from "axios";
 
 export default function NewCust({ history }) {
   const [error, setError] = useState("");
-  const [privateData, setPrivateData] = useState("");
 
   useEffect(() => {
     if (!localStorage.getItem("authToken")) {
@@ -26,8 +24,7 @@ export default function NewCust({ history }) {
       };
 
       try {
-        const { data } = await axios.get("/api/private", config);
-        setPrivateData(data.data);
+        Axios.get("/api/private", config);
       } catch (error) {
         localStorage.removeItem("authToken");
         setError("You are not authorized!");

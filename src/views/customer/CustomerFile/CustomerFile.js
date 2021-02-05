@@ -25,9 +25,9 @@ export default function CustomerFile() {
                 right: "10px",
               }}
             >
-              <div class="dropdown dropleft">
+              <div className="dropdown dropleft">
                 <button
-                  class="btn btn-sm btn-secondary dropdown-toggle p2"
+                  className="btn btn-sm btn-secondary dropdown-toggle p2"
                   type="button"
                   id="dropdownMenuButton"
                   data-toggle="dropdown"
@@ -37,16 +37,19 @@ export default function CustomerFile() {
                 >
                   Customer <BsIcon.BsChevronRight className="small" />
                 </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <Link to="/updatecustomer" class="dropdown-item p3">
+                <div
+                  className="dropdown-menu"
+                  aria-labelledby="dropdownMenuButton"
+                >
+                  <Link to="/updatecustomer" className="dropdown-item p3">
                     Edit
                   </Link>
-                  <a
-                    class="dropdown-item p3"
+                  <span
+                    className="dropdown-item p3"
                     onClick={() => alert("delete function")}
                   >
                     Delete
-                  </a>
+                  </span>
                 </div>
               </div>
             </div>

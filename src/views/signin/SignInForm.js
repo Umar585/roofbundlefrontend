@@ -55,6 +55,7 @@ export default function SignInForm() {
       try {
         const { data } = await Axios.post("/api/auth/signin", form, config);
         localStorage.setItem("authToken", data.token);
+        localStorage.setItem("email", data.email);
         history.push("/");
       } catch (error) {
         console.log(error.response.data);

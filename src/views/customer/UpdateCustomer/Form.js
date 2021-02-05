@@ -32,21 +32,6 @@ export default function Form() {
     lng: null,
   });
 
-  const handleFName = (e) => {
-    setForm({ ...form, fname: e.target.value });
-  };
-  const handleLName = (e) => {
-    setForm({ ...form, lname: e.target.value });
-  };
-  const handlePhone = (e) => {
-    setForm({ ...form, phone: e.target.value });
-  };
-  const handleEmail = (e) => {
-    setForm({ ...form, email: e.target.value });
-  };
-  const handleScope = (e) => {
-    setForm({ ...form, scope: e.target.value });
-  };
   const handleSelect = async (val) => {
     const results = await geocodeByAddress(val);
     const latLng = await getLatLng(results[0]);
@@ -94,14 +79,7 @@ export default function Form() {
       setCheckForm({ checkForm, address: true });
       isValid = false;
     } else {
-      setCheckForm({
-        fname: false,
-        lname: false,
-        phone: false,
-        email: false,
-        scope: false,
-        address: false,
-      });
+      setCheckForm(false);
       isValid = true;
     }
     return isValid;
@@ -111,7 +89,7 @@ export default function Form() {
     e.preventDefault();
     const isValid = checkFormFields();
     if (isValid) {
-      console.log(form, address);
+      alert("updated!");
     }
   };
   return (
@@ -155,7 +133,7 @@ export default function Form() {
                 id="newCustFName"
                 style={inputStyle}
                 value={form.fname}
-                onChange={handleFName}
+                onChange={(e) => setForm({ ...form, fname: e.target.value })}
               />
             </div>
           </CCol>
@@ -193,7 +171,7 @@ export default function Form() {
                 id="newCustLName"
                 style={inputStyle}
                 value={form.lname}
-                onChange={handleLName}
+                onChange={(e) => setForm({ ...form, lname: e.target.value })}
               />
             </div>
           </CCol>
@@ -232,7 +210,7 @@ export default function Form() {
                 id="newCustPhone"
                 placeholder="Phone Number"
                 value={form.phone}
-                onChange={handlePhone}
+                onChange={(e) => setForm({ ...form, phone: e.target.value })}
                 style={inputStyle}
               />
             </div>
@@ -271,7 +249,7 @@ export default function Form() {
                 id="newCustEmail"
                 style={inputStyle}
                 value={form.email}
-                onChange={handleEmail}
+                onChange={(e) => setForm({ ...form, email: e.target.value })}
               />
             </div>
           </CCol>
@@ -308,7 +286,7 @@ export default function Form() {
                 id="newCustScope"
                 style={inputStyle}
                 value={form.scope}
-                onChange={handleScope}
+                onChange={(e) => setForm({ ...form, scope: e.target.value })}
               >
                 <option value="">Scope</option>
                 <option value="ABC">ABC</option>
@@ -331,14 +309,14 @@ export default function Form() {
         <CRow>
           <CCol sm="12" className="mt-3">
             <div className="list-inline text-right">
-              <Link to="/file" className="list-inline-item">
+              <Link to="/" className="list-inline-item">
                 Cancel
               </Link>
               <span className="mr-2">|</span>
               <input
                 type="submit"
                 className="form-control list-inline-item"
-                value="Update"
+                value="Submit"
                 style={{
                   maxWidth: "150px",
                   backgroundColor: "#e60029",

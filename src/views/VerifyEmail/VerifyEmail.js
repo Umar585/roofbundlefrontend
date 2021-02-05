@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Link, useParams, useHistory } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useParams, useHistory } from "react-router-dom";
 import Axios from "axios";
 import Logo from "../../assets/img/Logo.png";
 import "./VerifyEmail.css";
@@ -24,10 +24,7 @@ export default function SignIn() {
     };
 
     try {
-      const { data } = await Axios.put(
-        `/api/auth/verifyemail/${params.emailToken}`,
-        config
-      );
+      Axios.put(`/api/auth/verifyemail/${params.emailToken}`, config);
       history.push("/signin");
     } catch (error) {
       console.log(error);
