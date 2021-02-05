@@ -72,14 +72,16 @@ export default function CustomerFile() {
             </div>
           </div>
           {/* Pages*/}
-          <div className="pages-list mt-4">
-            <div className="list-inline">
-              <div className="list-inline-item">
-                <FaIcon.FaFileContract style={{ fontSize: "60px" }} />
+          <Link to="/photos" style={{ color: "#3c4b64" }}>
+            <div className="pages-list mt-4">
+              <div className="list-inline">
+                <div className="list-inline-item">
+                  <FaIcon.FaFileContract style={{ fontSize: "60px" }} />
+                </div>
+                <div className="list-inline-item h4">Photos</div>
               </div>
-              <div className="list-inline-item h4">Photos</div>
             </div>
-          </div>
+          </Link>
           <div className="pages-list">
             <div className="list-inline">
               <div className="list-inline-item">

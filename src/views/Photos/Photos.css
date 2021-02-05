@@ -1,0 +1,39 @@
+.photos_page .card {
+  border-radius: 10px;
+}
+
+.photos_page .card .overlay {
+  width: 100%;
+  min-height: 120px;
+  max-height: 120px;
+  background-color: black;
+  position: absolute;
+  border-radius: 10px;
+  z-index: 2;
+  opacity: 30%;
+}
+
+.photos_page .card img {
+  width: 100%;
+  min-height: 120px;
+  max-height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
+  position: relative;
+}
+
+.photos_page .card .sub_title {
+  position: absolute;
+  bottom: 0px;
+  left: 10px;
+  color: #fff;
+  z-index: 3;
+}
+
+/*Single Photos*/
+.Single_Photos img {
+  width: 100%;
+  min-height: 100px;
+  max-height: 100px;
+  object-fit: cover;
+}

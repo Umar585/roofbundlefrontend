@@ -1,13 +1,42 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { CButton } from "@coreui/react";
+import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import Axios from "axios";
 //tabs Content
 import CustomerTab from "./Tabs/NewCust";
 //scss
 import "./customer.scss";
 import * as GrIcon from "react-icons/gr";
+import axios from "axios";
 
-export default function NewCust() {
+export default function NewCust({ history }) {
+  const [error, setError] = useState("");
+  const [privateData, setPrivateData] = useState("");
+
+  useEffect(() => {
+    if (!localStorage.getItem("authToken")) {
+      history.push("/signin");
+    }
+
+    const fetchPrivateData = async () => {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+        },
+      };
+
+      try {
+        const { data } = await axios.get("/api/private", config);
+        setPrivateData(data.data);
+      } catch (error) {
+        localStorage.removeItem("authToken");
+        setError("You are not authorized!");
+      }
+    };
+
+    fetchPrivateData();
+  }, [history]);
+
   const [newCust, setNewCust] = useState(true);
   const [quoted, setQuoted] = useState(false);
   const [signed, setSigned] = useState(false);
@@ -64,18 +93,14 @@ export default function NewCust() {
     setInvoiced(true);
   };
 
-  const handleNewCust = () => {
-    window.location.href = "/new";
-  };
-  return (
-    <div>
+  return error ? (
+    <span>{error}</span>
+  ) : (
+    <>
       <div className="float-left">
         <h5 style={{ marginTop: "3px" }}>Customers</h5>
       </div>
       <div className="text-right">
-        {/*} <CButton className="btn text-dark h1" onClick={handleNewCust}>
-          +
-        </CButton>*/}
         <Link to="/new" style={{ fontSize: "17.5px" }}>
           <GrIcon.GrAdd />
         </Link>
@@ -144,6 +169,6 @@ export default function NewCust() {
         <div>{complete ? <CustomerTab /> : null}</div>
         <div>{invoiced ? <CustomerTab /> : null}</div>
       </div>
-    </div>
+    </>
   );
 }

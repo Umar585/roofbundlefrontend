@@ -41,12 +41,17 @@
   color: #fff;
   padding-top: 10px;
   padding-bottom: 10px;
+  outline: none;
+  box-shadow: none;
+  border: none;
 }
 .SignInForm .SignInBtn a {
   border: 1px solid #414141;
   color: #414141;
   padding-top: 10px;
   padding-bottom: 10px;
+  outline: none;
+  box-shadow: none;
 }
 
 @media only screen and (max-width: 320px) {

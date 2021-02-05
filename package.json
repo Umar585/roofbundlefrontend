@@ -2,7 +2,7 @@
   "name": "roofbundlefront",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:5000/",
+  "proxy": "http://localhost:5000",
   "dependencies": {
     "@coreui/chartjs": "^2.0.0",
     "@coreui/coreui": "^3.4.0",
@@ -21,6 +21,7 @@
     "dotenv": "^8.2.0",
     "enzyme": "^3.11.0",
     "google-maps-react": "^2.0.6",
+    "jwt-decode": "^3.1.2",
     "node-sass": "^4.14.1",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",

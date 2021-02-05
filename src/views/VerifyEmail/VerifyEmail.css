@@ -1,0 +1,29 @@
+.verify {
+  background-color: #fff;
+  min-height: 100vh;
+  max-height: 100%;
+}
+.verify .SignInLogo {
+  padding-top: 100px;
+  max-width: 500px;
+  width: 100%;
+  height: auto;
+}
+.verify button {
+  background-color: #e60029;
+  color: #fff;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  outline: none;
+  box-shadow: none;
+  border: 0;
+}
+@media only screen and (max-width: 320px) {
+  .forgotpass h6 {
+    font-family: PoppinsMed !important;
+    font-size: 13px !important;
+  }
+}
