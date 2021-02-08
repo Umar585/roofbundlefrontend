@@ -3,6 +3,11 @@ import { Link } from "react-router-dom";
 import Axios from "axios";
 //tabs Content
 import CustomerTab from "./Tabs/NewCust";
+import QuotedTab from "./Tabs/Quoted";
+import SignedTab from "./Tabs/Signed";
+import InProgressTab from "./Tabs/InProgress";
+import CompleteTab from "./Tabs/Complete";
+import InvoicedTab from "./Tabs/Invoiced";
 //scss
 import "./customer.scss";
 import * as GrIcon from "react-icons/gr";
@@ -160,11 +165,11 @@ export default function NewCust({ history }) {
       {/*Switch */}
       <div className="mt-3">
         <div>{newCust ? <CustomerTab /> : null}</div>
-        <div>{quoted ? <CustomerTab /> : null}</div>
-        <div>{signed ? <CustomerTab /> : null}</div>
-        <div>{inProgress ? <CustomerTab /> : null}</div>
-        <div>{complete ? <CustomerTab /> : null}</div>
-        <div>{invoiced ? <CustomerTab /> : null}</div>
+        <div>{quoted ? <QuotedTab /> : null}</div>
+        <div>{signed ? <SignedTab /> : null}</div>
+        <div>{inProgress ? <InProgressTab /> : null}</div>
+        <div>{complete ? <CompleteTab /> : null}</div>
+        <div>{invoiced ? <InvoicedTab /> : null}</div>
       </div>
     </>
   );

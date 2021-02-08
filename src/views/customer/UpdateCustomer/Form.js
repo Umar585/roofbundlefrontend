@@ -1,21 +1,25 @@
 import React, { useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import Axios from "axios";
 import Maps from "./Maps/Maps";
 //google-maps-api
 import { geocodeByAddress, getLatLng } from "react-places-autocomplete";
-import { Link } from "react-router-dom";
 import InputMask from "react-input-mask";
 import { CRow, CCol } from "@coreui/react";
 import { IconContext } from "react-icons";
 import * as HiIcon from "react-icons/hi";
 import * as BsIcon from "react-icons/bs";
 
-export default function Form() {
+export default function Form(props) {
+  const customer = props.customer;
+  const { id } = useParams();
+
   const [form, setForm] = useState({
-    fname: "",
-    lname: "",
-    phone: "",
-    email: "",
-    scope: "",
+    fname: customer.fname,
+    lname: customer.lname,
+    phone: customer.phone,
+    email: customer.email,
+    scope: customer.scope,
   });
   const [checkForm, setCheckForm] = useState({
     fname: false,
@@ -26,10 +30,10 @@ export default function Form() {
     address: false,
   });
 
-  const [address, setAddress] = useState("");
+  const [address, setAddress] = useState(customer.address);
   const [coords, setCoords] = useState({
-    lat: null,
-    lng: null,
+    lat: customer.lats,
+    lng: customer.lngs,
   });
 
   const handleSelect = async (val) => {
@@ -87,11 +91,22 @@ export default function Form() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    let email = localStorage.getItem("email");
+    let passToken = localStorage.getItem("passToken");
     const isValid = checkFormFields();
     if (isValid) {
-      alert("updated!");
+      console.log(id, form, address, coords, email, passToken);
+      Axios.post("/api/customer/updateuser", {
+        id,
+        form,
+        address,
+        coords,
+        email,
+        passToken,
+      });
     }
   };
+
   return (
     <div>
       <form
@@ -289,7 +304,9 @@ export default function Form() {
                 onChange={(e) => setForm({ ...form, scope: e.target.value })}
               >
                 <option value="">Scope</option>
-                <option value="ABC">ABC</option>
+                <option value="Re-Roof">Re-Roof</option>
+                <option value="New Construction">New Construction</option>
+                <option value="Insurance Claim">Insurance Claim</option>
               </select>
             </div>
           </CCol>

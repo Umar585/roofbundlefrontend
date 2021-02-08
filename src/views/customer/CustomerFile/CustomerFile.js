@@ -1,5 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useHistory, useParams } from "react-router-dom";
+import Axios from "axios";
 import * as FaIcon from "react-icons/fa";
 import * as AiIcon from "react-icons/ai";
 import * as BsIcon from "react-icons/bs";
@@ -8,25 +9,70 @@ import mapsImg from "../../../assets/img/mapPlace.png";
 import "../TableComponent/Table.scss";
 
 export default function CustomerFile() {
+  const { id } = useParams();
+  const history = useHistory();
+  const email = localStorage.getItem("email");
+  const [customer, setCustomer] = useState([]);
+  const [load, setLoad] = useState(false);
+  const customerID = id;
+  useEffect(() => {
+    setLoad(true);
+    setTimeout(() => {
+      setLoad(false);
+    }, 1000);
+
+    let email = localStorage.getItem("email");
+    let passToken = localStorage.getItem("passToken");
+
+    Axios.post("/api/customer/getsingleuser", { customerID, email, passToken })
+      .then((res) => {
+        setCustomer(res.data.data);
+      })
+      .catch((error) => {
+        console.log(error);
+        history.push("/");
+      });
+  }, []);
+
+  const handleDelete = () => {
+    Axios.post("/api/customer/deleteuser", { customerID, email })
+      .then((res) => {
+        history.push("/");
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  };
   return (
     <div className="pages">
-      <div className="card">
-        <div className="card-body">
-          <div className="mb-2">
-            <Link to="/" style={{ color: "#3c4b64" }}>
-              <AiIcon.AiOutlineArrowLeft className="h3" />
-            </Link>
-          </div>
+      <div>
+        <div className="float-left">
+          <Link to="/" style={{ color: "#3c4b64" }}>
+            <AiIcon.AiOutlineArrowLeft className="h3" />
+          </Link>
+        </div>
+        <div className="text-right">
+          <h3>Customer</h3>
+        </div>
+      </div>
+
+      <div className="card mt-3 p-2">
+        {load ? (
+          <h6 className="text-center">Loading</h6>
+        ) : (
           <div className="customerComponentList">
             <div
               style={{
                 color: "red",
                 position: "absolute",
-                right: "10px",
+                right: "0px",
+                marginRight: "0px",
+                top: "0px",
               }}
             >
               <div className="dropdown dropleft">
                 <button
+                  onClick={(e) => e.preventDefault()}
                   className="btn btn-sm btn-secondary dropdown-toggle p2"
                   type="button"
                   id="dropdownMenuButton"
@@ -35,19 +81,19 @@ export default function CustomerFile() {
                   aria-expanded="false"
                   style={inputStyle}
                 >
-                  Customer <BsIcon.BsChevronRight className="small" />
+                  file <BsIcon.BsChevronRight className="small" />
                 </button>
                 <div
                   className="dropdown-menu"
                   aria-labelledby="dropdownMenuButton"
                 >
-                  <Link to="/updatecustomer" className="dropdown-item p3">
+                  <Link
+                    className="dropdown-item p3"
+                    to={`/updatecustomer/${id}`}
+                  >
                     Edit
                   </Link>
-                  <span
-                    className="dropdown-item p3"
-                    onClick={() => alert("delete function")}
-                  >
+                  <span className="dropdown-item p3" onClick={handleDelete}>
                     Delete
                   </span>
                 </div>
@@ -55,94 +101,121 @@ export default function CustomerFile() {
             </div>
             <div className="list-inline">
               <div className="list-inline-item">
-                <img src={mapsImg} alt="maps img" style={mapsImgStyle} />
+                <img
+                  src={mapsImg}
+                  alt="maps img"
+                  style={mapsImgStyle}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    window.location.href = `https://www.google.com/maps/place/${customer.address}/@${customer.lat},${customer.lng}`;
+                  }}
+                />
               </div>
-              <div className="list-inline-item">
+              <div className="list-inline-item" style={{ marginLeft: "1px" }}>
                 <div>
-                  <span style={{ fontSize: "15px" }}>
-                    <b>Stan Guinter</b>
-                  </span>
+                  <h6
+                    style={{
+                      marginBottom: "-15px",
+                      maxWidth: "80%",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    {`${customer.fname} ${customer.lname}`}
+                  </h6>
                   <br />
-                  <p className="address text-muted">
-                    48 Kilkenny Lane Winnipeg, MB, L5A 1A7
+                  <p
+                    className="address text-muted"
+                    style={{ color: "#8d8d8d" }}
+                  >
+                    {customer.address}
                   </p>
                   <br />
-                  <span className="text-muted">204 922 1836</span>
-                  <br />
-                  <span className="text-muted">stan_guinter@gmail.com</span>
+                  <span>
+                    <span
+                      style={{ color: "#e60029" }}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        window.location.href = `tel:${customer.phone}`;
+                      }}
+                    >
+                      {customer.phone}
+                    </span>
+                  </span>
                 </div>
               </div>
             </div>
           </div>
-          {/* Pages*/}
-          <Link to="/photos" style={{ color: "#3c4b64" }}>
-            <div className="pages-list mt-4">
-              <div className="list-inline">
-                <div className="list-inline-item">
-                  <FaIcon.FaFileContract style={{ fontSize: "60px" }} />
-                </div>
-                <div className="list-inline-item h4">Photos</div>
-              </div>
+        )}
+      </div>
+
+      <Link to="/album" style={{ color: "#3c4b64" }}>
+        <div className="pages-list mt-4">
+          <div className="list-inline">
+            <div className="list-inline-item">
+              <FaIcon.FaFileContract style={{ fontSize: "60px" }} />
             </div>
-          </Link>
-          <div className="pages-list">
-            <div className="list-inline">
-              <div className="list-inline-item">
-                <FaIcon.FaFileContract style={{ fontSize: "60px" }} />
-              </div>
-              <div className="list-inline-item h4">Diagrams</div>
-            </div>
+            <div className="list-inline-item h4">Photos</div>
           </div>
-          <Link to="/customertables" style={{ color: "#3c4b64" }}>
-            <div className="pages-list">
-              <div className="list-inline">
-                <div className="list-inline-item">
-                  <FaIcon.FaFileContract style={{ fontSize: "60px" }} />
-                </div>
-                <div className="list-inline-item h4">Calculations</div>
-              </div>
-            </div>
-          </Link>
-          <div className="pages-list">
-            <div className="list-inline">
-              <div className="list-inline-item">
-                <FaIcon.FaFileContract style={{ fontSize: "60px" }} />
-              </div>
-              <div className="list-inline-item h4">Estimates</div>
-            </div>
+        </div>
+      </Link>
+      <div className="pages-list">
+        <div className="list-inline">
+          <div className="list-inline-item">
+            <FaIcon.FaFileContract style={{ fontSize: "60px" }} />
           </div>
-          <div className="pages-list">
-            <div className="list-inline">
-              <div className="list-inline-item">
-                <FaIcon.FaFileContract style={{ fontSize: "60px" }} />
-              </div>
-              <div className="list-inline-item h4">Contract</div>
+          <div className="list-inline-item h4">Diagrams</div>
+        </div>
+      </div>
+      <Link to="/customertables" style={{ color: "#3c4b64" }}>
+        <div className="pages-list">
+          <div className="list-inline">
+            <div className="list-inline-item">
+              <FaIcon.FaFileContract style={{ fontSize: "60px" }} />
             </div>
+            <div className="list-inline-item h4">Calculations</div>
           </div>
-          <div className="pages-list">
-            <div className="list-inline">
-              <div className="list-inline-item">
-                <FaIcon.FaFileContract style={{ fontSize: "60px" }} />
-              </div>
-              <div className="list-inline-item h4">Materials List</div>
-            </div>
+        </div>
+      </Link>
+      <div className="pages-list">
+        <div className="list-inline">
+          <div className="list-inline-item">
+            <FaIcon.FaFileContract style={{ fontSize: "60px" }} />
           </div>
-          <div className="pages-list">
-            <div className="list-inline">
-              <div className="list-inline-item">
-                <FaIcon.FaFileContract style={{ fontSize: "60px" }} />
-              </div>
-              <div className="list-inline-item h4">Work Order</div>
-            </div>
+          <div className="list-inline-item h4">Estimates</div>
+        </div>
+      </div>
+      <div className="pages-list">
+        <div className="list-inline">
+          <div className="list-inline-item">
+            <FaIcon.FaFileContract style={{ fontSize: "60px" }} />
           </div>
-          <div className="pages-list">
-            <div className="list-inline">
-              <div className="list-inline-item">
-                <FaIcon.FaFileContract style={{ fontSize: "60px" }} />
-              </div>
-              <div className="list-inline-item h4">Change Order</div>
-            </div>
+          <div className="list-inline-item h4">Contract</div>
+        </div>
+      </div>
+      <div className="pages-list">
+        <div className="list-inline">
+          <div className="list-inline-item">
+            <FaIcon.FaFileContract style={{ fontSize: "60px" }} />
           </div>
+          <div className="list-inline-item h4">Materials List</div>
+        </div>
+      </div>
+      <div className="pages-list">
+        <div className="list-inline">
+          <div className="list-inline-item">
+            <FaIcon.FaFileContract style={{ fontSize: "60px" }} />
+          </div>
+          <div className="list-inline-item h4">Work Order</div>
+        </div>
+      </div>
+      <div className="pages-list">
+        <div className="list-inline">
+          <div className="list-inline-item">
+            <FaIcon.FaFileContract style={{ fontSize: "60px" }} />
+          </div>
+          <div className="list-inline-item h4">Change Order</div>
         </div>
       </div>
     </div>
@@ -158,6 +231,6 @@ const inputStyle = {
 const mapsImgStyle = {
   maxWidth: "50px",
   height: "50px",
-  marginTop: "-60px",
+  marginTop: "-50px",
   borderRadius: "5px",
 };

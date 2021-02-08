@@ -5,14 +5,14 @@ import { CCard } from "@coreui/react";
 //TableComponent
 import TableComponent from "../TableComponent/Table";
 
-const NewCust = () => {
+const Quoted = () => {
   const history = useHistory();
   const [customers, setCustomers] = useState([]);
 
   useEffect(() => {
     let email = localStorage.getItem("email");
     let passToken = localStorage.getItem("passToken");
-    let page = "new";
+    let page = "quoted";
     Axios.post("/api/customer/getusers", { email, passToken, page })
       .then((res) => {
         setCustomers(res.data.data);
@@ -27,7 +27,7 @@ const NewCust = () => {
   return (
     <div style={{ marginBottom: "20px" }}>
       {customers.length === 0 ? (
-        <p className="text-center mt-4">No New Customers</p>
+        <p className="text-center mt-4">No Quoted Customers</p>
       ) : (
         customers.map((item) => {
           return (
@@ -40,7 +40,7 @@ const NewCust = () => {
                 lat={item.lats}
                 lng={item.lngs}
                 phone={item.phone}
-                pageTitle="New"
+                pageTitle="Quoted"
               />
             </CCard>
           );
@@ -56,4 +56,4 @@ const cardStyle = {
   marginBottom: "-10px",
 };
 
-export default NewCust;
+export default Quoted;

@@ -16,6 +16,7 @@ const TheHeaderDropdown = () => {
   const logoutHandler = () => {
     localStorage.removeItem("authToken");
     localStorage.removeItem("email");
+    localStorage.removeItem("passToken");
     history.push("/signin");
   };
   return (

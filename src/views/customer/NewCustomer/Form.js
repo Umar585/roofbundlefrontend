@@ -35,6 +35,7 @@ export default function Form() {
     lng: null,
   });
   const [errMsg, setErrMsg] = useState(false);
+  const [emailErr, setEmailErr] = useState(false);
 
   const handleSelect = async (val) => {
     const results = await geocodeByAddress(val);
@@ -101,8 +102,15 @@ export default function Form() {
           history.push("/");
         })
         .catch((error) => {
-          console.log(error.response.data.success);
-          if (error.response.data.success === false) {
+          if (
+            error.response.data.error ===
+            `E11000 duplicate key error collection: test.customers index: email_1 dup key: { email: \"${form.email}\" }`
+          ) {
+            setEmailErr(true);
+            setTimeout(() => {
+              setEmailErr(false);
+            }, 8000);
+          } else if (error.response.data.success === false) {
             setErrMsg(true);
             setTimeout(() => {
               setErrMsg(false);
@@ -113,14 +121,17 @@ export default function Form() {
   };
   return (
     <div>
-      {errMsg ? (
-        <p className="text-danger">There was an error. Try again!</p>
-      ) : null}
       <form
         className="mx-auto mt-4"
         style={{ maxWidth: "1000px" }}
         onSubmit={handleSubmit}
       >
+        {errMsg ? (
+          <p className="text-danger">There was an error. Try again!</p>
+        ) : null}
+        {emailErr ? (
+          <p className="text-danger">Customer Already Exists!</p>
+        ) : null}
         <CRow>
           <CCol col="6" lg>
             <div className="input-group mb-2">
@@ -311,7 +322,9 @@ export default function Form() {
                 onChange={(e) => setForm({ ...form, scope: e.target.value })}
               >
                 <option value="">Scope</option>
-                <option value="ABC">ABC</option>
+                <option value="Re-Roof">Re-Roof</option>
+                <option value="New Construction">New Construction</option>
+                <option value="Insurance Claim">Insurance Claim</option>
               </select>
             </div>
           </CCol>

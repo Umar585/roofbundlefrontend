@@ -1,5 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useHistory, Link } from "react-router-dom";
+import Axios from "axios";
 //icons
 import * as AiIcon from "react-icons/ai";
 import * as BsIcon from "react-icons/bs";
@@ -8,10 +9,32 @@ import mapsImg from "../../../assets/img/mapPlace.png";
 import "./Table.scss";
 
 export default function Table(props) {
+  const history = useHistory();
+  const [moved, setMoved] = useState(false);
+  const id = props.id;
+  const handleTabs = (val) => {
+    let email = localStorage.getItem("email");
+    try {
+      Axios.post("/api/customer/changeuser", { id, email, val });
+      setMoved(true);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const data = {
+    id: id,
+    address: props.address,
+    email: props.email,
+    lat: props.lat,
+    lng: props.lng,
+    fullname: props.fullname,
+    phone: props.phone,
+  };
+
   return (
     <>
       <Link
-        to="/file"
+        to={`/file/${id}`}
         style={{
           color: "black",
           padding: "5px",
@@ -38,20 +61,67 @@ export default function Table(props) {
                 aria-expanded="false"
                 style={inputStyle}
               >
-                Invoiced <BsIcon.BsChevronRight className="small" />
+                {/*<AiIcon.AiFillCheckCircle />*/}
+                {props.pageTitle} <BsIcon.BsChevronRight className="small" />
               </button>
               <div
                 className="dropdown-menu"
                 aria-labelledby="dropdownMenuButton"
               >
-                <span className="dropdown-item p3" href="#">
+                <span
+                  className="dropdown-item p3"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleTabs("new");
+                  }}
+                >
                   New
                 </span>
-                <span className="dropdown-item p3">Quoted</span>
-                <span className="dropdown-item p3">Signed</span>
-                <span className="dropdown-item p3">InProgress</span>
-                <span className="dropdown-item p3">Completed</span>
-                <span className="dropdown-item p3">Invoiced</span>
+                <span
+                  className="dropdown-item p3"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleTabs("quoted");
+                  }}
+                >
+                  Quoted
+                </span>
+                <span
+                  className="dropdown-item p3"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleTabs("signed");
+                  }}
+                >
+                  Signed
+                </span>
+                <span
+                  className="dropdown-item p3"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleTabs("inprogress");
+                  }}
+                >
+                  InProgress
+                </span>
+                <span
+                  className="dropdown-item p3"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleTabs("complete");
+                  }}
+                >
+                  Completed
+                </span>
+                <span
+                  className="dropdown-item p3"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleTabs("invoiced");
+                  }}
+                >
+                  Invoiced
+                </span>
               </div>
             </div>
           </div>
@@ -63,18 +133,26 @@ export default function Table(props) {
                 style={mapsImgStyle}
                 onClick={(e) => {
                   e.preventDefault();
-                  window.location.href = `https://www.google.com/maps/place/${props.address}/@${props.lat},${props.lng}`;
+                  window.location.href = `https://www.google.com/maps/place/${data.address}/@${data.lat},${data.lng}`;
                 }}
               />
             </div>
             <div className="list-inline-item" style={{ marginLeft: "1px" }}>
               <div>
-                <h6 style={{ marginBottom: "-15px" }}>
-                  {props.fullname} <AiIcon.AiFillCheckCircle />
+                <h6
+                  style={{
+                    marginBottom: "-15px",
+                    maxWidth: "80%",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  {data.fullname}
                 </h6>
                 <br />
                 <p className="address text-muted" style={{ color: "#8d8d8d" }}>
-                  {props.address}
+                  {data.address}
                 </p>
                 <br />
                 <span>
@@ -82,11 +160,14 @@ export default function Table(props) {
                     style={{ color: "#e60029" }}
                     onClick={(e) => {
                       e.preventDefault();
-                      window.location.href = `tel:${props.phone}`;
+                      window.location.href = `tel:${data.phone}`;
                     }}
                   >
-                    {props.phone}
+                    {data.phone}
                   </span>
+                  {moved ? (
+                    <span className="badge badge-success ml-2">Moved</span>
+                  ) : null}
                 </span>
               </div>
             </div>

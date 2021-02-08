@@ -6,7 +6,7 @@ import "../Photos.css";
 export default function SinglePhotos(props) {
   return (
     <div className="Single_Photos">
-      <Link to="/photos/photo">
+      <Link to="/album/photos/photo">
         <img src={img1} alt="img" />
       </Link>
     </div>

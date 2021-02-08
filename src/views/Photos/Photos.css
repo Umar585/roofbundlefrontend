@@ -37,3 +37,17 @@
   max-height: 100px;
   object-fit: cover;
 }
+
+.photos_page .confirm_btns button {
+  width: 100%;
+  outline: none !important;
+  box-shadow: none;
+  border: 0px;
+  background-color: none;
+}
+
+.photos_page .modal input {
+  outline: none !important;
+  box-shadow: none;
+  border: 1px solid lightgray;
+}

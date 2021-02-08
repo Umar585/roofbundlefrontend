@@ -7,6 +7,7 @@ import SignUp from "./views/signup/Signup";
 import ForgotPass from "./views/ForgotPass/ForgotPass";
 import ResetPassword from "./views/PasswordReset/ResetPass";
 import VerifyEmail from "./views/VerifyEmail/VerifyEmail";
+import Album from "./views/Photos/Album";
 import Photos from "./views/Photos/Photos";
 import Photo from "./views/Photos/SinglePhotos/LargeSinglePhoto";
 import ScrollToTop from "./Components/CustomComponent/ScrollToTop";
@@ -41,10 +42,10 @@ function App() {
         <Switch>
           <PrivateRouting exact path="/" component={Customer} />
           <PrivateRouting exact path="/new" component={NewCustomer} />
-          <PrivateRouting exact path="/file" component={CustomerFile} />
+          <PrivateRouting exact path="/file/:id" component={CustomerFile} />
           <PrivateRouting
             exact
-            path="/updatecustomer"
+            path="/updatecustomer/:id"
             component={UpdateCustomer}
           />
           <PrivateRouting
@@ -52,8 +53,9 @@ function App() {
             path="/customertables"
             component={InputTables}
           />
-          <PrivateRouting exact path="/photos" component={Photos} />
-          <PrivateRouting exact path="/photos/photo" component={Photo} />
+          <PrivateRouting exact path="/album" component={Album} />
+          <PrivateRouting exact path="/album/photos" component={Photos} />
+          <PrivateRouting exact path="/album/photos/photo" component={Photo} />
           <Route path="/signin" exact component={SignIn} />
           <Route path="/signup" exact component={SignUp} />
           <Route path="/forgotpassword" exact component={ForgotPass} />
