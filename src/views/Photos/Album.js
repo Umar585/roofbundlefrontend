@@ -2,23 +2,31 @@ import React, { useState, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 import Axios from "axios";
 import * as AiIcon from "react-icons/ai";
+import * as FiIcon from "react-icons/fi";
 //style sheet
 import "./Photos.css";
 //test images
-import img1 from "../../assets/img/Photos/img1.jpg";
+import img1 from "../../assets/img/album/img1.jpg";
+import img2 from "../../assets/img/album/img2.jpg";
+import img3 from "../../assets/img/album/img3.jpg";
+import img4 from "../../assets/img/album/img4.jpg";
+import img5 from "../../assets/img/album/img5.jpg";
+import img6 from "../../assets/img/album/img6.jpg";
 
 export default function Photos() {
   const history = useHistory();
   const [albums, setAlbums] = useState([]);
+  const [title, setTitle] = useState();
+  const [titleErr, setTitleErr] = useState(false);
   const email = localStorage.getItem("email");
   const passToken = localStorage.getItem("passToken");
+
   useEffect(() => {
     if (!localStorage.getItem("authToken")) {
       history.push("/signin");
     }
     Axios.post("/api/album/getalbum", { email, passToken })
       .then((res) => {
-        //console.log(res.data.data);
         setAlbums(res.data.data);
       })
       .catch((err) => {
@@ -26,15 +34,29 @@ export default function Photos() {
       });
   }, []);
 
-  const [form, setForm] = useState({
-    title: "",
-    image: "",
-  });
-
   const handleAlbum = (e) => {
     e.preventDefault();
-    console.log(form);
-    Axios.post("/api/album/addalbum", { form, email, passToken });
+    if (title) {
+      Axios.post("/api/album/addalbum", { title, email, passToken })
+        .then(() => {
+          history.go(0);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      setTitleErr(true);
+    }
+  };
+
+  const handleDeleteAlbum = (id) => {
+    Axios.post("/api/album/deletealbum", { id, email, passToken })
+      .then(() => {
+        history.go(0);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -55,17 +77,64 @@ export default function Photos() {
       <div className="text-center">
         <h5>Album</h5>
       </div>
-
       <div className="mt-4">
         {albums.length === 0 ? <p className="text-center">No Album</p> : null}
         {albums.map((item) => {
           return (
-            <Link to="/album/photos" className="card" key={item._id}>
+            <Link
+              to={`/album/photos/${item._id}`}
+              className="card"
+              key={item._id}
+            >
+              <div
+                style={{
+                  position: "absolute",
+                  zIndex: "3",
+                  right: "10px",
+                  top: "10px",
+                  color: "white",
+                }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleDeleteAlbum(item._id);
+                }}
+              >
+                <p>
+                  <FiIcon.FiTrash />
+                </p>
+              </div>
               <div className="overlay"></div>
-              <img src={item.main_photo} alt="DetailsImg" />
+              <img
+                src={
+                  item.img === "1"
+                    ? img1
+                    : item.img === "2"
+                    ? img2
+                    : item.img === "3"
+                    ? img3
+                    : item.img === "4"
+                    ? img4
+                    : item.img === "5"
+                    ? img5
+                    : item.img === "6"
+                    ? img6
+                    : null
+                }
+                alt="Img"
+              />
               <div className="sub_title">
-                <h5 style={{ marginBottom: "0px" }}>{item.title}</h5>
-                <p className="small">12 Photos</p>
+                <h5
+                  style={{
+                    marginBottom: "0px",
+                    maxWidth: "250px",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  {item.title}
+                </h5>
+                <p className="small">0 Photos 0 Videos</p>
               </div>
             </Link>
           );
@@ -94,58 +163,23 @@ export default function Photos() {
                   </button>
                   <input
                     type="text"
-                    placeholder="Album Title"
-                    className="form-control"
-                    value={form.title}
-                    onChange={(e) =>
-                      setForm({ ...form, title: e.target.value })
+                    id="albumTitle"
+                    name="albumTitle"
+                    placeholder="Album Title*"
+                    className={
+                      titleErr ? "form-control border-danger" : "form-control"
                     }
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
                   />
-                  <div className="custom-file mt-2">
-                    <input
-                      type="file"
-                      className="custom-file-input"
-                      id="customFile"
-                      value={form.image}
-                      onChange={(e) =>
-                        setForm({ ...form, image: e.target.value })
-                      }
-                    />
-                    <label
-                      className="custom-file-label"
-                      for="customFile"
-                      style={{
-                        maxWidth: "100%",
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                        whiteSpace: "nowrap",
-                      }}
-                    >
-                      {form.image != "" ? form.image : "Choose Image"}
-                    </label>
-                  </div>
-
                   <div className="confirm_btns mt-1">
-                    <div className="row">
-                      <div className="col-sm-6 mt-1">
-                        <button
-                          type="button"
-                          className="btn btn-secondary"
-                          data-dismiss="modal"
-                        >
-                          Close
-                        </button>
-                      </div>
-                      <div className="col-sm-6 mt-1">
-                        <button
-                          type="submit"
-                          style={{ backgroundColor: "#e60029" }}
-                          className="btn btn-primary"
-                        >
-                          Save changes
-                        </button>
-                      </div>
-                    </div>
+                    <button
+                      type="submit"
+                      style={{ backgroundColor: "#e60029" }}
+                      className="btn btn-primary w-100"
+                    >
+                      Create
+                    </button>
                   </div>
                 </div>
               </div>

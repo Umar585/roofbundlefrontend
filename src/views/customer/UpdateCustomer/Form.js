@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import Axios from "axios";
 import Maps from "./Maps/Maps";
 //google-maps-api
@@ -11,6 +11,7 @@ import * as HiIcon from "react-icons/hi";
 import * as BsIcon from "react-icons/bs";
 
 export default function Form(props) {
+  const history = useHistory();
   const customer = props.customer;
   const { id } = useParams();
 
@@ -95,7 +96,6 @@ export default function Form(props) {
     let passToken = localStorage.getItem("passToken");
     const isValid = checkFormFields();
     if (isValid) {
-      console.log(id, form, address, coords, email, passToken);
       Axios.post("/api/customer/updateuser", {
         id,
         form,
@@ -103,7 +103,13 @@ export default function Form(props) {
         coords,
         email,
         passToken,
-      });
+      })
+        .then((res) => {
+          history.push(`/file/${res.data.data._id}`);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   };
 

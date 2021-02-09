@@ -72,7 +72,7 @@ export default function Table(props) {
                   className="dropdown-item p3"
                   onClick={(e) => {
                     e.preventDefault();
-                    handleTabs("new");
+                    handleTabs("New");
                   }}
                 >
                   New
@@ -81,7 +81,7 @@ export default function Table(props) {
                   className="dropdown-item p3"
                   onClick={(e) => {
                     e.preventDefault();
-                    handleTabs("quoted");
+                    handleTabs("Quoted");
                   }}
                 >
                   Quoted
@@ -90,7 +90,7 @@ export default function Table(props) {
                   className="dropdown-item p3"
                   onClick={(e) => {
                     e.preventDefault();
-                    handleTabs("signed");
+                    handleTabs("Signed");
                   }}
                 >
                   Signed
@@ -99,7 +99,7 @@ export default function Table(props) {
                   className="dropdown-item p3"
                   onClick={(e) => {
                     e.preventDefault();
-                    handleTabs("inprogress");
+                    handleTabs("Inprogress");
                   }}
                 >
                   InProgress
@@ -108,7 +108,7 @@ export default function Table(props) {
                   className="dropdown-item p3"
                   onClick={(e) => {
                     e.preventDefault();
-                    handleTabs("complete");
+                    handleTabs("Complete");
                   }}
                 >
                   Completed
@@ -117,7 +117,7 @@ export default function Table(props) {
                   className="dropdown-item p3"
                   onClick={(e) => {
                     e.preventDefault();
-                    handleTabs("invoiced");
+                    handleTabs("Invoiced");
                   }}
                 >
                   Invoiced

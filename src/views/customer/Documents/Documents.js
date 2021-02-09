@@ -4,7 +4,6 @@ import Axios from "axios";
 import * as FaIcon from "react-icons/fa";
 import * as AiIcon from "react-icons/ai";
 import * as BsIcon from "react-icons/bs";
-import * as HiIcon from "react-icons/hi";
 //assets
 import mapsImg from "../../../assets/img/mapPlace.png";
 import "../TableComponent/Table.scss";
@@ -48,12 +47,15 @@ export default function CustomerFile() {
     <div className="pages mb-4">
       <div>
         <div className="float-left">
-          <Link to="/" style={{ color: "#3c4b64" }}>
+          <div
+            onClick={() => history.goBack(-1)}
+            style={{ color: "#3c4b64", cursor: "pointer" }}
+          >
             <AiIcon.AiOutlineArrowLeft className="h3" />
-          </Link>
+          </div>
         </div>
         <div className="text-right">
-          <h3>Customer</h3>
+          <h3>Documents</h3>
         </div>
       </div>
 
@@ -169,52 +171,44 @@ export default function CustomerFile() {
         )}
       </div>
 
-      <Link to="/album" style={{ color: "#3c4b64" }}>
-        <div className="pages-list mt-4">
-          <div className="list-inline">
-            <div className="list-inline-item">
-              <AiIcon.AiFillFileImage style={{ fontSize: "60px" }} />
-            </div>
-            <div className="list-inline-item h4">Photos/Videos</div>
-          </div>
-        </div>
-      </Link>
       <div className="pages-list">
         <div className="list-inline">
           <div className="list-inline-item">
-            <FaIcon.FaClipboard style={{ fontSize: "60px" }} />
+            <FaIcon.FaFileContract style={{ fontSize: "60px" }} />
           </div>
-          <div className="list-inline-item h4">Diagrams</div>
+          <div className="list-inline-item h4">Estimates</div>
         </div>
       </div>
-      <Link to="/customertables" style={{ color: "#3c4b64" }}>
-        <div className="pages-list">
-          <div className="list-inline">
-            <div className="list-inline-item">
-              <FaIcon.FaClipboardList style={{ fontSize: "60px" }} />
-            </div>
-            <div className="list-inline-item h4">Specifications</div>
+      <div className="pages-list">
+        <div className="list-inline">
+          <div className="list-inline-item">
+            <FaIcon.FaFileContract style={{ fontSize: "60px" }} />
           </div>
+          <div className="list-inline-item h4">Contract</div>
         </div>
-      </Link>
-      <Link to={`/file/documents/${id}`} style={{ color: "#3c4b64" }}>
-        <div className="pages-list">
-          <div className="list-inline">
-            <div className="list-inline-item">
-              <FaIcon.FaFileContract style={{ fontSize: "60px" }} />
-            </div>
-            <div className="list-inline-item h4">Documents</div>
+      </div>
+      <div className="pages-list">
+        <div className="list-inline">
+          <div className="list-inline-item">
+            <FaIcon.FaFileContract style={{ fontSize: "60px" }} />
           </div>
+          <div className="list-inline-item h4">Materials List</div>
         </div>
-      </Link>
-      <div style={{ color: "#3c4b64" }}>
-        <div className="pages-list">
-          <div className="list-inline">
-            <div className="list-inline-item">
-              <AiIcon.AiFillCalendar style={{ fontSize: "60px" }} />
-            </div>
-            <div className="list-inline-item h4">Calendar</div>
+      </div>
+      <div className="pages-list">
+        <div className="list-inline">
+          <div className="list-inline-item">
+            <FaIcon.FaFileContract style={{ fontSize: "60px" }} />
           </div>
+          <div className="list-inline-item h4">Work Order</div>
+        </div>
+      </div>
+      <div className="pages-list">
+        <div className="list-inline">
+          <div className="list-inline-item">
+            <FaIcon.FaFileContract style={{ fontSize: "60px" }} />
+          </div>
+          <div className="list-inline-item h4">Change Order</div>
         </div>
       </div>
     </div>

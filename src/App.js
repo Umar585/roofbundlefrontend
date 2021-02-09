@@ -22,6 +22,9 @@ const NewCustomer = React.lazy(() =>
 const CustomerFile = React.lazy(() =>
   import("./views/customer/CustomerFile/CustomerFile")
 );
+const CustomerDocument = React.lazy(() =>
+  import("./views/customer/Documents/Documents")
+);
 const UpdateCustomer = React.lazy(() =>
   import("./views/customer/UpdateCustomer/UpdatedCustomer")
 );
@@ -45,6 +48,11 @@ function App() {
           <PrivateRouting exact path="/file/:id" component={CustomerFile} />
           <PrivateRouting
             exact
+            path="/file/documents/:id"
+            component={CustomerDocument}
+          />
+          <PrivateRouting
+            exact
             path="/updatecustomer/:id"
             component={UpdateCustomer}
           />
@@ -54,8 +62,12 @@ function App() {
             component={InputTables}
           />
           <PrivateRouting exact path="/album" component={Album} />
-          <PrivateRouting exact path="/album/photos" component={Photos} />
-          <PrivateRouting exact path="/album/photos/photo" component={Photo} />
+          <PrivateRouting exact path="/album/photos/:id" component={Photos} />
+          <PrivateRouting
+            exact
+            path="/album/photos/photo/:id"
+            component={Photo}
+          />
           <Route path="/signin" exact component={SignIn} />
           <Route path="/signup" exact component={SignUp} />
           <Route path="/forgotpassword" exact component={ForgotPass} />

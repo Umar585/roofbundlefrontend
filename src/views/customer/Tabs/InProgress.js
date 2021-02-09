@@ -12,7 +12,7 @@ const InProgress = () => {
   useEffect(() => {
     let email = localStorage.getItem("email");
     let passToken = localStorage.getItem("passToken");
-    let page = "inprogress";
+    let page = "Inprogress";
     Axios.post("/api/customer/getusers", { email, passToken, page })
       .then((res) => {
         setCustomers(res.data.data);
