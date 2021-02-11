@@ -8,21 +8,19 @@ import * as BsIcon from "react-icons/bs";
 import mapsImg from "../../../assets/img/mapPlace.png";
 import "../TableComponent/Table.scss";
 
-export default function CustomerFile() {
+export default function Document() {
   const { id } = useParams();
   const history = useHistory();
   const email = localStorage.getItem("email");
   const [customer, setCustomer] = useState([]);
   const [load, setLoad] = useState(false);
   const customerID = id;
+  const passToken = localStorage.getItem("passToken");
   useEffect(() => {
     setLoad(true);
     setTimeout(() => {
       setLoad(false);
     }, 1000);
-
-    let email = localStorage.getItem("email");
-    let passToken = localStorage.getItem("passToken");
 
     Axios.post("/api/customer/getsingleuser", { customerID, email, passToken })
       .then((res) => {
@@ -35,7 +33,7 @@ export default function CustomerFile() {
   }, []);
 
   const handleDelete = () => {
-    Axios.post("/api/customer/deleteuser", { customerID, email })
+    Axios.post("/api/customer/deleteuser", { customerID, email, passToken })
       .then((res) => {
         history.push("/");
       })

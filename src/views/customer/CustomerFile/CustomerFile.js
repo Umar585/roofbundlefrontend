@@ -4,7 +4,6 @@ import Axios from "axios";
 import * as FaIcon from "react-icons/fa";
 import * as AiIcon from "react-icons/ai";
 import * as BsIcon from "react-icons/bs";
-import * as HiIcon from "react-icons/hi";
 //assets
 import mapsImg from "../../../assets/img/mapPlace.png";
 import "../TableComponent/Table.scss";
@@ -15,17 +14,14 @@ export default function CustomerFile() {
   const email = localStorage.getItem("email");
   const [customer, setCustomer] = useState([]);
   const [load, setLoad] = useState(false);
-  const customerID = id;
+  const passToken = localStorage.getItem("passToken");
   useEffect(() => {
     setLoad(true);
     setTimeout(() => {
       setLoad(false);
     }, 1000);
 
-    let email = localStorage.getItem("email");
-    let passToken = localStorage.getItem("passToken");
-
-    Axios.post("/api/customer/getsingleuser", { customerID, email, passToken })
+    Axios.post("/api/customer/getsingleuser", { id, email, passToken })
       .then((res) => {
         setCustomer(res.data.data);
       })
@@ -36,7 +32,7 @@ export default function CustomerFile() {
   }, []);
 
   const handleDelete = () => {
-    Axios.post("/api/customer/deleteuser", { customerID, email })
+    Axios.post("/api/customer/deleteuser", { id, email, passToken })
       .then((res) => {
         history.push("/");
       })
@@ -169,7 +165,7 @@ export default function CustomerFile() {
         )}
       </div>
 
-      <Link to="/album" style={{ color: "#3c4b64" }}>
+      <Link to={`/album/${id}`} style={{ color: "#3c4b64" }}>
         <div className="pages-list mt-4">
           <div className="list-inline">
             <div className="list-inline-item">

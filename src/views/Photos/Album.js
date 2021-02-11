@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory, Link, useParams } from "react-router-dom";
 import Axios from "axios";
 import * as AiIcon from "react-icons/ai";
 import * as FiIcon from "react-icons/fi";
@@ -20,12 +20,13 @@ export default function Photos() {
   const [titleErr, setTitleErr] = useState(false);
   const email = localStorage.getItem("email");
   const passToken = localStorage.getItem("passToken");
+  const { id } = useParams();
 
   useEffect(() => {
     if (!localStorage.getItem("authToken")) {
       history.push("/signin");
     }
-    Axios.post("/api/album/getalbum", { email, passToken })
+    Axios.post("/api/album/getalbum", { id, email, passToken })
       .then((res) => {
         setAlbums(res.data.data);
       })
@@ -37,7 +38,7 @@ export default function Photos() {
   const handleAlbum = (e) => {
     e.preventDefault();
     if (title) {
-      Axios.post("/api/album/addalbum", { title, email, passToken })
+      Axios.post("/api/album/addalbum", { id, title, email, passToken })
         .then(() => {
           history.go(0);
         })
@@ -49,8 +50,8 @@ export default function Photos() {
     }
   };
 
-  const handleDeleteAlbum = (id) => {
-    Axios.post("/api/album/deletealbum", { id, email, passToken })
+  const handleDeleteAlbum = (album_id) => {
+    Axios.post("/api/album/deletealbum", { album_id, email, passToken })
       .then(() => {
         history.go(0);
       })

@@ -7,7 +7,7 @@ export default function SinglePhotos(props) {
   return (
     <div className="Single_Photos">
       <Link to="/album/photos/photo">
-        <img src={img1} alt="img" />
+        <img src={props.src} alt="img" />
       </Link>
     </div>
   );

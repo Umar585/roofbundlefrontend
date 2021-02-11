@@ -29,22 +29,27 @@ const NewCust = () => {
       {customers.length === 0 ? (
         <p className="text-center mt-4">No New Customers</p>
       ) : (
-        customers.map((item) => {
-          return (
-            <CCard style={cardStyle} key={item._id}>
-              <TableComponent
-                id={item._id}
-                fullname={`${item.fname} ${item.lname}`}
-                address={item.address}
-                email={item.email}
-                lat={item.lats}
-                lng={item.lngs}
-                phone={item.phone}
-                pageTitle="New"
-              />
-            </CCard>
-          );
-        })
+        <>
+          <p className="mt-4">
+            {customers.length} New {customers.length > 1 ? "Clients" : "Client"}
+          </p>
+          {customers.map((item) => {
+            return (
+              <CCard style={cardStyle} key={item._id}>
+                <TableComponent
+                  id={item._id}
+                  fullname={`${item.fname} ${item.lname}`}
+                  address={item.address}
+                  email={item.email}
+                  lat={item.lats}
+                  lng={item.lngs}
+                  phone={item.phone}
+                  pageTitle="New"
+                />
+              </CCard>
+            );
+          })}
+        </>
       )}
     </div>
   );
