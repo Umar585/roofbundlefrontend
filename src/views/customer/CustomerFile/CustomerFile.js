@@ -175,14 +175,16 @@ export default function CustomerFile() {
           </div>
         </div>
       </Link>
-      <div className="pages-list">
-        <div className="list-inline">
-          <div className="list-inline-item">
-            <FaIcon.FaClipboard style={{ fontSize: "60px" }} />
+      <Link to={`/diagram/${id}`} style={{ color: "#3c4b64" }}>
+        <div className="pages-list">
+          <div className="list-inline">
+            <div className="list-inline-item">
+              <FaIcon.FaClipboard style={{ fontSize: "60px" }} />
+            </div>
+            <div className="list-inline-item h4">Diagrams</div>
           </div>
-          <div className="list-inline-item h4">Diagrams</div>
         </div>
-      </div>
+      </Link>
       <Link to="/customertables" style={{ color: "#3c4b64" }}>
         <div className="pages-list">
           <div className="list-inline">

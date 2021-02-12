@@ -8,7 +8,9 @@ import ForgotPass from "./views/ForgotPass/ForgotPass";
 import ResetPassword from "./views/PasswordReset/ResetPass";
 import VerifyEmail from "./views/VerifyEmail/VerifyEmail";
 import Album from "./views/Photos/Album";
+import Diagram from "./views/Diagrams/Diagrams";
 import Photos from "./views/Photos/Photos";
+import Sketch from "./views/Diagrams/SingleImage/LargeSinglePhoto";
 import Photo from "./views/Photos/SinglePhotos/LargeSinglePhoto";
 import ScrollToTop from "./Components/CustomComponent/ScrollToTop";
 import NotFound from "./views/pages/page404/Page404";
@@ -68,6 +70,8 @@ function App() {
             path="/album/photos/photo/:id"
             component={Photo}
           />
+          <PrivateRouting exact path="/diagram/:id" component={Diagram} />
+          <PrivateRouting exact path="/diagram/sketch" component={Sketch} />
           <Route path="/signin" exact component={SignIn} />
           <Route path="/signup" exact component={SignUp} />
           <Route path="/forgotpassword" exact component={ForgotPass} />

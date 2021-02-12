@@ -40,7 +40,13 @@ export default function Photos() {
     if (title) {
       Axios.post("/api/album/addalbum", { id, title, email, passToken })
         .then(() => {
-          history.go(0);
+          Axios.post("/api/album/getalbum", { id, email, passToken })
+            .then((res) => {
+              setAlbums(res.data.data);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         })
         .catch((err) => {
           console.log(err);
@@ -53,7 +59,13 @@ export default function Photos() {
   const handleDeleteAlbum = (album_id) => {
     Axios.post("/api/album/deletealbum", { album_id, email, passToken })
       .then(() => {
-        history.go(0);
+        Axios.post("/api/album/getalbum", { id, email, passToken })
+          .then((res) => {
+            setAlbums(res.data.data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       })
       .catch((err) => {
         console.log(err);
@@ -123,7 +135,7 @@ export default function Photos() {
                 }
                 alt="Img"
               />
-              <div className="sub_title">
+              <div className="sub_title pb-2">
                 <h5
                   style={{
                     marginBottom: "0px",
@@ -135,7 +147,7 @@ export default function Photos() {
                 >
                   {item.title}
                 </h5>
-                <p className="small">0 Photos 0 Videos</p>
+                {/*<p className="small">0 Photos 0 Videos</p>*/}
               </div>
             </Link>
           );

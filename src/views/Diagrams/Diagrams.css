@@ -1,0 +1,36 @@
+.Diagrams_page .card {
+  border-radius: 10px;
+}
+.Diagrams_page .title {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.Diagrams_page .address_title {
+  max-width: 100%;
+  text-overflow: ellipsis;
+  white-space: pre-wrap;
+}
+
+/*Single Photos*/
+.Single_Photos img {
+  width: 100%;
+  min-height: 100px;
+  max-height: 100px;
+  object-fit: cover;
+}
+
+.Diagrams_page .confirm_btns button {
+  width: 100%;
+  outline: none !important;
+  box-shadow: none;
+  border: 0px;
+  background-color: none;
+}
+
+.Diagrams_page .modal input {
+  outline: none !important;
+  box-shadow: none;
+  border: 1px solid lightgray;
+}
