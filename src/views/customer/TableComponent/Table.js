@@ -151,13 +151,19 @@ export default function Table(props) {
                   {data.fullname}
                 </h6>
                 <br />
-                <p className="address text-muted" style={{ color: "#8d8d8d" }}>
+                <p
+                  className="address p4"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    window.location.href = `https://www.google.com/maps/place/${data.address}/@${data.lat},${data.lng}`;
+                  }}
+                >
                   {data.address}
                 </p>
                 <br />
                 <span>
                   <span
-                    style={{ color: "#e60029" }}
+                    className="p4"
                     onClick={(e) => {
                       e.preventDefault();
                       window.location.href = `tel:${data.phone}`;

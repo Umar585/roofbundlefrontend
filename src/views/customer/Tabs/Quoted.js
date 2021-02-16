@@ -29,28 +29,35 @@ const Quoted = () => {
       {customers.length === 0 ? (
         <p className="text-center mt-4">No Quoted Customers</p>
       ) : (
-        customers.map((item) => {
-          return (
-            <CCard style={cardStyle} key={item._id}>
-              <TableComponent
-                id={item._id}
-                fullname={`${item.fname} ${item.lname}`}
-                address={item.address}
-                email={item.email}
-                lat={item.lats}
-                lng={item.lngs}
-                phone={item.phone}
-                pageTitle="Quoted"
-              />
-            </CCard>
-          );
-        })
+        <>
+          <p className="mt-2">
+            {customers.length}{" "}
+            {customers.length > 1 ? "Customers Quoted" : "Customer Quoted"}
+          </p>
+          {customers.map((item) => {
+            return (
+              <CCard style={cardStyle} key={item._id}>
+                <TableComponent
+                  id={item._id}
+                  fullname={`${item.fname} ${item.lname}`}
+                  address={item.address}
+                  email={item.email}
+                  lat={item.lats}
+                  lng={item.lngs}
+                  phone={item.phone}
+                  pageTitle="Quoted"
+                />
+              </CCard>
+            );
+          })}
+        </>
       )}
     </div>
   );
 };
 
 const cardStyle = {
+  marginTop: "-15px",
   padding: "7px",
   border: "0px",
   marginBottom: "-10px",

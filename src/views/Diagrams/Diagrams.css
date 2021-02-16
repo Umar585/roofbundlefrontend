@@ -31,6 +31,22 @@
 
 .Diagrams_page .modal input {
   outline: none !important;
-  box-shadow: none;
-  border: 1px solid lightgray;
+  box-shadow: none !important;
+  border: 1px solid lightgray !important;
+}
+.Diagrams_page .modal input[file] {
+  outline: none !important;
+  box-shadow: none !important;
+  border: 1px solid lightgray !important;
+}
+.Diagrams_page .modal .custom-file-label {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.Diagrams_page .modal button {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
 }

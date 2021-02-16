@@ -30,8 +30,9 @@ const NewCust = () => {
         <p className="text-center mt-4">No New Customers</p>
       ) : (
         <>
-          <p className="mt-4">
-            {customers.length} New {customers.length > 1 ? "Clients" : "Client"}
+          <p className="mt-2">
+            {customers.length} New{" "}
+            {customers.length > 1 ? "Customers" : "Customer"}
           </p>
           {customers.map((item) => {
             return (
@@ -56,6 +57,7 @@ const NewCust = () => {
 };
 
 const cardStyle = {
+  marginTop: "-15px",
   padding: "7px",
   border: "0px",
   marginBottom: "-10px",

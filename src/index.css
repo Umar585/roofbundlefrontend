@@ -24,6 +24,7 @@ body {
 
 body p {
   font-size: 13px;
+  color: #414141;
 }
 body .p2 {
   font-family: PoppinsMed !important;
@@ -33,12 +34,17 @@ body .p3 {
   font-family: PoppinsMed !important;
   font-size: 11px;
 }
+body .p4 {
+  font-size: 13px;
+  color: #8d8d8d;
+}
 body span {
   font-size: 13px;
 }
 body h5 {
   font-family: PoppinsSemiBold !important;
   font-size: 20px !important;
+  color: #414141;
 }
 body h6 {
   font-family: PoppinsSemiBold !important;

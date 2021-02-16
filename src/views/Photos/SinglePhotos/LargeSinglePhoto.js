@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, Link, useParams } from "react-router-dom";
 import Axios from "axios";
+import * as FiIcon from "react-icons/fi";
 import * as AiIcon from "react-icons/ai";
 //style sheet
 import "./LargeSinglePhoto.css";
@@ -27,6 +28,17 @@ export default function LargeSinglePhoto() {
         console.log(err);
       });
   }, []);
+
+  const deletePhoto = () => {
+    const photo_id = id;
+    Axios.post("/api/album/deletealbumphoto", { photo_id, email, passToken })
+      .then((res) => {
+        history.goBack(-1);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <div className="Large_Single_Photos mb-4">
       <div className="float-left">
@@ -36,7 +48,11 @@ export default function LargeSinglePhoto() {
         />
       </div>
       <div className="float-right">
-        <AiIcon.AiOutlinePlus className="h3" />
+        <FiIcon.FiTrash
+          className="h4"
+          style={{ color: "#e60029" }}
+          onClick={deletePhoto}
+        />
       </div>
       <div className="text-center">
         <h5>Photo</h5>

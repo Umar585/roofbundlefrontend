@@ -9,10 +9,11 @@ function GoogleMaps(props) {
         google={props.google}
         style={{
           width: "90%",
-          height: "300px",
+          height: "150px",
           position: "relative",
           marginLeft: "auto",
           marginRight: "auto",
+          borderRadius: ".25rem",
         }}
         zoom={10}
         center={{

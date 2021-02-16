@@ -30,7 +30,7 @@ export default function Maps(props) {
                       <BiIcon.BiMap
                         style={{
                           color: "#fff",
-                          backgroundColor: "#e60029",
+                          backgroundColor: "#414141",
                           padding: "3px",
                           borderRadius: "25px",
                         }}
@@ -41,7 +41,7 @@ export default function Maps(props) {
                 <input
                   {...getInputProps({
                     type: "search",
-                    placeholder: "Search Address",
+                    placeholder: "Address",
 
                     id: "inputReportAddress",
                     autoComplete: "off",
@@ -86,7 +86,7 @@ export default function Maps(props) {
       <div
         className="mx-auto"
         style={{
-          height: "300px",
+          height: "150px",
           marginTop: "10px",
         }}
       >

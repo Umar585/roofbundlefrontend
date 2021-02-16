@@ -105,7 +105,6 @@ export default function Photos() {
                   zIndex: "3",
                   right: "10px",
                   top: "10px",
-                  color: "white",
                 }}
                 onClick={(e) => {
                   e.preventDefault();
@@ -113,7 +112,7 @@ export default function Photos() {
                 }}
               >
                 <p>
-                  <FiIcon.FiTrash />
+                  <FiIcon.FiTrash style={{ color: "#fff" }} />
                 </p>
               </div>
               <div className="overlay"></div>
@@ -143,6 +142,7 @@ export default function Photos() {
                     overflow: "hidden",
                     textOverflow: "ellipsis",
                     whiteSpace: "nowrap",
+                    color: "#fff",
                   }}
                 >
                   {item.title}
@@ -185,11 +185,11 @@ export default function Photos() {
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                   />
-                  <div className="confirm_btns mt-1">
+                  <div className="confirm_btns mt-3">
                     <button
                       type="submit"
                       style={{ backgroundColor: "#e60029" }}
-                      className="btn btn-primary w-100"
+                      className="btn btn-primary w-100 shadow"
                     >
                       Create
                     </button>

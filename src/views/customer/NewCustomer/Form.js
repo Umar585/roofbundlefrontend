@@ -147,7 +147,7 @@ export default function Form() {
                     <HiIcon.HiUser
                       style={{
                         color: "#fff",
-                        backgroundColor: "#e60029",
+                        backgroundColor: "#414141",
                         padding: "3px",
                         borderRadius: "25px",
                       }}
@@ -185,7 +185,7 @@ export default function Form() {
                     <HiIcon.HiUser
                       style={{
                         color: "#fff",
-                        backgroundColor: "#e60029",
+                        backgroundColor: "#414141",
                         padding: "3px",
                         borderRadius: "25px",
                       }}
@@ -224,7 +224,7 @@ export default function Form() {
                     <HiIcon.HiPhone
                       style={{
                         color: "#fff",
-                        backgroundColor: "#e60029",
+                        backgroundColor: "#414141",
                         padding: "3px",
                         borderRadius: "25px",
                       }}
@@ -233,7 +233,7 @@ export default function Form() {
                 </div>
               </div>
               <InputMask
-                mask="999-999-9999"
+                mask="(999)-999-9999"
                 type="text"
                 className={
                   checkForm.phone
@@ -263,7 +263,7 @@ export default function Form() {
                     <HiIcon.HiMail
                       style={{
                         color: "#fff",
-                        backgroundColor: "#e60029",
+                        backgroundColor: "#414141",
                         padding: "3px",
                         borderRadius: "25px",
                       }}
@@ -302,8 +302,9 @@ export default function Form() {
                     <BsIcon.BsDash
                       style={{
                         color: "#fff",
-                        backgroundColor: "#e60029",
+                        backgroundColor: "#414141",
                         padding: "3px",
+                        marginRight: "-3",
                         borderRadius: "25px",
                       }}
                     />
@@ -343,24 +344,22 @@ export default function Form() {
         </CRow>
         <CRow>
           <CCol sm="12" className="mt-3">
-            <div className="list-inline text-right">
-              <Link to="/" className="list-inline-item">
-                Cancel
-              </Link>
-              <span className="mr-2">|</span>
-              <input
-                type="submit"
-                className="form-control list-inline-item"
-                value="Submit"
-                style={{
-                  maxWidth: "150px",
-                  backgroundColor: "#e60029",
-                  color: "#fff",
-                }}
-              />
-            </div>
+            <input
+              type="submit"
+              className="form-control w-100"
+              value="Add Customer"
+              style={{
+                backgroundColor: "#e60029",
+                color: "#fff",
+              }}
+            />
           </CCol>
         </CRow>
+        <div className="text-center mt-2">
+          <Link to="/" style={{ color: "#8d8d8d", fontSize: "13px" }}>
+            Cancel
+          </Link>
+        </div>
       </form>
     </div>
   );

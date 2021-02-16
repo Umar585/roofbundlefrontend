@@ -140,7 +140,7 @@ export default function NewCust({ history }) {
               onClick={handleTabSwitchInProgress}
               className={inProgress ? "active" : null}
             >
-              InProgress
+              In Progress
             </p>
           </div>
           <div className="list-inline-item">

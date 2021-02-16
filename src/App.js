@@ -71,7 +71,7 @@ function App() {
             component={Photo}
           />
           <PrivateRouting exact path="/diagram/:id" component={Diagram} />
-          <PrivateRouting exact path="/diagram/sketch" component={Sketch} />
+          <PrivateRouting exact path="/diagram/sketch/:id" component={Sketch} />
           <Route path="/signin" exact component={SignIn} />
           <Route path="/signup" exact component={SignUp} />
           <Route path="/forgotpassword" exact component={ForgotPass} />

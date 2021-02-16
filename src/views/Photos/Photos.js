@@ -16,6 +16,7 @@ export default function Photo() {
   const [album, setAlbum] = useState("");
   const [btn, showBtn] = useState(false);
   const [photoErr, setPhotoErr] = useState(false);
+  const [fileTypeErr, setFileTypeErr] = useState(false);
   const [errMsg, setErrMsg] = useState("");
 
   useEffect(() => {
@@ -77,6 +78,11 @@ export default function Photo() {
                 setPhotoErr(true);
                 setTimeout(() => {
                   setPhotoErr(false);
+                }, 3000);
+              } else if (err.response.data.msg === "Incorrect File Type") {
+                setFileTypeErr(true);
+                setTimeout(() => {
+                  setFileTypeErr(false);
                 }, 3000);
               } else if (err.response.status === 500) {
                 console.log("There was a problem with the server");
@@ -160,9 +166,9 @@ export default function Photo() {
         <div className="text-center">
           <button
             onClick={handleSubmit}
-            className="btn w-100"
+            className="btn w-100 shadow"
             style={{
-              border: "1px solid lightgray",
+              border: "0px",
               outline: "none",
               boxShadow: "none",
               backgroundColor: "#e60029",
@@ -172,6 +178,9 @@ export default function Photo() {
             Save Photos
           </button>
         </div>
+      ) : null}
+      {fileTypeErr ? (
+        <p className="text-center  mt-2 mb-2">File Type Not Accepted</p>
       ) : null}
       {photoErr ? (
         <p className="text-center  mt-2 mb-2">Photos Limit Reached</p>

@@ -29,28 +29,35 @@ const Complete = () => {
       {customers.length === 0 ? (
         <p className="text-center mt-4">No Complete Customers</p>
       ) : (
-        customers.map((item) => {
-          return (
-            <CCard style={cardStyle} key={item._id}>
-              <TableComponent
-                id={item._id}
-                fullname={`${item.fname} ${item.lname}`}
-                address={item.address}
-                email={item.email}
-                lat={item.lats}
-                lng={item.lngs}
-                phone={item.phone}
-                pageTitle="Complete"
-              />
-            </CCard>
-          );
-        })
+        <>
+          <p className="mt-2">
+            {customers.length}{" "}
+            {customers.length > 1 ? "Projects Completed" : "Project Completed"}
+          </p>
+          {customers.map((item) => {
+            return (
+              <CCard style={cardStyle} key={item._id}>
+                <TableComponent
+                  id={item._id}
+                  fullname={`${item.fname} ${item.lname}`}
+                  address={item.address}
+                  email={item.email}
+                  lat={item.lats}
+                  lng={item.lngs}
+                  phone={item.phone}
+                  pageTitle="Complete"
+                />
+              </CCard>
+            );
+          })}
+        </>
       )}
     </div>
   );
 };
 
 const cardStyle = {
+  marginTop: "-15px",
   padding: "7px",
   border: "0px",
   marginBottom: "-10px",

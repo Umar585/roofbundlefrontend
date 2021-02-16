@@ -1,7 +1,5 @@
 /*Single Photos*/
 .Large_Single_Photos img {
   width: 100%;
-  min-height: 70vh;
-  max-height: 70vh;
-  object-fit: cover;
+  object-fit: contain;
 }
