@@ -3,8 +3,6 @@ import { useHistory, Link, useParams } from "react-router-dom";
 import Axios from "axios";
 import * as AiIcon from "react-icons/ai";
 import * as FiIcon from "react-icons/fi";
-//style sheet
-import "./Diagrams.css";
 //test images
 import img1 from "../../assets/img/album/img1.jpg";
 import img2 from "../../assets/img/album/img2.jpg";
@@ -248,7 +246,7 @@ export default function Diagrams() {
                           whiteSpace: "nowrap",
                         }}
                       >
-                        {file.length === 0 ? "Choose file..." : file.name}
+                        {file.length === 0 ? "Diagram Photo..." : file.name}
                       </label>
                     </div>
                     {formErr.file ? (

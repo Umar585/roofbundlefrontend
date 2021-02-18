@@ -11,52 +11,42 @@ export default function Prices(props) {
   const msg = props.msg;
   return (
     <div>
-      <CCard>
-        {/*Roof Data Table */}
-
-        <CButton
-          className="btnStyle"
-          onClick={(e) => {
-            e.preventDefault();
-            setCollapse(!collapse);
-          }}
-        >
-          Prices
-        </CButton>
-        <CCollapse show={collapse}>
+      <h5
+        className="customersTable_sliderBtn border w-100 text-center p-1"
+        onClick={(e) => {
+          e.preventDefault();
+          setCollapse(!collapse);
+        }}
+      >
+        Material Pricing
+      </h5>
+      <CCollapse show={collapse}>
+        <CCard>
           <CCardBody>
-            <div
-              className="table-responsive custTable"
-              style={{
-                maxHeight: "600px",
-                overflowY: "auto",
-              }}
-            >
-              {error ? (
-                msg ? (
-                  <p className="text-center badge badge-success">Data Saved</p>
-                ) : (
-                  <p className="text-center badge badge-danger">Data failed</p>
-                )
-              ) : null}
-              <form className="form-group" onSubmit={props.handleSubmit}>
-                <table className="table table-responsive-lg">
-                  <BundlePrices
-                    pricesData={pricesData}
-                    setPricesData={setPricesData}
-                  />
-                </table>
+            {error ? (
+              msg ? (
+                <p className="text-center badge badge-success">Data Saved</p>
+              ) : (
+                <p className="text-center badge badge-danger">Data failed</p>
+              )
+            ) : null}
 
-                <input
-                  type="submit"
-                  value="Update"
-                  className="btn btn-success w-100"
-                />
-              </form>
-            </div>
+            <form className="form-group" onSubmit={props.handleSubmit}>
+              {/*<table className="table table-responsive-lg">*/}
+              <BundlePrices
+                pricesData={pricesData}
+                setPricesData={setPricesData}
+              />
+
+              <input
+                type="submit"
+                value="Update Pricing"
+                className="btn btn-success w-100 mt-3"
+              />
+            </form>
           </CCardBody>
-        </CCollapse>
-      </CCard>
+        </CCard>
+      </CCollapse>
     </div>
   );
 }

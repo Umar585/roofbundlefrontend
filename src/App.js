@@ -10,14 +10,23 @@ import VerifyEmail from "./views/VerifyEmail/VerifyEmail";
 import Album from "./views/Photos/Album";
 import Diagram from "./views/Diagrams/Diagrams";
 import Photos from "./views/Photos/Photos";
-import Sketch from "./views/Diagrams/SingleImage/LargeSinglePhoto";
+import Sketch from "./views/Diagrams/SingleImage/LargeDiagramPhoto";
 import Photo from "./views/Photos/SinglePhotos/LargeSinglePhoto";
-import ScrollToTop from "./Components/CustomComponent/ScrollToTop";
+//import ScrollToTop from "./Components/CustomComponent/ScrollToTop";
 import NotFound from "./views/pages/page404/Page404";
 //Routing
 import PrivateRouting from "./routing/PrivateRoute";
 
-const Customer = React.lazy(() => import("./views/customer/customer"));
+//Customer Routes
+import Customer from "./views/customer/customer";
+import NewCustomer from "./views/customer/NewCustomer/NewCustomer";
+import CustomerFile from "./views/customer/CustomerFile/CustomerFile";
+import CustomerDocument from "./views/customer/Documents/Documents";
+import UpdateCustomer from "./views/customer/UpdateCustomer/UpdatedCustomer";
+import InputTables from "./views/customer/InputTables/InputTable";
+/* const Customer = React.lazy(
+  () => import("./views/customer/customer")
+);
 const NewCustomer = React.lazy(() =>
   import("./views/customer/NewCustomer/NewCustomer")
 );
@@ -32,7 +41,7 @@ const UpdateCustomer = React.lazy(() =>
 );
 const InputTables = React.lazy(() =>
   import("./views/customer/InputTables/InputTable")
-);
+);*/
 
 const loading = (
   <div className="pt-3 text-center">
@@ -43,7 +52,7 @@ function App() {
   return (
     <BrowserRouter>
       <React.Suspense fallback={loading}>
-        <ScrollToTop />
+        {/*<ScrollToTop />*/}
         <Switch>
           <PrivateRouting exact path="/" component={Customer} />
           <PrivateRouting exact path="/new" component={NewCustomer} />

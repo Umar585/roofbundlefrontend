@@ -1,3 +1,11 @@
+.customersTable_sliderBtn {
+  background-color: #f4f4f4;
+}
+.customersTable_sliderBtn:hover {
+  background-color: #e60029;
+  color: #fff;
+}
+
 .btn {
   outline: none;
   box-shadow: none;
@@ -7,8 +15,7 @@
 .btnStyle {
   outline: none !important;
   box-shadow: none !important;
-  border: none !important;
-  border-radius: 0px !important;
+  border: 0px !important;
 }
 .btnStyle:hover {
   background-color: #e60029 !important;

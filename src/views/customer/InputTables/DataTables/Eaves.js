@@ -6,8 +6,6 @@ export default function Eaves(props) {
   const setForm = props.setForm;
   const items = props.items;
 
-  const handleEnter = props.handleEnter;
-
   const [firstStoryEaves, setFirstStoryEaves] = useState([]);
   const FirstStoryEaves = () => {
     var t = [];
@@ -52,323 +50,463 @@ export default function Eaves(props) {
     FirstStoryEaves();
     SecondStoryEaves();
   });
+  let grandTotal;
 
   return (
     <div>
-      <div className="table-responsive custTable">
-        <table className="table table-responsive-lg">
-          <thead>
-            <tr>
-              <th></th>
-              <th>1st story eaves</th>
-              <th>Adjustment (ft)</th>
-              <th>2nd Storey Eaves</th>
-              <th>2 St Adjustment</th>
-              <th>Corners</th>
-              <th>1 Story Downs</th>
-              <th>2 Story Downs</th>
-              <th>Extra Extensions</th>
-              <th>Difficulty</th>
-              <th>Margin</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th>Measurement</th>
-              <td>
-                {form.adjOneStory
-                  ? firstStoryEaves + parseFloat(form.adjOneStory)
-                  : firstStoryEaves}
-              </td>
-              <td>
-                <Input
-                  type="number"
-                  id="adjOneStory"
-                  value={form.adjOneStory}
-                  onChange={(e) =>
-                    setForm({
-                      ...form,
-                      adjOneStory: e.target.value,
-                    })
-                  }
-                  onKeyDown={handleEnter}
-                />
-              </td>
-              <td>
-                {form.adjTwoStory
-                  ? secondStoryEaves + parseFloat(form.adjTwoStory)
-                  : secondStoryEaves}
-              </td>
-              <td>
-                <Input
-                  type="number"
-                  id="adjTwoStory"
-                  value={form.adjTwoStory}
-                  onChange={(e) =>
-                    setForm({
-                      ...form,
-                      adjTwoStory: e.target.value,
-                    })
-                  }
-                  onKeyDown={handleEnter}
-                />
-              </td>
-              <td>
-                <Input
-                  type="number"
-                  id="corners"
-                  value={form.corners}
-                  onChange={(e) =>
-                    setForm({
-                      ...form,
-                      corners: e.target.value,
-                    })
-                  }
-                  onKeyDown={handleEnter}
-                />
-              </td>
-              <td>
-                <Input
-                  type="number"
-                  id="oneStoryDown"
-                  value={form.oneStoryDown}
-                  onChange={(e) =>
-                    setForm({
-                      ...form,
-                      oneStoryDown: e.target.value,
-                    })
-                  }
-                  onKeyDown={handleEnter}
-                />
-              </td>
-              <td>
-                <Input
-                  type="number"
-                  id="twoStoryDown"
-                  value={form.twoStoryDown}
-                  onChange={(e) =>
-                    setForm({
-                      ...form,
-                      twoStoryDown: e.target.value,
-                    })
-                  }
-                  onKeyDown={handleEnter}
-                />
-              </td>
-              <td>
-                <Input
-                  type="number"
-                  id="extraExtensions"
-                  value={form.extraExtensions}
-                  onChange={(e) =>
-                    setForm({
-                      ...form,
-                      extraExtensions: e.target.value,
-                    })
-                  }
-                  onKeyDown={handleEnter}
-                />
-              </td>
-              <td>
-                <Input
-                  type="number"
-                  id="difficulty"
-                  value={form.difficulty}
-                  onChange={(e) =>
-                    setForm({
-                      ...form,
-                      difficulty: e.target.value,
-                    })
-                  }
-                  onKeyDown={handleEnter}
-                />
-              </td>
-              <td>
-                <Input
-                  type="number"
-                  id="margin"
-                  value={form.margin}
-                  onChange={(e) =>
-                    setForm({
-                      ...form,
-                      margin: e.target.value,
-                    })
-                  }
-                  onKeyDown={handleEnter}
-                />
-              </td>
-            </tr>
-            <tr>
-              <th>Price</th>
-              <td>
-                <Input
-                  type="number"
-                  id="oneStoryPrice"
-                  value={form.oneStoryPrice}
-                  onChange={(e) =>
-                    setForm({
-                      ...form,
-                      oneStoryPrice: e.target.value,
-                    })
-                  }
-                  onKeyDown={handleEnter}
-                />
-              </td>
-              <td></td>
-              <td>
-                <Input
-                  type="number"
-                  id="twoStoryPrice"
-                  value={form.twoStoryPrice}
-                  onChange={(e) =>
-                    setForm({
-                      ...form,
-                      twoStoryPrice: e.target.value,
-                    })
-                  }
-                  onKeyDown={handleEnter}
-                />
-              </td>
-              <td></td>
-              <td>
-                <Input
-                  type="number"
-                  id="cornersPrice"
-                  value={form.cornersPrice}
-                  onChange={(e) =>
-                    setForm({
-                      ...form,
-                      cornersPrice: e.target.value,
-                    })
-                  }
-                  onKeyDown={handleEnter}
-                />
-              </td>
-              <td>
-                <Input
-                  type="number"
-                  id="oneStoryDownPrice"
-                  value={form.oneStoryDownPrice}
-                  onChange={(e) =>
-                    setForm({
-                      ...form,
-                      oneStoryDownPrice: e.target.value,
-                    })
-                  }
-                  onKeyDown={handleEnter}
-                />
-              </td>
-              <td>
-                <Input
-                  type="number"
-                  id="twoStoryDownPrice"
-                  value={form.twoStoryDownPrice}
-                  onChange={(e) =>
-                    setForm({
-                      ...form,
-                      twoStoryDownPrice: e.target.value,
-                    })
-                  }
-                  onKeyDown={handleEnter}
-                />
-              </td>
-              <td>
-                <Input
-                  type="number"
-                  id="extraExtensionsPrice"
-                  value={form.extraExtensionsPrice}
-                  onChange={(e) =>
-                    setForm({
-                      ...form,
-                      extraExtensionsPrice: e.target.value,
-                    })
-                  }
-                  onKeyDown={handleEnter}
-                />
-              </td>
-              <td>
-                <Input
-                  type="number"
-                  id="difficultyPrice"
-                  value={form.difficultyPrice}
-                  onChange={(e) =>
-                    setForm({
-                      ...form,
-                      difficultyPrice: e.target.value,
-                    })
-                  }
-                  onKeyDown={handleEnter}
-                />
-              </td>
-              <td>
-                <Input
-                  type="number"
-                  id="marginPrice"
-                  value={form.marginPrice}
-                  onChange={(e) =>
-                    setForm({
-                      ...form,
-                      marginPrice: e.target.value,
-                    })
-                  }
-                  onKeyDown={handleEnter}
-                />
-              </td>
-            </tr>
-            <tr>
-              <th>Total</th>
-              <td>
-                $
-                {form.oneStoryPrice
-                  ? form.adjOneStory
-                    ? (firstStoryEaves + parseFloat(form.adjOneStory)) *
-                      form.oneStoryPrice
-                    : firstStoryEaves * form.oneStoryPrice
-                  : 0}
-              </td>
-              <td></td>
-              <td>
-                $
-                {form.twoStoryPrice
-                  ? form.adjTwoStory
-                    ? (secondStoryEaves + parseFloat(form.adjTwoStory)) *
-                      form.twoStoryPrice
-                    : secondStoryEaves * form.twoStoryPrice
-                  : 0}
-              </td>
-              <td></td>
-              <td>
-                ${form.cornersPrice ? form.corners * form.cornersPrice : 0}
-              </td>
-              <td>
-                $
-                {form.oneStoryDownPrice
-                  ? form.oneStoryDown * form.oneStoryDownPrice
-                  : 0}
-              </td>
-              <td>
-                $
-                {form.twoStoryDownPrice
-                  ? form.twoStoryDown * form.twoStoryDownPrice
-                  : 0}
-              </td>
-              <td>
-                $
-                {form.extraExtensionsPrice
-                  ? form.extraExtensions * form.extraExtensionsPrice
-                  : 0}
-              </td>
-              <td>
-                $
-                {form.difficultyPrice
-                  ? form.difficulty * form.difficultyPrice
-                  : 0}
-              </td>
-              <td>${form.marginPrice ? form.margin * form.marginPrice : 0}</td>
-            </tr>
-          </tbody>
-        </table>
+      <div className="row">
+        <div className="col-12">
+          <h6>Measurements</h6>
+        </div>
+        <div className="col-12 col-md-6">
+          <CustomInput
+            type="number"
+            id="firstSE"
+            label="1st Story Eaves"
+            disabled={true}
+            rightSideLabel="Lnft"
+            value={
+              form.adjOneStory
+                ? firstStoryEaves + parseFloat(form.adjOneStory)
+                : firstStoryEaves
+            }
+          />
+        </div>
+        <div className="col-12 col-md-6">
+          <CustomInput
+            type="number"
+            id="adjOneStory"
+            label="1st Story Eave Adjustment"
+            rightSideLabel="Lnft"
+            value={form.adjOneStory}
+            onChange={(e) =>
+              setForm({
+                ...form,
+                adjOneStory: e.target.value,
+              })
+            }
+          />
+        </div>
+        <div className="col-12 col-md-6">
+          <CustomInput
+            type="number"
+            id="secondSE"
+            label="2nd Story Eaves"
+            rightSideLabel="Lnft"
+            disabled={true}
+            value={
+              form.adjTwoStory
+                ? secondStoryEaves + parseFloat(form.adjTwoStory)
+                : secondStoryEaves
+            }
+          />
+        </div>
+        <div className="col-12 col-md-6">
+          <CustomInput
+            type="number"
+            id="adjTwoStory"
+            label="2nd Story Eave Adjustment"
+            rightSideLabel="Lnft"
+            value={form.adjTwoStory}
+            onChange={(e) =>
+              setForm({
+                ...form,
+                adjTwoStory: e.target.value,
+              })
+            }
+          />
+        </div>
+        <div className="col-12 col-md-6">
+          <CustomInput
+            type="number"
+            id="corners"
+            label="Eavestrough Corners"
+            rightSideLabel="Corners"
+            value={form.corners}
+            onChange={(e) =>
+              setForm({
+                ...form,
+                corners: e.target.value,
+              })
+            }
+          />
+        </div>
+        <div className="col-12 col-md-6">
+          <CustomInput
+            type="number"
+            id="oneStoryDown"
+            label="1st Story Downspouts"
+            rightSideLabel="Downspouts"
+            value={form.oneStoryDown}
+            onChange={(e) =>
+              setForm({
+                ...form,
+                oneStoryDown: e.target.value,
+              })
+            }
+          />
+        </div>
+        <div className="col-12 col-md-6">
+          <CustomInput
+            type="number"
+            id="twoStoryDown"
+            label="2nd Story Downspouts"
+            rightSideLabel="Downspouts"
+            value={form.twoStoryDown}
+            onChange={(e) =>
+              setForm({
+                ...form,
+                twoStoryDown: e.target.value,
+              })
+            }
+          />
+        </div>
+        <div className="col-12 col-md-6">
+          <CustomInput
+            type="number"
+            id="extraExtensions"
+            label="Downspout Extensions"
+            rightSideLabel="Extensions"
+            value={form.extraExtensions}
+            onChange={(e) =>
+              setForm({
+                ...form,
+                extraExtensions: e.target.value,
+              })
+            }
+          />
+        </div>
+        <div className="col-12 col-md-6">
+          <CustomInput
+            type="number"
+            id="elbow"
+            label="Elbows"
+            rightSideLabel="Elbows"
+            disabled={true}
+            value={
+              form.twoStoryDown
+                ? (parseFloat(form.twoStoryDown) +
+                    parseFloat(form.oneStoryDown)) *
+                  3
+                : parseFloat(form.oneStoryDown) * 3
+            }
+          />
+        </div>
+
+        <div className="col-12 mt-3">
+          <h6>Prices</h6>
+        </div>
+        <div className="col-12 col-md-6 ">
+          <CustomInput
+            type="number"
+            id="oneStoryPrice"
+            label="1st Story Eaves"
+            sideLabel="$"
+            rightSideLabel="Lnft"
+            value={form.oneStoryPrice}
+            onChange={(e) =>
+              setForm({
+                ...form,
+                oneStoryPrice: e.target.value,
+              })
+            }
+          />
+        </div>
+        <div className="col-12 col-md-6 ">
+          <CustomInput
+            type="number"
+            id="twoStoryPrice"
+            label="2nd Story Eaves"
+            sideLabel="$"
+            rightSideLabel="Lnft"
+            value={form.twoStoryPrice}
+            onChange={(e) =>
+              setForm({
+                ...form,
+                twoStoryPrice: e.target.value,
+              })
+            }
+          />
+        </div>
+        <div className="col-12 col-md-6 ">
+          <CustomInput
+            type="number"
+            id="cornersPrice"
+            label="Corner"
+            sideLabel="$"
+            rightSideLabel="Corner"
+            value={form.cornersPrice}
+            onChange={(e) =>
+              setForm({
+                ...form,
+                cornersPrice: e.target.value,
+              })
+            }
+          />
+        </div>
+        <div className="col-12 col-md-6 ">
+          <CustomInput
+            type="number"
+            id="oneStoryDownPrice"
+            label="1st Story Downspouts"
+            sideLabel="$"
+            rightSideLabel="Downspout"
+            value={form.oneStoryDownPrice}
+            onChange={(e) =>
+              setForm({
+                ...form,
+                oneStoryDownPrice: e.target.value,
+              })
+            }
+          />
+        </div>
+        <div className="col-12 col-md-6 ">
+          <CustomInput
+            type="number"
+            id="twoStoryDownPrice"
+            label="2nd Story Downspouts"
+            sideLabel="$"
+            rightSideLabel="Downspout"
+            value={form.twoStoryDownPrice}
+            onChange={(e) =>
+              setForm({
+                ...form,
+                twoStoryDownPrice: e.target.value,
+              })
+            }
+          />
+        </div>
+        <div className="col-12 col-md-6 ">
+          <CustomInput
+            type="number"
+            id="extraExtensionsPrice"
+            label="Downspout Extensions"
+            sideLabel="$"
+            rightSideLabel="Extensions"
+            value={form.extraExtensionsPrice}
+            onChange={(e) =>
+              setForm({
+                ...form,
+                extraExtensionsPrice: e.target.value,
+              })
+            }
+          />
+        </div>
+        <div className="col-12 col-md-6 ">
+          <CustomInput
+            type="number"
+            id="difficultyPrice"
+            label="Project Difficulty Fee"
+            sideLabel="$"
+            rightSideLabel="Difficulty"
+            value={form.difficultyPrice}
+            onChange={(e) =>
+              setForm({
+                ...form,
+                difficultyPrice: e.target.value,
+              })
+            }
+          />
+        </div>
+        <div className="col-12 mt-3">
+          <h6>Total</h6>
+        </div>
+        <div className="col-12 col-md-6 ">
+          <CustomInput
+            type="number"
+            id="totalOSP"
+            //label="1stStoryEave + 1stStoryAdjustment * 1stStoryPrice"
+            label="1st Story Eavestrough Total"
+            sideLabel="$"
+            disabled={true}
+            value={
+              form.oneStoryPrice
+                ? form.adjOneStory
+                  ? (firstStoryEaves + parseFloat(form.adjOneStory)) *
+                    form.oneStoryPrice
+                  : firstStoryEaves * form.oneStoryPrice
+                : "0.00"
+            }
+          />
+        </div>
+        <div className="col-12 col-md-6 ">
+          <CustomInput
+            type="number"
+            id="totalTSP"
+            //label="2ndStoryEave + 2ndStoryAdjustment * 2ndStoryPrice"
+            label="2nd Story Eavestrough Total"
+            sideLabel="$"
+            disabled={true}
+            value={
+              form.twoStoryPrice
+                ? form.adjTwoStory
+                  ? (secondStoryEaves + parseFloat(form.adjTwoStory)) *
+                    form.twoStoryPrice
+                  : secondStoryEaves * form.twoStoryPrice
+                : "0.00"
+            }
+          />
+        </div>
+        <div className="col-12 col-md-6 ">
+          <CustomInput
+            type="number"
+            id="totalCorner"
+            //label="Corner * Corner Price"
+            label="Eavestrough Corners Total"
+            sideLabel="$"
+            disabled={true}
+            value={
+              form.cornersPrice ? form.corners * form.cornersPrice : "0.00"
+            }
+          />
+        </div>
+        <div className="col-12 col-md-6 ">
+          <CustomInput
+            type="number"
+            id="totalOSPD"
+            //label="1stStoryDown * 1stStoryDownPrice"
+            label="1st Story Downspouts Total"
+            sideLabel="$"
+            disabled={true}
+            value={
+              form.oneStoryDownPrice
+                ? form.oneStoryDown * form.oneStoryDownPrice
+                : "0.00"
+            }
+          />
+        </div>
+        <div className="col-12 col-md-6 ">
+          <CustomInput
+            type="number"
+            id="totalTSPD"
+            label="2nd Story Downspouts Total"
+            sideLabel="$"
+            disabled={true}
+            value={
+              form.twoStoryDownPrice
+                ? form.twoStoryDown * form.twoStoryDownPrice
+                : "0.00"
+            }
+          />
+        </div>
+        <div className="col-12 col-md-6 ">
+          <CustomInput
+            type="number"
+            id="totalEXE"
+            label="Downspouts Extension Total"
+            sideLabel="$"
+            disabled={true}
+            value={
+              form.extraExtensionsPrice
+                ? form.extraExtensions * form.extraExtensionsPrice
+                : "0.00"
+            }
+          />
+        </div>
+        <div className="col-12 mt-3">
+          <h6>Eavestrough Total</h6>
+        </div>
+        <div className="col-12">
+          <CustomInput
+            type="number"
+            id="totalEXE"
+            label="Total Eavestrough Price"
+            sideLabel="$"
+            disabled={true}
+            value={
+              parseFloat(form.difficultyPrice) +
+              (firstStoryEaves +
+                parseFloat(form.adjOneStory) * parseFloat(form.oneStoryPrice)) +
+              (secondStoryEaves + parseFloat(form.adjTwoStory)) *
+                parseFloat(form.twoStoryPrice) +
+              parseFloat(form.corners) * parseFloat(form.cornersPrice) +
+              parseFloat(form.oneStoryDown) *
+                parseFloat(form.oneStoryDownPrice) +
+              parseFloat(form.twoStoryDown) *
+                parseFloat(form.twoStoryDownPrice) +
+              parseFloat(form.extraExtensions) *
+                parseFloat(form.extraExtensionsPrice)
+            }
+          />
+        </div>
       </div>
     </div>
   );
 }
+
+const CustomInput = (props) => {
+  return (
+    <div className="mt-2">
+      <label
+        htmlFor={props.id}
+        style={{ marginBottom: "-1px", marginTop: "5px" }}
+      >
+        {props.label}
+      </label>
+      <div className="input-group mb-2">
+        {props.sideLabel ? (
+          <div className="input-group-prepend">
+            <div
+              className="input-group-text"
+              style={
+                props.disabled
+                  ? {
+                      backgroundColor: "#d8dbe0",
+                    }
+                  : {
+                      backgroundColor: "#fff",
+                    }
+              }
+            >
+              {props.sideLabel}
+            </div>
+          </div>
+        ) : null}
+        <input
+          type={props.type}
+          className="form-control"
+          id={props.id}
+          name={props.id}
+          placeholder="0"
+          autoComplete="off"
+          style={props.sideLabel ? moneyInputStyle : inputStyle}
+          value={props.value}
+          onChange={props.onChange}
+          disabled={props.disabled}
+        />
+        {props.rightSideLabel ? (
+          <div className="input-group-prepend right-rounded">
+            <div
+              className="input-group-text"
+              style={
+                props.disabled
+                  ? {
+                      backgroundColor: "#d8dbe0",
+                      borderLeft: "none",
+                    }
+                  : { backgroundColor: "#fff", borderLeft: "none" }
+              }
+            >
+              {props.rightSideLabel}
+            </div>
+          </div>
+        ) : null}
+      </div>
+    </div>
+  );
+};
+
+const inputStyle = {
+  outline: "none",
+  boxShadow: "none",
+  border: "1px solid lightgray",
+};
+
+const moneyInputStyle = {
+  outline: "none",
+  boxShadow: "none",
+  border: "1px solid lightgray",
+  borderLeft: "none",
+  paddingLeft: "0px",
+  marginLeft: "-11px",
+};

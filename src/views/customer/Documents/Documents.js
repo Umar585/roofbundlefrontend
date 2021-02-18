@@ -14,15 +14,15 @@ export default function Document() {
   const email = localStorage.getItem("email");
   const [customer, setCustomer] = useState([]);
   const [load, setLoad] = useState(false);
-  const customerID = id;
   const passToken = localStorage.getItem("passToken");
+
   useEffect(() => {
     setLoad(true);
     setTimeout(() => {
       setLoad(false);
     }, 1000);
 
-    Axios.post("/api/customer/getsingleuser", { customerID, email, passToken })
+    Axios.post("/api/customer/getsingleuser", { id, email, passToken })
       .then((res) => {
         setCustomer(res.data.data);
       })
@@ -33,7 +33,7 @@ export default function Document() {
   }, []);
 
   const handleDelete = () => {
-    Axios.post("/api/customer/deleteuser", { customerID, email, passToken })
+    Axios.post("/api/customer/deleteuser", { id, email, passToken })
       .then((res) => {
         history.push("/");
       })

@@ -48,6 +48,6 @@
 
 .photos_page .modal input {
   outline: none !important;
-  box-shadow: none;
+  box-shadow: none !important;
   border: 1px solid lightgray;
 }

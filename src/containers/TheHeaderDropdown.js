@@ -25,6 +25,9 @@ const TheHeaderDropdown = () => {
   useEffect(() => {
     let email = localStorage.getItem("email");
     let passToken = localStorage.getItem("passToken");
+    if (!localStorage.getItem("authToken")) {
+      history.push("/signin");
+    }
     axios
       .post("/api/getuserinfo", { email, passToken })
       .then((res) => {

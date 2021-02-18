@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import Axios from "axios";
 import { CCard, CCardBody } from "@coreui/react";
 //Form
 import Form from "./Form";
 import BundlePrices from "./BundlePrices/Prices";
-import PdfLayout from "./PdfFormat/PdfLayout";
+//icon
+import * as AiIcon from "react-icons/ai";
 
-export default function InputTable(props) {
+export default function InputTable() {
   const [pricesData, setPricesData] = useState([]);
   const [error, setError] = useState(false);
   const [msg, setMsg] = useState("");
+  const history = useHistory();
 
   //form
   const [form, setForm] = useState({
@@ -48,8 +51,6 @@ export default function InputTable(props) {
     oneStoryDown: 0,
     twoStoryDown: 0,
     extraExtensions: 0,
-    difficulty: 0,
-    margin: 0,
 
     oneStoryPrice: 0,
     adjOneStoryPrice: 0,
@@ -60,7 +61,8 @@ export default function InputTable(props) {
     twoStoryDownPrice: 0,
     extraExtensionsPrice: 0,
     difficultyPrice: 0,
-    marginPrice: 0,
+
+    oneStoryEaves: 0,
 
     strip: false,
     useNails: false,
@@ -131,6 +133,7 @@ export default function InputTable(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     Axios.post("/api/price", pricesData)
       .then((res) => {
         //console.log(res);
@@ -152,9 +155,19 @@ export default function InputTable(props) {
         }
       });
   };
+
   return (
     <div>
-      <CCard className="shadow">
+      <div className="float-left">
+        <AiIcon.AiOutlineArrowLeft
+          className="h3"
+          onClick={() => history.goBack()}
+        />
+      </div>
+      <div className="text-right">
+        <h5 style={{ marginTop: "3px" }}>Specifications</h5>
+      </div>
+      <CCard className="shadow mt-3">
         <CCardBody>
           <BundlePrices
             handleSubmit={handleSubmit}
@@ -168,7 +181,6 @@ export default function InputTable(props) {
           <Form pricesData={pricesData} form={form} setForm={setForm} />
         </CCardBody>
       </CCard>
-      <PdfLayout />
     </div>
   );
 }

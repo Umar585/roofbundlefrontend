@@ -15,6 +15,7 @@ export default function LargeSinglePhoto() {
   const email = localStorage.getItem("email");
   const passToken = localStorage.getItem("passToken");
   const { id } = useParams();
+  const [rotate, setRotate] = useState(0);
 
   useEffect(() => {
     if (!localStorage.getItem("authToken")) {
@@ -39,6 +40,10 @@ export default function LargeSinglePhoto() {
         console.log(err);
       });
   };
+
+  const rotateImage = () => {
+    setRotate(rotate + 90);
+  };
   return (
     <div className="Large_Single_Photos mb-4">
       <div className="float-left">
@@ -57,8 +62,25 @@ export default function LargeSinglePhoto() {
       <div className="text-center">
         <h5>Photo</h5>
       </div>
-      <div className="mt-4">
-        <img src={image} alt="img" className="border" />
+      <div
+        className="mt-4 border"
+        style={{ minHeight: "70vh", maxHeight: "70vh" }}
+      >
+        <div className="rotate_btn">
+          <AiIcon.AiOutlineRotateRight
+            onClick={(e) => {
+              e.preventDefault();
+              rotateImage();
+            }}
+          />
+        </div>
+        <img
+          src={image}
+          alt="img"
+          style={{
+            transform: `rotate(${rotate}deg)`,
+          }}
+        />
       </div>
     </div>
   );

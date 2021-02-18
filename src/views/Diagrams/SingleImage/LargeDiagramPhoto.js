@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useHistory, Link, useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import Axios from "axios";
 import * as AiIcon from "react-icons/ai";
 import * as FiIcon from "react-icons/fi";
 //style sheet
-import "./LargeSinglePhoto.css";
-
-//test img
-import img3 from "../../../assets/img/Photos/img3.jpg";
+import "./LargeDiagramPhoto.css";
 
 export default function LargeSinglePhoto() {
   const history = useHistory();
@@ -15,6 +12,7 @@ export default function LargeSinglePhoto() {
   const passToken = localStorage.getItem("passToken");
   const { id } = useParams();
   const [data, setData] = useState([]);
+  const [rotate, setRotate] = useState(0);
 
   useEffect(() => {
     if (!localStorage.getItem("authToken")) {
@@ -40,8 +38,11 @@ export default function LargeSinglePhoto() {
       });
   };
 
+  const rotateImage = () => {
+    setRotate(rotate + 90);
+  };
   return (
-    <div className="Large_Single_Photos mb-4">
+    <div className="Large_Diagram_Photos mb-4">
       <div className="float-left">
         <AiIcon.AiOutlineArrowLeft
           className="h3"
@@ -72,12 +73,21 @@ export default function LargeSinglePhoto() {
           {data ? data.title : "Diagram"}
         </h5>
       </div>
-      <div className="mt-4">
+      <div className="mt-4 img_container border">
+        <div className="rotate_btn">
+          <AiIcon.AiOutlineRotateRight
+            onClick={(e) => {
+              e.preventDefault();
+              rotateImage();
+            }}
+          />
+        </div>
         <img
           src={data.name}
           alt="img"
-          className="border"
-          style={{ width: "100%", objectFit: "contain" }}
+          style={{
+            transform: `rotate(${rotate}deg)`,
+          }}
         />
       </div>
     </div>

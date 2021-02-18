@@ -10,7 +10,7 @@ export default function UpdatedCustomer() {
   const { id } = useParams();
   const history = useHistory();
   const [customer, setCustomer] = useState([]);
-  const customerID = id;
+
   useEffect(() => {
     setLoad(true);
     setTimeout(() => {
@@ -20,7 +20,7 @@ export default function UpdatedCustomer() {
     let email = localStorage.getItem("email");
     let passToken = localStorage.getItem("passToken");
 
-    Axios.post("/api/customer/getsingleuser", { customerID, email, passToken })
+    Axios.post("/api/customer/getsingleuser", { id, email, passToken })
       .then((res) => {
         setCustomer(res.data.data);
       })

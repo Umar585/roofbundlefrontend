@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
+import CalculationsFaces from "./CalculationsFaces/CalculationsFaces";
+import { CCollapse } from "@coreui/react";
 //style sheet
 import "../style.scss";
 
 export default function CalculationsTable(props) {
   const items = props.items;
   const pricesData = props.pricesData;
+  const [accordion, setAccordion] = useState(0);
 
   const getPitchValue = (val) => {
     let p = 0;
@@ -300,154 +303,129 @@ export default function CalculationsTable(props) {
   return (
     <div>
       {items != 0 ? (
-        <div
-          className="table-responsive custTable"
-          style={{
-            maxHeight: "600px",
-            overflowY: "auto",
-          }}
-        >
-          <table className="table table-responsive-lg table-bordered">
-            <tbody>
-              <tr>
-                <th></th>
-                <th>Pitch Factor</th>
-                <th>Basic Install Cost</th>
-                <th>Bundles</th>
-                <th>Gable Actual</th>
-                <th>Starter Bundles</th>
-                <th>Starter Labour</th>
-                <th>Capping Bundles</th>
-                <th>Capping Labour</th>
-                <th>Wall/Chimmney Labour</th>
-                <th>Shingle Labour Cost</th>
-                <th>Shingle Material Cost</th>
-                <th>Rooftop Delivery Cost</th>
-                <th>Carry up Labour Cost</th>
-                <th>Bin Cost</th>
-              </tr>
-              {items.map((item, index) => {
-                return (
-                  <tr key={index}>
-                    <td>{index + 1}</td>
-                    <td>{getPitchValue(item.pitch)}</td>
-                    <td>{getBasicInstallValue(item.pitch)}</td>
-                    <td>
-                      {(
-                        ((getPitchValue(item.pitch) *
-                          item.lengthGrnd *
-                          item.width *
-                          1.06) /
-                          100) *
-                          3 +
-                        item.valleyRM * 0.06
-                      ).toFixed(1)}
-                    </td>
-                    <td>
-                      {(getPitchValue(item.pitch) * item.gableGrnd).toFixed(2)}
-                    </td>
-                    <td></td>
-                    <td>
-                      $
-                      {(
-                        (getBasicInstallValue(item.pitch) *
-                          (parseFloat(item.eave) +
-                            parseFloat(item.gableGrnd))) /
-                        60
-                      ).toFixed(2)}
-                    </td>
-                    <td></td>
-                    <td>
-                      $
-                      {(getBasicInstallValue(item.pitch) *
-                        (item.hipRM + item.ridge)) /
-                        25}
-                    </td>
-                    <td></td>
-                    <td>
-                      $
-                      {item.newConst === "true"
-                        ? (
-                            (getBasicInstallValue(item.pitch) - 6) *
-                            (((getPitchValue(item.pitch) *
-                              parseFloat(item.lengthGrnd) *
-                              parseFloat(item.width) *
-                              1.06) /
-                              100) *
-                              3 +
-                              parseFloat(item.valleyRM) * 0.06)
-                          ).toFixed(2)
-                        : (
-                            getBasicInstallValue(item.pitch) *
-                            (((getPitchValue(item.pitch) *
-                              parseFloat(item.lengthGrnd) *
-                              parseFloat(item.width) *
-                              1.06) /
-                              100) *
-                              3 +
-                              parseFloat(item.valleyRM) * 0.06)
-                          ).toFixed(2)}
-                    </td>
-                    <td></td>
-                    <td>
-                      {item.roofTop === "true" && pricesData.roofTopCost != ""
-                        ? `$${(
-                            pricesData.roofTopCost *
-                              ((getPitchValue(item.pitch) *
-                                item.lengthGrnd *
-                                item.width *
-                                1.06) /
-                                100) *
-                              3 +
-                            item.valleyRM * 0.06
-                          ).toFixed(2)}`
-                        : `$${0}`}
-                    </td>
-                    <td>
-                      $
-                      {item.roofTop === "false"
-                        ? item.stories === "1"
-                          ? (
-                              1.5 *
-                              (((getPitchValue(item.pitch) *
-                                item.lengthGrnd *
-                                item.width *
-                                1.06) /
-                                100) *
-                                3 +
-                                item.valleyRM * 0.06)
-                            ).toFixed(2)
-                          : (
-                              2.5 *
-                              (((getPitchValue(item.pitch) *
-                                item.lengthGrnd *
-                                item.width *
-                                1.06) /
-                                100) *
-                                3 +
-                                item.valleyRM * 0.06)
-                            ).toFixed(2)
-                        : 0}
-                    </td>
-                    <td></td>
-                  </tr>
-                );
-              })}
-              <tr>
-                <th>Total</th>
-                <td></td>
-                <td></td>
-                <td>{bundles}</td>
-                <td>{gable}</td>
-                <td>{starterBundle}</td>
-                <td>${labour}</td>
-                <td>{capBundles}</td>
-                <td>${capLabour}</td>
-                <td>${wCLabour}</td>
-                <td>${shingleLabour}</td>
-                <td>
-                  {/*28.49*/}
-                  {pricesData.bundle != "" &&
+        <div>
+          {items.map((item, index) => {
+            return (
+              <>
+                <h5
+                  className="customersTable_sliderBtn border w-100 text-center p-1"
+                  onClick={() =>
+                    setAccordion(accordion === index ? null : index)
+                  }
+                >
+                  Roof Face {index + 1}
+                </h5>
+                <CCollapse show={accordion === index}>
+                  <div className="border p-3">
+                    <CalculationsFaces
+                      item={item}
+                      items={items}
+                      pricesData={pricesData}
+                      getPitchValue={getPitchValue}
+                      getBasicInstallValue={getBasicInstallValue}
+                      keys={index}
+                      onClick={(e) => {
+                        e.preventDefault();
+                      }}
+                    />
+                  </div>
+                </CCollapse>
+              </>
+            );
+          })}
+          <div className="row">
+            <div className="col-12 mt-3">
+              <h6>Total</h6>
+            </div>
+            <div className="col-12 col-md-6">
+              <CustomInput
+                type="number"
+                id="bundleTotal"
+                label="Bundles"
+                rightSideLabel="Bundles"
+                disabled={true}
+                value={bundles}
+              />
+            </div>
+            <div className="col-12 col-md-6">
+              <CustomInput
+                type="number"
+                id="gableActualTotal"
+                label="Gable Actual"
+                rightSideLabel="Lnft"
+                disabled={true}
+                value={gable}
+              />
+            </div>
+            <div className="col-12 col-md-6">
+              <CustomInput
+                type="number"
+                id="starterBundlesTotal"
+                label="Starter Bundles"
+                rightSideLabel="Bundles"
+                disabled={true}
+                value={starterBundle}
+              />
+            </div>
+            <div className="col-12 col-md-6">
+              <CustomInput
+                type="number"
+                id="starterLabourTotal"
+                label="Starter Labour"
+                sideLabel="$"
+                disabled={true}
+                value={labour}
+              />
+            </div>
+            <div className="col-12 col-md-6">
+              <CustomInput
+                type="number"
+                id="cappingBundlesTotal"
+                label="Capping Bundles"
+                rightSideLabel="Bundles"
+                disabled={true}
+                value={capBundles}
+              />
+            </div>
+            <div className="col-12 col-md-6">
+              <CustomInput
+                type="number"
+                id="cappingLabourTotal"
+                label="Capping Labour"
+                sideLabel="$"
+                disabled={true}
+                value={capLabour}
+              />
+            </div>
+            <div className="col-12 col-md-6">
+              <CustomInput
+                type="number"
+                id="wallChimmneyLabourTotal"
+                label="Wall/Chimmney Labour"
+                sideLabel="$"
+                disabled={true}
+                value={wCLabour}
+              />
+            </div>
+            <div className="col-12 col-md-6">
+              <CustomInput
+                type="number"
+                id="shingleLabourCostTotal"
+                label="Shingle Labour Cost"
+                sideLabel="$"
+                disabled={true}
+                value={shingleLabour}
+              />
+            </div>
+            <div className="col-12 col-md-6">
+              <CustomInput
+                type="number"
+                id="shingleMaterialCostTotal"
+                label="Shingle Material Cost"
+                sideLabel="$"
+                disabled={true}
+                value={
+                  pricesData.bundle != "" &&
                   pricesData.starterBundle != "" &&
                   pricesData.cappingBundle != "" &&
                   pricesData.roofTopCost != "" ? (
@@ -460,45 +438,170 @@ export default function CalculationsTable(props) {
                     ).toFixed(2)}`
                   ) : (
                     <span className="text-danger">"Set Bundle Prices"</span>
-                  )}
-                </td>
-                <td>${roofTopDel}</td>
-                <td>
-                  $
-                  {(
-                    parseFloat(roofTopLab) +
-                    (parseFloat(Math.ceil(starterBundle)) +
-                      parseFloat(Math.ceil(capBundles))) *
-                      2
-                  ).toFixed(2)}
-                </td>
-                <td>${pricesData.binCost === "" ? 0 : pricesData.binCost}</td>
-              </tr>
-              <tr>
-                <th>Rounded</th>
-                <td></td>
-                <td></td>
-                <td>{Math.ceil(bundles)}</td>
-                <td>{Math.ceil(gable)}</td>
-                <td>{Math.ceil(starterBundle)}</td>
-                <td></td>
-                <td>{Math.ceil(capBundles)}</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-            </tbody>
-          </table>
+                  )
+                }
+              />
+            </div>
+            <div className="col-12 col-md-6">
+              <CustomInput
+                type="number"
+                id="rooftopDeliveryCostTotal"
+                label="Rooftop Delivery Cost"
+                sideLabel="$"
+                disabled={true}
+                value={roofTopDel}
+              />
+            </div>
+            <div className="col-12 col-md-6">
+              <CustomInput
+                type="number"
+                id="carryUpLabourCostTotal"
+                label="Carry up Labour Cost"
+                sideLabel="$"
+                disabled={true}
+                value={(
+                  parseFloat(roofTopLab) +
+                  (parseFloat(Math.ceil(starterBundle)) +
+                    parseFloat(Math.ceil(capBundles))) *
+                    2
+                ).toFixed(2)}
+              />
+            </div>
+            <div className="col-12 col-md-6">
+              <CustomInput
+                type="number"
+                id="binCostTotal"
+                label="Bin Cost"
+                sideLabel="$"
+                disabled={true}
+                value={pricesData.binCost === "" ? 0 : pricesData.binCost}
+              />
+            </div>
+            <div className="col-12 mt-3">
+              <h6>Rounded Up</h6>
+            </div>
+            <div className="col-12 col-md-6">
+              <CustomInput
+                type="number"
+                id="bundlesRounded"
+                label="Bundles"
+                rightSideLabel="Bundles"
+                disabled={true}
+                value={Math.ceil(bundles)}
+              />
+            </div>
+            <div className="col-12 col-md-6">
+              <CustomInput
+                type="number"
+                id="gableActualRounded"
+                label="Gable Actual"
+                rightSideLabel="Lnft"
+                disabled={true}
+                value={Math.ceil(gable)}
+              />
+            </div>
+            <div className="col-12 col-md-6">
+              <CustomInput
+                type="number"
+                id="starterBundles"
+                label="Starter Bundles"
+                rightSideLabel="Bundles"
+                disabled={true}
+                value={Math.ceil(starterBundle)}
+              />
+            </div>
+            <div className="col-12 col-md-6">
+              <CustomInput
+                type="number"
+                id="cappingBundles"
+                label="Capping Bundles"
+                rightSideLabel="Bundles"
+                disabled={true}
+                value={Math.ceil(capBundles)}
+              />
+            </div>
+          </div>
         </div>
       ) : (
-        <h3 className="text-center text-danger">
-          Calculations will populate when you begin adding data
-        </h3>
+        <p className="text-center pt-1">Currently No Data</p>
       )}
     </div>
   );
 }
+
+const CustomInput = (props) => {
+  return (
+    <div className="mt-2">
+      <label
+        htmlFor={props.id}
+        style={{ marginBottom: "-1px", marginTop: "5px" }}
+      >
+        {props.label}
+      </label>
+      <div className="input-group mb-2">
+        {props.sideLabel ? (
+          <div className="input-group-prepend">
+            <div
+              className="input-group-text"
+              style={
+                props.disabled
+                  ? {
+                      backgroundColor: "#d8dbe0",
+                    }
+                  : {
+                      backgroundColor: "#fff",
+                    }
+              }
+            >
+              {props.sideLabel}
+            </div>
+          </div>
+        ) : null}
+        <input
+          type={props.type}
+          className="form-control"
+          id={props.id}
+          name={props.id}
+          placeholder="0"
+          autoComplete="off"
+          style={props.sideLabel ? moneyInputStyle : inputStyle}
+          value={props.value}
+          onChange={props.onChange}
+          disabled={props.disabled}
+        />
+        {props.rightSideLabel ? (
+          <div className="input-group-prepend right-rounded">
+            <div
+              className="input-group-text"
+              style={
+                props.disabled
+                  ? {
+                      backgroundColor: "#d8dbe0",
+                      borderLeft: "none",
+                    }
+                  : { backgroundColor: "#fff", borderLeft: "none" }
+              }
+            >
+              {props.rightSideLabel}
+            </div>
+          </div>
+        ) : null}
+      </div>
+    </div>
+  );
+};
+
+const inputStyle = {
+  outline: "none",
+  boxShadow: "none",
+  border: "1px solid lightgray",
+};
+
+const moneyInputStyle = {
+  outline: "none",
+  boxShadow: "none",
+  border: "1px solid lightgray",
+  borderLeft: "none",
+  paddingLeft: "0px",
+  marginLeft: "-11px",
+};

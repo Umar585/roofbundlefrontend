@@ -1,34 +1,30 @@
 import React from "react";
-import CIcon from "@coreui/icons-react";
+import * as RiIcon from "react-icons/ri";
+import * as ImIcon from "react-icons/im";
+import * as IoIcon from "react-icons/io";
 import "./style.scss";
 
 const _nav = [
-  /*{
+  {
     _tag: "CSidebarNavItem",
-    name: "Dashboard",
-    to: "/dashboard",
-    icon: <CIcon name="cil-speedometer" customClasses="c-sidebar-nav-icon" />,
-  },*/
-  /* {
-    _tag: "CSidebarNavTitle",
-    _children: ["Theme"],
-  },*/
+    name: "Home",
+    icon: <RiIcon.RiHome2Fill className="c-sidebar-nav-icon" />,
+    addLinkClass: "c-disabled",
+    disabled: true,
+  },
   {
     _tag: "CSidebarNavItem",
     name: "Customer",
     to: "/",
-    icon: <CIcon name="cil-user" customClasses="c-sidebar-nav-icon" />,
-    /* badge: {
-      color: "light",
-      text: "16",
-    },*/
+    icon: <IoIcon.IoIosPerson className="c-sidebar-nav-icon" />,
   },
-  /*{
+  {
     _tag: "CSidebarNavItem",
-    name: "Report",
-    to: "/report",
-    icon: <CIcon name="cil-speedometer" customClasses="c-sidebar-nav-icon" />,
-  },*/
+    name: "Tools",
+    icon: <ImIcon.ImWrench className="c-sidebar-nav-icon" />,
+    addLinkClass: "c-disabled",
+    disabled: true,
+  },
 ];
 
 export default _nav;

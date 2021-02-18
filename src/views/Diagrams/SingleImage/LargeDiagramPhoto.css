@@ -1,11 +1,15 @@
-/*Single Photos*/
-.Large_Single_Photos img {
+/*Large_Diagram_Photos Photos*/
+
+.Large_Diagram_Photos .img_container {
+  min-height: 70vh;
+  max-height: 70vh;
+}
+.Large_Diagram_Photos .img_container img {
   width: 100%;
   height: 70vh;
   object-fit: contain;
 }
-
-.Large_Single_Photos .rotate_btn {
+.Large_Diagram_Photos .rotate_btn {
   position: absolute;
   right: 10px;
   padding-right: 15px;

@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { CHeader, CHeaderNav } from "@coreui/react";
-import { TheHeaderDropdown } from "./index";
+import TheHeaderDropdown from "./TheHeaderDropdown";
 import * as AiIcon from "react-icons/ai";
 
 //style scss

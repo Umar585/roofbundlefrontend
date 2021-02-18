@@ -19,18 +19,7 @@ export default function Form(props) {
   const [isLoading, setIsLoading] = useState(false);
   const [formLoading, setFormLoading] = useState(false);
   const pricesData = props.pricesData;
-
-  const [collapse, setCollapse] = useState(false);
-  const [collapseVent, setCollapseVent] = useState(false);
-  const [collapsePlumbingStack, setCollapsePlumbingStack] = useState(false);
-  const [collapseEaves, setCollapseEaves] = useState(false);
-  const [collapseCalculations, setCollapseCalculations] = useState(false);
-  const [
-    collapseProfessionalProcedures,
-    setCollapseProfessionalProcedures,
-  ] = useState(false);
-  const [collapseUnderlayOptions, setCollapseUnderlayOptions] = useState(false);
-  const [collapseAccessories, setCollapseAccessories] = useState(false);
+  const [accordion, setAccordion] = useState(0);
 
   const removeRoofFace = (i) => {
     items.splice(i, 1);
@@ -63,18 +52,15 @@ export default function Form(props) {
       {formLoading ? null : (
         <>
           <form onSubmit={handleSubmit}>
-            <CCard>
-              {/*Roof Data Table */}
-              <CButton
-                className="btnStyle"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setCollapse(!collapse);
-                }}
-              >
-                Roof Table
-              </CButton>
-              <CCollapse show={collapse}>
+            {/*Roof Data Table */}
+            <h5
+              className="customersTable_sliderBtn border w-100 text-center p-1"
+              onClick={() => setAccordion(accordion === 1 ? null : 1)}
+            >
+              Roof Table
+            </h5>
+            <CCollapse show={accordion === 1}>
+              <CCard>
                 <CCardBody>
                   <RoofInputTable
                     form={form}
@@ -82,21 +68,19 @@ export default function Form(props) {
                     items={items}
                     isLoading={isLoading}
                     removeRoofFace={removeRoofFace}
-                    handleEnter={handleEnter}
                   />
                 </CCardBody>
-              </CCollapse>
-              {/*Vent Data Table */}
-              <CButton
-                className="btnStyle"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setCollapseVent(!collapseVent);
-                }}
-              >
-                Vent Table
-              </CButton>
-              <CCollapse show={collapseVent}>
+              </CCard>
+            </CCollapse>
+            {/*Vent Data Table */}
+            <h5
+              className="customersTable_sliderBtn border w-100 text-center p-1"
+              onClick={() => setAccordion(accordion === 2 ? null : 2)}
+            >
+              Vent Table
+            </h5>
+            <CCollapse show={accordion === 2}>
+              <CCard>
                 <CCardBody>
                   <VentInputTable
                     form={form}
@@ -104,18 +88,17 @@ export default function Form(props) {
                     handleEnter={handleEnter}
                   />
                 </CCardBody>
-              </CCollapse>
-              {/*Plumbing Stack Input Table Data Table */}
-              <CButton
-                className="btnStyle"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setCollapsePlumbingStack(!collapsePlumbingStack);
-                }}
-              >
-                Plumbing-Stack Table
-              </CButton>
-              <CCollapse show={collapsePlumbingStack}>
+              </CCard>
+            </CCollapse>
+            {/*Plumbing Stack Input Table Data Table */}
+            <h5
+              className="customersTable_sliderBtn border w-100 text-center p-1"
+              onClick={() => setAccordion(accordion === 3 ? null : 3)}
+            >
+              Plumbing-Stack Table
+            </h5>
+            <CCollapse show={accordion === 3}>
+              <CCard>
                 <CCardBody>
                   <PlumbingStackInputTable
                     form={form}
@@ -123,18 +106,17 @@ export default function Form(props) {
                     handleEnter={handleEnter}
                   />
                 </CCardBody>
-              </CCollapse>
-              {/*Eaves Input Table Data Table */}
-              <CButton
-                className="btnStyle"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setCollapseEaves(!collapseEaves);
-                }}
-              >
-                Eaves Table
-              </CButton>
-              <CCollapse show={collapseEaves}>
+              </CCard>
+            </CCollapse>
+            {/*Eaves Input Table Data Table */}
+            <h5
+              className="customersTable_sliderBtn border w-100 text-center p-1"
+              onClick={() => setAccordion(accordion === 4 ? null : 4)}
+            >
+              Eavestrough Table
+            </h5>
+            <CCollapse show={accordion === 4}>
+              <CCard>
                 <CCardBody>
                   <EavesInputTable
                     form={form}
@@ -143,50 +125,45 @@ export default function Form(props) {
                     items={items}
                   />
                 </CCardBody>
-              </CCollapse>
-              {/*Professional Procedures Table */}
-              <CButton
-                className="btnStyle"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setCollapseProfessionalProcedures(
-                    !collapseProfessionalProcedures
-                  );
-                }}
-              >
-                Professional Procedures
-              </CButton>
-              <CCollapse show={collapseProfessionalProcedures}>
+              </CCard>
+            </CCollapse>
+            {/*Professional Procedures Table */}
+            <h5
+              className="customersTable_sliderBtn border w-100 text-center p-1"
+              onClick={() => setAccordion(accordion === 5 ? null : 5)}
+            >
+              Professional Procedures
+            </h5>
+            <CCollapse show={accordion === 5}>
+              <CCard>
                 <CCardBody>
                   <ProfessionalProcedures form={form} setForm={setForm} />
                 </CCardBody>
-              </CCollapse>
-              {/*Underlay Options Table */}
-              <CButton
-                className="btnStyle"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setCollapseUnderlayOptions(!collapseUnderlayOptions);
-                }}
-              >
-                Underlay Options
-              </CButton>
-              <CCollapse show={collapseUnderlayOptions}>
+              </CCard>
+            </CCollapse>
+            {/*Underlay Options Table */}
+            <h5
+              className="customersTable_sliderBtn border w-100 text-center p-1"
+              onClick={() => setAccordion(accordion === 6 ? null : 6)}
+            >
+              Underlay Options
+            </h5>
+            <CCollapse show={accordion === 6}>
+              <CCard>
                 <CCardBody>
                   <UnderlayOptions form={form} setForm={setForm} />
                 </CCardBody>
-              </CCollapse>
-              {/*Calculations Table */}
-              <CButton
-                className="btnStyle"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setCollapseCalculations(!collapseCalculations);
-                }}
-              >
-                Calculations Table
-              </CButton>
-              <CCollapse show={collapseCalculations}>
+              </CCard>
+            </CCollapse>
+            {/*Calculations Table */}
+            <h5
+              className="customersTable_sliderBtn border w-100 text-center p-1"
+              onClick={() => setAccordion(accordion === 7 ? null : 7)}
+            >
+              Calculations Table
+            </h5>
+            <CCollapse show={accordion === 7}>
+              <CCard>
                 <CCardBody>
                   <CalculationsTable
                     pricesData={pricesData}
@@ -194,31 +171,31 @@ export default function Form(props) {
                     items={items}
                   />
                 </CCardBody>
-              </CCollapse>
+              </CCard>
+            </CCollapse>
 
-              {/*Accessories Table */}
-              <CButton
-                className="btnStyle"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setCollapseAccessories(!collapseAccessories);
-                }}
-              >
-                Accessories Table
-              </CButton>
-              <CCollapse show={collapseAccessories}>
+            {/*Accessories Table */}
+            <h5
+              className="customersTable_sliderBtn border w-100 text-center p-1"
+              onClick={() => setAccordion(accordion === 8 ? null : 8)}
+            >
+              Accessories Table
+            </h5>
+            <CCollapse show={accordion === 8}>
+              <CCard>
                 <CCardBody>
                   <AccessoriesTable form={form} />
                 </CCardBody>
-              </CCollapse>
-              <div className="mt-1">
-                <input
-                  type="submit"
-                  className="btn btn-success w-100 rounded-0"
-                  value="Save"
-                />
-              </div>
-            </CCard>
+              </CCard>
+            </CCollapse>
+            <div className="mt-1">
+              <input
+                type="submit"
+                className="btn btn-success w-100 rounded-0"
+                value="Save"
+              />
+            </div>
+            {/*</CCard>*/}
           </form>
         </>
       )}
