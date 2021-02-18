@@ -230,7 +230,7 @@ export default function CalculationsTable(props) {
   function roofTopDeliveryFunc() {
     var t = [];
     items.map((singleElement) => {
-      if (pricesData.roofTopCost != "") {
+      if (pricesData.roofTopCost !== "") {
         if (singleElement.roofTop === "true") {
           t.push(
             ((pricesData.roofTopCost *
@@ -302,11 +302,11 @@ export default function CalculationsTable(props) {
 
   return (
     <div>
-      {items != 0 ? (
+      {items !== 0 ? (
         <div>
           {items.map((item, index) => {
             return (
-              <>
+              <div key={index}>
                 <h5
                   className="customersTable_sliderBtn border w-100 text-center p-1"
                   onClick={() =>
@@ -330,7 +330,7 @@ export default function CalculationsTable(props) {
                     />
                   </div>
                 </CCollapse>
-              </>
+              </div>
             );
           })}
           <div className="row">
@@ -352,7 +352,7 @@ export default function CalculationsTable(props) {
                 type="number"
                 id="gableActualTotal"
                 label="Gable Actual"
-                rightSideLabel="Lnft"
+                rightSideLabel="Ln.ft"
                 disabled={true}
                 value={gable}
               />
@@ -425,10 +425,10 @@ export default function CalculationsTable(props) {
                 sideLabel="$"
                 disabled={true}
                 value={
-                  pricesData.bundle != "" &&
-                  pricesData.starterBundle != "" &&
-                  pricesData.cappingBundle != "" &&
-                  pricesData.roofTopCost != "" ? (
+                  pricesData.bundle !== "" &&
+                  pricesData.starterBundle !== "" &&
+                  pricesData.cappingBundle !== "" &&
+                  pricesData.roofTopCost !== "" ? (
                     `$${(
                       Math.ceil(bundles) * pricesData.bundle +
                       Math.ceil(starterBundle) * pricesData.starterBundle +
@@ -495,7 +495,7 @@ export default function CalculationsTable(props) {
                 type="number"
                 id="gableActualRounded"
                 label="Gable Actual"
-                rightSideLabel="Lnft"
+                rightSideLabel="Ln.ft"
                 disabled={true}
                 value={Math.ceil(gable)}
               />
@@ -570,9 +570,9 @@ const CustomInput = (props) => {
           disabled={props.disabled}
         />
         {props.rightSideLabel ? (
-          <div className="input-group-prepend right-rounded">
+          <div className="input-group-prepend">
             <div
-              className="input-group-text"
+              className="input-group-text rounded-right"
               style={
                 props.disabled
                   ? {

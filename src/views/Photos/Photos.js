@@ -32,7 +32,7 @@ export default function Photo() {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [id, email, passToken, history]);
 
   const handleForm = () => {
     let isValid = true;

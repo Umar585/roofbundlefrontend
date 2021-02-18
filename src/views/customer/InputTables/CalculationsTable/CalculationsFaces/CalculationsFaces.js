@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 export default function CalculationsFaces(props) {
-  const items = props.items;
+  //const items = props.items;
   const item = props.item;
   const pricesData = props.pricesData;
   const getPitchValue = props.getPitchValue;
@@ -120,7 +120,7 @@ export default function CalculationsFaces(props) {
           sideLabel="$"
           disabled={true}
           value={
-            item.roofTop === "true" && pricesData.roofTopCost != ""
+            item.roofTop === "true" && pricesData.roofTopCost !== ""
               ? (
                   pricesData.roofTopCost *
                     ((getPitchValue(item.pitch) *
@@ -214,9 +214,9 @@ const CustomInput = (props) => {
           disabled={props.disabled}
         />
         {props.rightSideLabel ? (
-          <div className="input-group-prepend right-rounded">
+          <div className="input-group-prepend">
             <div
-              className="input-group-text"
+              className="input-group-text rounded-right"
               style={
                 props.disabled
                   ? {

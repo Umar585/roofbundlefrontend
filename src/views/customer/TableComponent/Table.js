@@ -1,15 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { useHistory, Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import Axios from "axios";
 //icons
-import * as AiIcon from "react-icons/ai";
 import * as BsIcon from "react-icons/bs";
 //assets
 import mapsImg from "../../../assets/img/mapPlace.png";
 import "./Table.scss";
 
 export default function Table(props) {
-  const history = useHistory();
   const [moved, setMoved] = useState(false);
   const id = props.id;
   const handleTabs = (val) => {

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { CButton, CCard, CCardBody, CCollapse } from "@coreui/react";
+import { CCard, CCardBody, CCollapse } from "@coreui/react";
 import BundlePrices from "./bundlePrices";
 //style sheet
 import "../style.scss";
@@ -18,7 +18,7 @@ export default function Prices(props) {
           setCollapse(!collapse);
         }}
       >
-        Material Pricing
+        Pricing
       </h5>
       <CCollapse show={collapse}>
         <CCard>

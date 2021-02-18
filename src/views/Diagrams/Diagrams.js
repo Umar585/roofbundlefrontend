@@ -33,7 +33,7 @@ export default function Diagrams() {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [id, email, passToken]);
 
   const handleForm = () => {
     let isValid = true;
@@ -226,10 +226,10 @@ export default function Diagrams() {
                         Title Required
                       </label>
                     ) : null}
-                    <div class="custom-file mt-2">
+                    <div className="custom-file mt-2">
                       <input
                         type="file"
-                        class="custom-file-input"
+                        className="custom-file-input"
                         id="image"
                         name="image"
                         onChange={(e) => {
@@ -237,7 +237,7 @@ export default function Diagrams() {
                         }}
                       />
                       <label
-                        class="custom-file-label"
+                        className="custom-file-label"
                         htmlFor="image"
                         style={{
                           maxWidth: "100%",

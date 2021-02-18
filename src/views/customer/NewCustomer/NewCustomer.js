@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useHistory, Link } from "react-router-dom";
-import { CBadge, CCard, CCardBody } from "@coreui/react";
+import { Link } from "react-router-dom";
+import { CCard } from "@coreui/react";
 
 import Form from "./Form";
 import * as AiIcon from "react-icons/ai";
 
 export default function NewCustomer() {
-  const history = useHistory();
   const [load, setLoad] = useState(false);
 
   useEffect(() => {

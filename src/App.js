@@ -69,7 +69,7 @@ function App() {
           />
           <PrivateRouting
             exact
-            path="/customertables"
+            path="/customertables/:id"
             component={InputTables}
           />
           <PrivateRouting exact path="/album/:id" component={Album} />

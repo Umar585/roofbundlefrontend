@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
 import Axios from "axios";
-import * as FaIcon from "react-icons/fa";
 import * as AiIcon from "react-icons/ai";
 import * as BsIcon from "react-icons/bs";
 import * as HiIcon from "react-icons/hi";
@@ -25,7 +24,7 @@ export default function CustomerFile() {
         console.log(error);
         history.push("/");
       });
-  }, []);
+  }, [id, email, passToken, history]);
 
   const handleDelete = () => {
     Axios.post("/api/customer/deleteuser", { id, email, passToken })
@@ -171,7 +170,7 @@ export default function CustomerFile() {
           </div>
         </div>
       </Link>
-      <Link to="/customertables" style={{ color: "#3c4b64" }}>
+      <Link to={`/customertables/${id}`} style={{ color: "#3c4b64" }}>
         <div className="pages-list">
           <div className="list-inline">
             <div className="list-inline-item">

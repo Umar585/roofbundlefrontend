@@ -26,7 +26,7 @@ export default function LargeSinglePhoto() {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [id, email, passToken, history]);
 
   const handleDiagramDelete = (diagram_id) => {
     Axios.post("/api/diagrams/deleteDiagram", { diagram_id, email, passToken })

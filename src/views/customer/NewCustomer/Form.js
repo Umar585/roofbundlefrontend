@@ -102,10 +102,8 @@ export default function Form() {
           history.push("/");
         })
         .catch((error) => {
-          if (
-            error.response.data.error ===
-            `E11000 duplicate key error collection: test.customers index: email_1 dup key: { email: \"${form.email}\" }`
-          ) {
+          console.log(error.response.data.error.code);
+          if (error.response.data.error.code === 11000) {
             setEmailErr(true);
             setTimeout(() => {
               setEmailErr(false);

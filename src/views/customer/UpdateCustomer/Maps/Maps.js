@@ -14,7 +14,7 @@ export default function Maps(props) {
         onChange={props.handleAddress}
         onSelect={props.handleSelect}
       >
-        {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => {
+        {({ getInputProps, suggestions, getSuggestionItemProps }) => {
           return (
             <div>
               <div className="input-group mb-2">
@@ -42,7 +42,6 @@ export default function Maps(props) {
                   {...getInputProps({
                     type: "search",
                     placeholder: "Search Address",
-
                     id: "inputReportAddress",
                     autoComplete: "off",
                   })}
@@ -86,7 +85,7 @@ export default function Maps(props) {
       <div
         className="mx-auto"
         style={{
-          height: "300px",
+          height: "150px",
           marginTop: "10px",
         }}
       >

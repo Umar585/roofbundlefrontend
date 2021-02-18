@@ -39,11 +39,7 @@ export default function RoofFaces(props) {
         />
       </div>
       <div className="col-12 col-md-4">
-        <CustomCheckBox
-          id="roofTop"
-          label={`Roof Top ${item.roofTop}`}
-          checked={roofTop}
-        />
+        <CustomCheckBox id="roofTop" label="Roof Top" checked={roofTop} />
       </div>
       <div className="col-12 col-md-4">
         <CustomCheckBox id="bin" label="Bin" checked={bin} />

@@ -23,7 +23,7 @@ const InProgress = () => {
         localStorage.removeItem("passToken");
         history.push("/signin");
       });
-  }, []);
+  }, [history]);
   return (
     <div style={{ marginBottom: "20px" }}>
       {customers.length === 0 ? (

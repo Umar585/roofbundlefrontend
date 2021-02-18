@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Input from "../../Components/Input";
 
 export default function Eaves(props) {
   const form = props.form;
@@ -50,7 +49,6 @@ export default function Eaves(props) {
     FirstStoryEaves();
     SecondStoryEaves();
   });
-  let grandTotal;
 
   return (
     <div>
@@ -64,7 +62,7 @@ export default function Eaves(props) {
             id="firstSE"
             label="1st Story Eaves"
             disabled={true}
-            rightSideLabel="Lnft"
+            rightSideLabel="Ln.ft"
             value={
               form.adjOneStory
                 ? firstStoryEaves + parseFloat(form.adjOneStory)
@@ -77,7 +75,7 @@ export default function Eaves(props) {
             type="number"
             id="adjOneStory"
             label="1st Story Eave Adjustment"
-            rightSideLabel="Lnft"
+            rightSideLabel="Ln.ft"
             value={form.adjOneStory}
             onChange={(e) =>
               setForm({
@@ -92,7 +90,7 @@ export default function Eaves(props) {
             type="number"
             id="secondSE"
             label="2nd Story Eaves"
-            rightSideLabel="Lnft"
+            rightSideLabel="Ln.ft"
             disabled={true}
             value={
               form.adjTwoStory
@@ -106,7 +104,7 @@ export default function Eaves(props) {
             type="number"
             id="adjTwoStory"
             label="2nd Story Eave Adjustment"
-            rightSideLabel="Lnft"
+            rightSideLabel="Ln.ft"
             value={form.adjTwoStory}
             onChange={(e) =>
               setForm({
@@ -202,7 +200,7 @@ export default function Eaves(props) {
             id="oneStoryPrice"
             label="1st Story Eaves"
             sideLabel="$"
-            rightSideLabel="Lnft"
+            rightSideLabel="Ln.ft"
             value={form.oneStoryPrice}
             onChange={(e) =>
               setForm({
@@ -218,7 +216,7 @@ export default function Eaves(props) {
             id="twoStoryPrice"
             label="2nd Story Eaves"
             sideLabel="$"
-            rightSideLabel="Lnft"
+            rightSideLabel="Ln.ft"
             value={form.twoStoryPrice}
             onChange={(e) =>
               setForm({
@@ -403,32 +401,6 @@ export default function Eaves(props) {
             }
           />
         </div>
-        <div className="col-12 mt-3">
-          <h6>Eavestrough Total</h6>
-        </div>
-        <div className="col-12">
-          <CustomInput
-            type="number"
-            id="totalEXE"
-            label="Total Eavestrough Price"
-            sideLabel="$"
-            disabled={true}
-            value={
-              parseFloat(form.difficultyPrice) +
-              (firstStoryEaves +
-                parseFloat(form.adjOneStory) * parseFloat(form.oneStoryPrice)) +
-              (secondStoryEaves + parseFloat(form.adjTwoStory)) *
-                parseFloat(form.twoStoryPrice) +
-              parseFloat(form.corners) * parseFloat(form.cornersPrice) +
-              parseFloat(form.oneStoryDown) *
-                parseFloat(form.oneStoryDownPrice) +
-              parseFloat(form.twoStoryDown) *
-                parseFloat(form.twoStoryDownPrice) +
-              parseFloat(form.extraExtensions) *
-                parseFloat(form.extraExtensionsPrice)
-            }
-          />
-        </div>
       </div>
     </div>
   );
@@ -475,9 +447,9 @@ const CustomInput = (props) => {
           disabled={props.disabled}
         />
         {props.rightSideLabel ? (
-          <div className="input-group-prepend right-rounded">
+          <div className="input-group-prepend">
             <div
-              className="input-group-text"
+              className="input-group-text rounded-right"
               style={
                 props.disabled
                   ? {

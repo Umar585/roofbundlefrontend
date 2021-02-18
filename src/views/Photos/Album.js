@@ -33,7 +33,7 @@ export default function Photos() {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [id, email, passToken, history]);
 
   const handleAlbum = (e) => {
     e.preventDefault();

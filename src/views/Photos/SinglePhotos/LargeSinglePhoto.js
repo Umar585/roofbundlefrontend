@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useHistory, Link, useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import Axios from "axios";
 import * as FiIcon from "react-icons/fi";
 import * as AiIcon from "react-icons/ai";
 //style sheet
 import "./LargeSinglePhoto.css";
-
-//test img
-import img3 from "../../../assets/img/Photos/img3.jpg";
 
 export default function LargeSinglePhoto() {
   const history = useHistory();
@@ -28,7 +25,7 @@ export default function LargeSinglePhoto() {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [id, email, passToken, history]);
 
   const deletePhoto = () => {
     const photo_id = id;

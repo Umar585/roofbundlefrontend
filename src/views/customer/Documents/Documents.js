@@ -30,7 +30,7 @@ export default function Document() {
         console.log(error);
         history.push("/");
       });
-  }, []);
+  }, [id, email, passToken, history]);
 
   const handleDelete = () => {
     Axios.post("/api/customer/deleteuser", { id, email, passToken })

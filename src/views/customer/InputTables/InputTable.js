@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import Axios from "axios";
 import { CCard, CCardBody } from "@coreui/react";
 //Form
@@ -13,6 +13,9 @@ export default function InputTable() {
   const [error, setError] = useState(false);
   const [msg, setMsg] = useState("");
   const history = useHistory();
+  const { id } = useParams();
+  const email = localStorage.getItem("email");
+  const passToken = localStorage.getItem("passToken");
 
   //form
   const [form, setForm] = useState({
@@ -126,15 +129,15 @@ export default function InputTable() {
   });
 
   useEffect(() => {
-    Axios.get("/api/price").then((res) => {
-      setPricesData(res.data);
+    Axios.post("/api/price", { id, email, passToken }).then((res) => {
+      setPricesData(res.data.data[0]);
     });
   }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    Axios.post("/api/price", pricesData)
+    Axios.post("/api/price/priceupdate", { id, pricesData, email, passToken })
       .then((res) => {
         //console.log(res);
         if (res.data === "Success") {
@@ -169,16 +172,18 @@ export default function InputTable() {
       </div>
       <CCard className="shadow mt-3">
         <CCardBody>
-          <BundlePrices
-            handleSubmit={handleSubmit}
-            pricesData={pricesData}
-            setPricesData={setPricesData}
-            error={error}
-            setError={setError}
-            msg={msg}
-            setMsg={setMsg}
-          />
           <Form pricesData={pricesData} form={form} setForm={setForm} />
+          <div className="mt-4">
+            <BundlePrices
+              handleSubmit={handleSubmit}
+              pricesData={pricesData}
+              setPricesData={setPricesData}
+              error={error}
+              setError={setError}
+              msg={msg}
+              setMsg={setMsg}
+            />
+          </div>
         </CCardBody>
       </CCard>
     </div>

@@ -9,7 +9,7 @@ function GoogleMaps(props) {
         google={props.google}
         style={{
           width: "90%",
-          height: "300px",
+          height: "150px",
           position: "relative",
           marginLeft: "auto",
           marginRight: "auto",

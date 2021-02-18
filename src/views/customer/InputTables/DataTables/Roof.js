@@ -3,12 +3,10 @@ import { CButton, CCollapse } from "@coreui/react";
 import RoofFaces from "./RoofFaces/RoofFaces";
 //style sheet
 import "../style.scss";
-//icons
-import * as AiIcon from "react-icons/ai";
 
 export default function Roof(props) {
-  const isLoading = props.isLoading;
   const items = props.items;
+  const load = props.load;
   const form = props.form;
   const setForm = props.setForm;
   const [accordion, setAccordion] = useState(0);
@@ -80,28 +78,38 @@ export default function Roof(props) {
 
   return (
     <div>
-      {items.map((item, index) => {
-        return (
-          <>
-            <h5
-              className="customersTable_sliderBtn border w-100 text-center p-1"
-              onClick={() => setAccordion(accordion === index ? null : index)}
-            >
-              Roof Face {index + 1}
-            </h5>
-            <CCollapse show={accordion === index}>
-              <RoofFaces
-                item={item}
-                keys={index}
-                onClick={(e) => {
-                  e.preventDefault();
-                  removeRoofFace(index);
-                }}
-              />
-            </CCollapse>
-          </>
-        );
-      })}
+      {load ? (
+        <div className="text-center">
+          <span>Loading...</span>
+        </div>
+      ) : (
+        <>
+          {items.map((item, index) => {
+            return (
+              <div key={index}>
+                <h5
+                  className="customersTable_sliderBtn border w-100 text-center p-1"
+                  onClick={() =>
+                    setAccordion(accordion === index ? null : index)
+                  }
+                >
+                  Roof Face {index + 1}
+                </h5>
+                <CCollapse show={accordion === index}>
+                  <RoofFaces
+                    item={item}
+                    keys={index}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      removeRoofFace(index);
+                    }}
+                  />
+                </CCollapse>
+              </div>
+            );
+          })}{" "}
+        </>
+      )}
       <div className="row">
         <div className="col-12 col-md-6">
           <div className="mt-2">
@@ -147,6 +155,33 @@ export default function Roof(props) {
           </div>
         </div>
         <div className="col-12 col-md-6">
+          <div className="mt-2">
+            <label
+              htmlFor="pitch"
+              style={{ marginBottom: "-1px", marginTop: "5px" }}
+            >
+              Stories
+            </label>
+            <select
+              className="form-control"
+              id="stories"
+              name="stories"
+              style={inputStyle}
+              value={form.stories}
+              onChange={(e) =>
+                setForm({
+                  ...form,
+                  stories: e.target.value,
+                })
+              }
+            >
+              <option value="">Stories</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+            </select>
+          </div>
+        </div>
+        {/*<div className="col-12 col-md-6">
           <CustomInput
             type="number"
             id="stories"
@@ -159,7 +194,7 @@ export default function Roof(props) {
               })
             }
           />
-        </div>
+          </div>*/}
         <div className="col-12 col-md-4">
           <CustomCheckBox
             id="roofTop"
@@ -218,6 +253,7 @@ export default function Roof(props) {
             type="number"
             id="width"
             label="Width"
+            rightSideLabel=""
             value={form.width}
             onChange={(e) =>
               setForm({
@@ -232,6 +268,7 @@ export default function Roof(props) {
             type="number"
             id="eave"
             label="Eaves"
+            rightSideLabel="Ln.ft"
             value={form.eave}
             onChange={(e) => setForm({ ...form, eave: e.target.value })}
           />
@@ -241,6 +278,7 @@ export default function Roof(props) {
             type="number"
             id="gableGrnd"
             label="Gable (Ground)"
+            rightSideLabel="Ln.ft"
             value={form.gableGrnd}
             onChange={(e) =>
               setForm({
@@ -255,6 +293,7 @@ export default function Roof(props) {
             type="number"
             id="valleyRM"
             label="Valley (Roof Measure)"
+            rightSideLabel="Ln.ft"
             value={form.valleyRM}
             onChange={(e) =>
               setForm({
@@ -269,6 +308,7 @@ export default function Roof(props) {
             type="number"
             id="hipRM"
             label="Hip (Roof Measure)"
+            rightSideLabel="Ln.ft"
             value={form.hipRM}
             onChange={(e) =>
               setForm({
@@ -283,6 +323,7 @@ export default function Roof(props) {
             type="number"
             id="ridge"
             label="Ridge"
+            rightSideLabel="Ln.ft"
             value={form.ridge}
             onChange={(e) =>
               setForm({
@@ -297,6 +338,7 @@ export default function Roof(props) {
             type="number"
             id="wall"
             label="Wall"
+            rightSideLabel="Ln.ft"
             value={form.wall}
             onChange={(e) => setForm({ ...form, wall: e.target.value })}
           />
@@ -306,6 +348,7 @@ export default function Roof(props) {
             type="number"
             id="chimney"
             label="Chimney"
+            rightSideLabel="Ln.ft"
             value={form.chimney}
             onChange={(e) =>
               setForm({
@@ -324,7 +367,6 @@ export default function Roof(props) {
     </div>
   );
 }
-
 const CustomInput = (props) => {
   return (
     <div className="mt-2">
@@ -334,17 +376,55 @@ const CustomInput = (props) => {
       >
         {props.label}
       </label>
-      <input
-        type={props.type}
-        className="form-control"
-        id={props.id}
-        name={props.id}
-        placeholder="0"
-        autoComplete="off"
-        style={inputStyle}
-        value={props.value}
-        onChange={props.onChange}
-      />
+      <div className="input-group mb-2">
+        {props.sideLabel ? (
+          <div className="input-group-prepend">
+            <div
+              className="input-group-text"
+              style={
+                props.disabled
+                  ? {
+                      backgroundColor: "#d8dbe0",
+                    }
+                  : {
+                      backgroundColor: "#fff",
+                    }
+              }
+            >
+              {props.sideLabel}
+            </div>
+          </div>
+        ) : null}
+        <input
+          type={props.type}
+          className="form-control"
+          id={props.id}
+          name={props.id}
+          placeholder="0"
+          autoComplete="off"
+          style={props.sideLabel ? moneyInputStyle : inputStyle}
+          value={props.value}
+          onChange={props.onChange}
+          disabled={props.disabled}
+        />
+        {props.rightSideLabel ? (
+          <div className="input-group-prepend">
+            <div
+              className="input-group-text rounded-right"
+              style={
+                props.disabled
+                  ? {
+                      backgroundColor: "#d8dbe0",
+                      borderLeft: "none",
+                    }
+                  : { backgroundColor: "#fff", borderLeft: "none" }
+              }
+            >
+              {props.rightSideLabel}
+            </div>
+          </div>
+        ) : null}
+      </div>
     </div>
   );
 };
@@ -371,4 +451,13 @@ const inputStyle = {
   outline: "none",
   boxShadow: "none",
   border: "1px solid lightgray",
+};
+
+const moneyInputStyle = {
+  outline: "none",
+  boxShadow: "none",
+  border: "1px solid lightgray",
+  borderLeft: "none",
+  paddingLeft: "0px",
+  marginLeft: "-11px",
 };

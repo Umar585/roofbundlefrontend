@@ -36,7 +36,7 @@ const TheHeaderDropdown = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [history]);
   return (
     <CDropdown inNav className="c-header-nav-items userLink" direction="down">
       <CDropdownToggle className="c-header-nav-link" caret={false}>

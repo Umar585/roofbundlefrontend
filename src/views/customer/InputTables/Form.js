@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { CButton, CCard, CCardBody, CCollapse } from "@coreui/react";
+import { CCard, CCardBody, CCollapse } from "@coreui/react";
 //Components
 import RoofInputTable from "./DataTables/Roof";
 import VentInputTable from "./DataTables/Vent";
@@ -14,9 +14,9 @@ import "./style.scss";
 
 export default function Form(props) {
   const form = props.form;
+  const [load, setLoad] = useState(false);
   const setForm = props.setForm;
   const [items, setItems] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
   const [formLoading, setFormLoading] = useState(false);
   const pricesData = props.pricesData;
   const [accordion, setAccordion] = useState(0);
@@ -24,8 +24,10 @@ export default function Form(props) {
   const removeRoofFace = (i) => {
     items.splice(i, 1);
     setItems(items);
-    setIsLoading(true);
-    setTimeout(() => setIsLoading(false), 1000);
+    setLoad(true);
+    setTimeout(() => {
+      setLoad(false);
+    }, 1000);
   };
 
   function handleEnter(event) {
@@ -57,7 +59,7 @@ export default function Form(props) {
               className="customersTable_sliderBtn border w-100 text-center p-1"
               onClick={() => setAccordion(accordion === 1 ? null : 1)}
             >
-              Roof Table
+              Roof Measurements
             </h5>
             <CCollapse show={accordion === 1}>
               <CCard>
@@ -66,7 +68,7 @@ export default function Form(props) {
                     form={form}
                     setForm={setForm}
                     items={items}
-                    isLoading={isLoading}
+                    load={load}
                     removeRoofFace={removeRoofFace}
                   />
                 </CCardBody>
@@ -184,7 +186,11 @@ export default function Form(props) {
             <CCollapse show={accordion === 8}>
               <CCard>
                 <CCardBody>
-                  <AccessoriesTable form={form} />
+                  <AccessoriesTable
+                    form={form}
+                    items={items}
+                    pricesData={pricesData}
+                  />
                 </CCardBody>
               </CCard>
             </CCollapse>
