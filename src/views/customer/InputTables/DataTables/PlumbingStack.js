@@ -20,6 +20,14 @@ export default function PlumbingStack(props) {
                 reSeal: e.target.value,
               })
             }
+            idInc="reSealInc"
+            valueInc={form.reSealInc}
+            onChangeInc={(e) =>
+              setForm({
+                ...form,
+                reSealInc: e.target.value,
+              })
+            }
           />
         </div>
         <div className="col-12 col-md-6">
@@ -32,6 +40,14 @@ export default function PlumbingStack(props) {
               setForm({
                 ...form,
                 conversions: e.target.value,
+              })
+            }
+            idInc="conversionsInc"
+            valueInc={form.conversionsInc}
+            onChangeInc={(e) =>
+              setForm({
+                ...form,
+                conversionsInc: e.target.value,
               })
             }
           />
@@ -48,6 +64,14 @@ export default function PlumbingStack(props) {
                 oneMat: e.target.value,
               })
             }
+            idInc="oneMatInc"
+            valueInc={form.oneMatInc}
+            onChangeInc={(e) =>
+              setForm({
+                ...form,
+                oneMatInc: e.target.value,
+              })
+            }
           />
         </div>
         <div className="col-12 col-md-6">
@@ -60,6 +84,14 @@ export default function PlumbingStack(props) {
               setForm({
                 ...form,
                 twoMat: e.target.value,
+              })
+            }
+            idInc="twoMatInc"
+            valueInc={form.twoMatInc}
+            onChangeInc={(e) =>
+              setForm({
+                ...form,
+                twoMatInc: e.target.value,
               })
             }
           />
@@ -76,6 +108,14 @@ export default function PlumbingStack(props) {
                 threeMat: e.target.value,
               })
             }
+            idInc="threeMatInc"
+            valueInc={form.threeMatInc}
+            onChangeInc={(e) =>
+              setForm({
+                ...form,
+                threeMatInc: e.target.value,
+              })
+            }
           />
         </div>
         <div className="col-12 col-md-6">
@@ -90,6 +130,14 @@ export default function PlumbingStack(props) {
                 fourMat: e.target.value,
               })
             }
+            idInc="fourMatInc"
+            valueInc={form.fourMatInc}
+            onChangeInc={(e) =>
+              setForm({
+                ...form,
+                fourMatInc: e.target.value,
+              })
+            }
           />
         </div>
       </div>
@@ -99,30 +147,56 @@ export default function PlumbingStack(props) {
 
 const CustomInput = (props) => {
   return (
-    <div className="mt-2">
-      <label
-        htmlFor={props.id}
-        style={{ marginBottom: "-1px", marginTop: "5px" }}
-      >
-        {props.label}
-      </label>
-      <input
-        type={props.type}
-        className="form-control"
-        id={props.id}
-        name={props.id}
-        placeholder="0"
-        autoComplete="off"
-        style={inputStyle}
-        value={props.value}
-        onChange={props.onChange}
-      />
+    <div>
+      <div className="row no-gutters">
+        <div className="col-6">
+          <input
+            type={props.type}
+            className="form-control"
+            id={props.id}
+            name={props.id}
+            maxLength="4"
+            placeholder="Ft"
+            autoComplete="off"
+            style={leftInputStyle}
+            value={props.value}
+            onChange={props.onChange}
+          />
+        </div>
+        <div className="col-6">
+          <input
+            type={props.type}
+            className="form-control"
+            id={props.idInc}
+            maxLength="2"
+            max="11"
+            min="1"
+            step="1"
+            name={props.idInc}
+            placeholder="In"
+            autoComplete="off"
+            style={rightInputStyle}
+            value={props.valueInc}
+            onChange={props.onChangeInc}
+          />
+        </div>
+        <div className="col-12 text-center">
+          <span className="small">{props.label}</span>
+        </div>
+      </div>
     </div>
   );
 };
-
-const inputStyle = {
+const leftInputStyle = {
   outline: "none",
   boxShadow: "none",
   border: "1px solid lightgray",
+  borderRight: "0px",
+  borderRadius: "0.25rem 0px 0px 0.25rem",
+};
+const rightInputStyle = {
+  outline: "none",
+  boxShadow: "none",
+  border: "1px solid lightgray",
+  borderRadius: "0px 0.25rem 0.25rem 0px",
 };

@@ -25,28 +25,35 @@ export default function InputTable() {
     roofTop: false,
     bin: false,
     newConst: false,
-    lengthGrnd: 0,
-    width: 0,
-    eave: 0,
-    gableGrnd: 0,
-    valleyRM: 0,
-    hipRM: 0,
-    ridge: 0,
-    wall: 0,
-    chimney: 0,
+    lengthGrnd: "",
+    width: "",
+    eave: "",
+    gableGrnd: "",
+    valleyRM: "",
+    hipRM: "",
+    ridge: "",
+    wall: "",
+    chimney: "",
 
     replace: 0,
     remove: 0,
     new: 0,
     exhaust: 0,
-    basicRidge: 0,
+    basicRidge: "",
+    basicRidgeInc: "",
 
-    reSeal: 0,
-    conversions: 0,
-    oneMat: 0,
-    twoMat: 0,
-    threeMat: 0,
-    fourMat: 0,
+    reSeal: "",
+    reSealInc: "",
+    conversions: "",
+    conversionsInc: "",
+    oneMat: "",
+    oneMatInc: "",
+    twoMat: "",
+    twoMatInc: "",
+    threeMat: "",
+    threeMatInc: "",
+    fourMat: "",
+    fourMatInc: "",
 
     adjOneStory: 0,
     adjTwoStory: 0,
@@ -132,7 +139,7 @@ export default function InputTable() {
     Axios.post("/api/price", { id, email, passToken }).then((res) => {
       setPricesData(res.data.data[0]);
     });
-  }, []);
+  }, [id, email, passToken]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

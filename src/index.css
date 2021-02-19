@@ -78,3 +78,10 @@ body h6 {
     margin-left: 0px !important;
   }
 }
+
+.gb-pr {
+  padding-right: 2px !important;
+}
+.gb-pl {
+  padding-left: 2px !important;
+}
