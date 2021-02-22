@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { CCard, CCardBody, CCollapse } from "@coreui/react";
+import { CCard, CCardBody, CCollapse, CButton } from "@coreui/react";
 import BundlePrices from "./bundlePrices";
 //style sheet
 import "../style.scss";
@@ -11,7 +11,7 @@ export default function Prices(props) {
   const msg = props.msg;
   return (
     <div>
-      <h5
+      <h6
         className="customersTable_sliderBtn border w-100 text-center p-1"
         onClick={(e) => {
           e.preventDefault();
@@ -19,7 +19,7 @@ export default function Prices(props) {
         }}
       >
         Pricing
-      </h5>
+      </h6>
       <CCollapse show={collapse}>
         <CCard>
           <CCardBody>
@@ -37,11 +37,11 @@ export default function Prices(props) {
                 pricesData={pricesData}
                 setPricesData={setPricesData}
               />
-
               <input
                 type="submit"
-                value="Update Pricing"
-                className="btn btn-success w-100 mt-3"
+                value="Complete Pricing"
+                className="btn w-100 mt-3"
+                style={btnStyle}
               />
             </form>
           </CCardBody>
@@ -50,3 +50,11 @@ export default function Prices(props) {
     </div>
   );
 }
+
+const btnStyle = {
+  outline: "none",
+  boxShadow: "none",
+  border: "none",
+  backgroundColor: "#e60029",
+  color: "#fff",
+};

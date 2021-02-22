@@ -14,6 +14,7 @@ const TheFooter = () => {
             bottom: "10px",
             paddingRight: "15px",
             marginRight: "auto",
+            zIndex: "99",
           }}
         >
           Beta

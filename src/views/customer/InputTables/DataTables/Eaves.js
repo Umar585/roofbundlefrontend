@@ -4,10 +4,96 @@ export default function Eaves(props) {
   const form = props.form;
   const setForm = props.setForm;
   const items = props.items;
+  const expression = /^-?[0-9]+$/;
+
+  const [formErr, setFormErr] = useState({
+    adjOneStory: false,
+    adjOneStoryInc: false,
+  });
+
+  const ftFormFields = (field) => {
+    let isValid = true;
+    if (field !== "") {
+      if (!expression.test(field) || field > 999 || field < 0) {
+        isValid = false;
+      }
+    }
+    return isValid;
+  };
+  const incFormFields = (field) => {
+    let isValid = true;
+    if (field !== "") {
+      if (!expression.test(field) || field > 11 || field < 0) {
+        isValid = false;
+      }
+    }
+    return isValid;
+  };
+
+  const inchConverter = (val) => {
+    let newVal = 0;
+    if (val === "1") {
+      newVal = 0.08;
+    } else if (val === "2") {
+      newVal = 0.16;
+    } else if (val === "3") {
+      newVal = 0.25;
+    } else if (val === "4") {
+      newVal = 0.33;
+    } else if (val === "5") {
+      newVal = 0.41;
+    } else if (val === "6") {
+      newVal = 0.5;
+    } else if (val === "7") {
+      newVal = 0.58;
+    } else if (val === "8") {
+      newVal = 0.66;
+    } else if (val === "9") {
+      newVal = 0.75;
+    } else if (val === "10") {
+      newVal = 0.83;
+    } else if (val === "11") {
+      newVal = 0.91;
+    }
+    return newVal;
+  };
+
+  const reverseInchConverter = (val) => {
+    let newVal = "";
+    if (val === "08") {
+      newVal = "1";
+    } else if (val === "16") {
+      newVal = "2";
+    } else if (val === "25") {
+      newVal = "3";
+    } else if (val === "33") {
+      newVal = "4";
+    } else if (val === "41") {
+      newVal = "5";
+    } else if (val === "50") {
+      newVal = "6";
+    } else if (val === "58") {
+      newVal = "7";
+    } else if (val === "66") {
+      newVal = "8";
+    } else if (val === "75") {
+      newVal = "9";
+    } else if (val === "83") {
+      newVal = "10";
+    } else if (val === "91") {
+      newVal = "11";
+    } else {
+      newVal = "0";
+    }
+    return newVal;
+  };
 
   const [firstStoryEaves, setFirstStoryEaves] = useState([]);
+  const [firstStoryEavesInc, setFirstStoryEavesInc] = useState("");
+
   const FirstStoryEaves = () => {
     var t = [];
+    var y = [];
     var e = [];
 
     items.map(function (singleElement) {
@@ -19,16 +105,24 @@ export default function Eaves(props) {
         return e;
       }
       t.push(parseFloat(singleElement.eave));
+      t.push(inchConverter(singleElement.eaveInc));
       return t;
     });
-    setFirstStoryEaves(t.reduce((a, b) => a + b, 0));
+    //reverseInchConverter
+    setFirstStoryEaves(Math.floor(t.reduce((a, b) => a + b, 0)));
+    y = t.reduce((a, b) => a + b, 0).toFixed(2);
+    var str = y.toString();
+    str = str.substring(str.indexOf(".") + 1);
+    setFirstStoryEavesInc(reverseInchConverter(str));
   };
 
   //2nd Stories Eaves
   const [secondStoryEaves, setSecondStoryEaves] = useState([]);
+  const [secondStoryEavesInc, setSecondStoryEavesInc] = useState([]);
   const SecondStoryEaves = () => {
     var t = [];
     var e = [];
+    var y = [];
 
     items.map(function (singleElement) {
       e.push(parseFloat(singleElement.stories));
@@ -36,13 +130,19 @@ export default function Eaves(props) {
       if (index > -1) {
         e.splice(index, 1);
         e.push(parseFloat(singleElement.eave));
+
         return e;
       }
       t.push(parseFloat(singleElement.eave));
+      t.push(inchConverter(singleElement.eaveInc));
       return t;
     });
 
-    setSecondStoryEaves(t.reduce((a, b) => a + b, 0));
+    setSecondStoryEaves(t.reduce((a, b) => a + b, 0).toFixed(0));
+    y = t.reduce((a, b) => a + b, 0).toFixed(2);
+    var str = y.toString();
+    str = str.substring(str.indexOf(".") + 1);
+    setSecondStoryEavesInc(reverseInchConverter(str));
   };
 
   useEffect(() => {
@@ -50,31 +150,70 @@ export default function Eaves(props) {
     SecondStoryEaves();
   });
 
+  useEffect(() => {
+    let isadjOneStoryValid = ftFormFields(form.adjOneStory);
+    let isadjOneStoryIncValid = incFormFields(form.adjOneStoryInc);
+
+    if (!isadjOneStoryValid) {
+      setFormErr({ adjOneStory: true });
+    } else if (!isadjOneStoryIncValid) {
+      setFormErr({ adjOneStoryInc: true });
+    } else {
+      setFormErr(false);
+    }
+  }, [form.adjOneStory, form.adjOneStoryInc]);
+
   return (
     <div>
       <div className="row">
         <div className="col-12">
           <h6>Measurements</h6>
         </div>
-        <div className="col-12 col-md-6">
+        <div className="col-12">
           <CustomInput
-            type="number"
+            type="text"
             id="firstSE"
+            placeholder="1st Story Eaves"
             label="1st Story Eaves"
-            disabled={true}
-            rightSideLabel="Ln.ft"
+            rightSideLabel="Ft.In"
             value={
               form.adjOneStory
-                ? firstStoryEaves + parseFloat(form.adjOneStory)
-                : firstStoryEaves
+                ? `${
+                    firstStoryEaves + parseFloat(form.adjOneStory)
+                  }' - ${firstStoryEavesInc}"`
+                : `${firstStoryEaves}' - ${firstStoryEavesInc}"`
             }
+            disabled={true}
           />
         </div>
-        <div className="col-12 col-md-6">
-          <CustomInput
+        <div className="col-12">
+          <CustomSplitInput
             type="number"
             id="adjOneStory"
             label="1st Story Eave Adjustment"
+            error={formErr.adjOneStory}
+            errorInc={formErr.adjOneStoryInc}
+            value={form.adjOneStory}
+            onChange={(e) =>
+              setForm({
+                ...form,
+                adjOneStory: setToZero(e.target.value),
+              })
+            }
+            idInc="adjOneStoryInc"
+            valueInc={form.adjOneStoryInc}
+            onChangeInc={(e) => {
+              setForm({
+                ...form,
+                adjOneStoryInc: setToZero(e.target.value),
+              });
+            }}
+          />
+          {/*<CustomInput
+            type="number"
+            id="adjOneStory"
+            label="1st Story Eave Adjustment"
+            placeholder="1st Story Eave Adjustment"
             rightSideLabel="Ln.ft"
             value={form.adjOneStory}
             onChange={(e) =>
@@ -83,20 +222,23 @@ export default function Eaves(props) {
                 adjOneStory: e.target.value,
               })
             }
-          />
+          />*/}
         </div>
         <div className="col-12 col-md-6">
           <CustomInput
-            type="number"
+            type="text"
             id="secondSE"
+            placeholder="2nd Story Eaves"
             label="2nd Story Eaves"
-            rightSideLabel="Ln.ft"
-            disabled={true}
+            rightSideLabel="Ft.In"
             value={
-              form.adjTwoStory
-                ? secondStoryEaves + parseFloat(form.adjTwoStory)
-                : secondStoryEaves
+              form.adjOneStory
+                ? `${
+                    secondStoryEaves + parseFloat(form.adjTwoStory)
+                  }' - ${secondStoryEavesInc}"`
+                : `${secondStoryEaves}' - ${secondStoryEavesInc}"`
             }
+            disabled={true}
           />
         </div>
         <div className="col-12 col-md-6">
@@ -406,28 +548,72 @@ export default function Eaves(props) {
   );
 }
 
+const CustomSplitInput = (props) => {
+  return (
+    <div>
+      <div className="row no-gutters">
+        <div className="col-12 mt-2">
+          <span className="p2">{props.label}</span>
+        </div>
+        <div className="col-6">
+          <input
+            type={props.type}
+            className="form-control"
+            id={props.id}
+            name={props.id}
+            maxLength="4"
+            placeholder="Ft"
+            autoComplete="off"
+            style={props.error ? leftInputErrorStyle : leftInputStyle}
+            value={props.value}
+            onChange={props.onChange}
+          />
+        </div>
+        <div className="col-6">
+          <input
+            type={props.type}
+            className="form-control"
+            id={props.idInc}
+            maxLength="2"
+            max="11"
+            min="1"
+            name={props.idInc}
+            placeholder="In"
+            autoComplete="off"
+            style={props.errorInc ? rightInputErrorStyle : rightInputStyle}
+            value={props.valueInc}
+            onChange={props.onChangeInc}
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const CustomInput = (props) => {
   return (
     <div className="mt-2">
       <label
-        htmlFor={props.id}
-        style={{ marginBottom: "-1px", marginTop: "5px" }}
+        className="p2"
+        style={{
+          maxWidth: "100%",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          whiteSpace: "nowrap",
+          marginBottom: "-2px",
+        }}
       >
         {props.label}
       </label>
-      <div className="input-group mb-2">
+      <div className="input-group">
         {props.sideLabel ? (
           <div className="input-group-prepend">
             <div
               className="input-group-text"
               style={
                 props.disabled
-                  ? {
-                      backgroundColor: "#d8dbe0",
-                    }
-                  : {
-                      backgroundColor: "#fff",
-                    }
+                  ? { backgroundColor: "#d8dbe0" }
+                  : { backgroundColor: "#fff" }
               }
             >
               {props.sideLabel}
@@ -439,8 +625,7 @@ const CustomInput = (props) => {
           className="form-control"
           id={props.id}
           name={props.id}
-          placeholder="0"
-          autoComplete="off"
+          placeholder={props.placeholder}
           style={props.sideLabel ? moneyInputStyle : inputStyle}
           value={props.value}
           onChange={props.onChange}
@@ -456,7 +641,10 @@ const CustomInput = (props) => {
                       backgroundColor: "#d8dbe0",
                       borderLeft: "none",
                     }
-                  : { backgroundColor: "#fff", borderLeft: "none" }
+                  : {
+                      backgroundColor: "#fff",
+                      borderLeft: "none",
+                    }
               }
             >
               {props.rightSideLabel}
@@ -466,6 +654,16 @@ const CustomInput = (props) => {
       </div>
     </div>
   );
+};
+
+const setToZero = (val) => {
+  let newVal;
+  if (val === "" || val === undefined) {
+    newVal = "0";
+  } else {
+    newVal = val;
+  }
+  return newVal;
 };
 
 const inputStyle = {
@@ -481,4 +679,31 @@ const moneyInputStyle = {
   borderLeft: "none",
   paddingLeft: "0px",
   marginLeft: "-11px",
+};
+
+const leftInputStyle = {
+  outline: "none",
+  boxShadow: "none",
+  border: "1px solid lightgray",
+  borderRight: "0px",
+  borderRadius: "0.25rem 0px 0px 0.25rem",
+};
+const leftInputErrorStyle = {
+  outline: "none",
+  boxShadow: "none",
+  border: "1px solid #e60029",
+  borderRight: "0px",
+  borderRadius: "0.25rem 0px 0px 0.25rem",
+};
+const rightInputStyle = {
+  outline: "none",
+  boxShadow: "none",
+  border: "1px solid lightgray",
+  borderRadius: "0px 0.25rem 0.25rem 0px",
+};
+const rightInputErrorStyle = {
+  outline: "none",
+  boxShadow: "none",
+  border: "1px solid #e60029",
+  borderRadius: "0px 0.25rem 0.25rem 0px",
 };

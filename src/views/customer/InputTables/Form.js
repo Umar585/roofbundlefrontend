@@ -2,12 +2,7 @@ import React, { useState } from "react";
 import { CCard, CCardBody, CCollapse } from "@coreui/react";
 //Components
 import RoofInputTable from "./DataTables/Roof";
-import Selections from "./DataTables/Selections";
-import VentInputTable from "./DataTables/Vent";
-import PlumbingStackInputTable from "./DataTables/PlumbingStack";
 import EavesInputTable from "./DataTables/Eaves";
-import ProfessionalProcedures from "./DataTables/ProfessionalProcedures";
-import UnderlayOptions from "./DataTables/UnderlayOptions";
 import CalculationsTable from "./CalculationsTable/CalculationsTable";
 import AccessoriesTable from "./CalculationsTable/AccessoriesTable";
 //style sheet
@@ -56,12 +51,12 @@ export default function Form(props) {
         <>
           <form onSubmit={handleSubmit}>
             {/*Roof Data Table */}
-            <h5
+            <h6
               className="customersTable_sliderBtn border w-100 text-center p-1"
               onClick={() => setAccordion(accordion === 1 ? null : 1)}
             >
-              Measurements
-            </h5>
+              Roof Measurements
+            </h6>
             <CCollapse show={accordion === 1}>
               <CCard className="p-2">
                 <RoofInputTable
@@ -73,59 +68,13 @@ export default function Form(props) {
                 />
               </CCard>
             </CCollapse>
-            {/*Roof Data Table */}
-            <h5
-              className="customersTable_sliderBtn border w-100 text-center p-1"
-              onClick={() => setAccordion(accordion === 2 ? null : 2)}
-            >
-              Selections
-            </h5>
-            <CCollapse show={accordion === 2}>
-              <CCard className="p-2">
-                <Selections />
-              </CCard>
-            </CCollapse>
-            {/*Vent Data Table */}
-            <h5
-              className="customersTable_sliderBtn border w-100 text-center p-1"
-              onClick={() => setAccordion(accordion === 3 ? null : 3)}
-            >
-              Vent Table
-            </h5>
-            <CCollapse show={accordion === 3}>
-              <CCard className="p-2">
-                <VentInputTable
-                  form={form}
-                  setForm={setForm}
-                  handleEnter={handleEnter}
-                />
-              </CCard>
-            </CCollapse>
-            {/*Plumbing Stack Input Table Data Table */}
-            <h5
-              className="customersTable_sliderBtn border w-100 text-center p-1"
-              onClick={() => setAccordion(accordion === 4 ? null : 4)}
-            >
-              Plumbing-Stack Table
-            </h5>
-            <CCollapse show={accordion === 4}>
-              <CCard>
-                <CCardBody>
-                  <PlumbingStackInputTable
-                    form={form}
-                    setForm={setForm}
-                    handleEnter={handleEnter}
-                  />
-                </CCardBody>
-              </CCard>
-            </CCollapse>
             {/*Eaves Input Table Data Table */}
-            <h5
+            <h6
               className="customersTable_sliderBtn border w-100 text-center p-1"
               onClick={() => setAccordion(accordion === 5 ? null : 5)}
             >
-              Eavestrough Table
-            </h5>
+              Eavestrough Measurements
+            </h6>
             <CCollapse show={accordion === 5}>
               <CCard>
                 <CCardBody>
@@ -138,41 +87,13 @@ export default function Form(props) {
                 </CCardBody>
               </CCard>
             </CCollapse>
-            {/*Professional Procedures Table */}
-            <h5
-              className="customersTable_sliderBtn border w-100 text-center p-1"
-              onClick={() => setAccordion(accordion === 6 ? null : 6)}
-            >
-              Professional Procedures
-            </h5>
-            <CCollapse show={accordion === 6}>
-              <CCard>
-                <CCardBody>
-                  <ProfessionalProcedures form={form} setForm={setForm} />
-                </CCardBody>
-              </CCard>
-            </CCollapse>
-            {/*Underlay Options Table */}
-            <h5
-              className="customersTable_sliderBtn border w-100 text-center p-1"
-              onClick={() => setAccordion(accordion === 7 ? null : 7)}
-            >
-              Underlay Options
-            </h5>
-            <CCollapse show={accordion === 7}>
-              <CCard>
-                <CCardBody>
-                  <UnderlayOptions form={form} setForm={setForm} />
-                </CCardBody>
-              </CCard>
-            </CCollapse>
             {/*Calculations Table */}
-            <h5
+            <h6
               className="customersTable_sliderBtn border w-100 text-center p-1"
               onClick={() => setAccordion(accordion === 8 ? null : 8)}
             >
               Calculations Table
-            </h5>
+            </h6>
             <CCollapse show={accordion === 8}>
               <CCard>
                 <CCardBody>
@@ -186,12 +107,12 @@ export default function Form(props) {
             </CCollapse>
 
             {/*Accessories Table */}
-            <h5
+            <h6
               className="customersTable_sliderBtn border w-100 text-center p-1"
               onClick={() => setAccordion(accordion === 9 ? null : 9)}
             >
               Accessories Table
-            </h5>
+            </h6>
             <CCollapse show={accordion === 9}>
               <CCard>
                 <CCardBody>

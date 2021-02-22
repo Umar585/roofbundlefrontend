@@ -24,7 +24,7 @@ export default function RoofFaces(props) {
           Delete <FiIcon.FiTrash />
         </span>
       </div>
-      <div className="col-6 gb-pr">
+      <div className="col-6 gb-pr mb-2">
         <CustomInput
           type="text"
           id="itemPitch"
@@ -33,11 +33,11 @@ export default function RoofFaces(props) {
           value={item.pitch}
         />
       </div>
-      <div className="col-6 gb-pl">
+      <div className="col-6 gb-pl mb-2">
         <CustomInput
           type="text"
           id="itemStories"
-          label="Pitch"
+          label="Stories"
           value={item.stories}
         />
       </div>
@@ -150,7 +150,19 @@ export default function RoofFaces(props) {
 
 const CustomInput = (props) => {
   return (
-    <div className="text-center">
+    <div className="mt-2">
+      <span
+        className="p2"
+        style={{
+          maxWidth: "100%",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          whiteSpace: "nowrap",
+          marginBottom: "-2px",
+        }}
+      >
+        {props.label}
+      </span>
       <div className="input-group">
         {props.sideLabel ? (
           <div className="input-group-prepend">
@@ -186,18 +198,6 @@ const CustomInput = (props) => {
           </div>
         ) : null}
       </div>
-      <label
-        className="small"
-        style={{
-          maxWidth: "100%",
-          overflow: "hidden",
-          textOverflow: "ellipsis",
-          whiteSpace: "nowrap",
-          marginBottom: "-2px",
-        }}
-      >
-        {props.label}
-      </label>
     </div>
   );
 };

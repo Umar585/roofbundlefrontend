@@ -4,6 +4,7 @@ import Axios from "axios";
 import { CCard, CCardBody } from "@coreui/react";
 //Form
 import Form from "./Form";
+import Selections from "./DataTables/Selections";
 import BundlePrices from "./BundlePrices/Prices";
 //icon
 import * as AiIcon from "react-icons/ai";
@@ -35,32 +36,23 @@ export default function InputTable() {
     wall: "",
     chimney: "",
 
-    replace: 0,
-    remove: 0,
-    new: 0,
-    exhaust: 0,
-    basicRidge: "",
-    basicRidgeInc: "",
+    lengthGrndInc: "",
+    widthInc: "",
+    eaveInc: "",
+    gableGrndInc: "",
+    valleyRMInc: "",
+    hipRMInc: "",
+    ridgeInc: "",
+    wallInc: "",
+    chimneyInc: "",
 
-    reSeal: "",
-    reSealInc: "",
-    conversions: "",
-    conversionsInc: "",
-    oneMat: "",
-    oneMatInc: "",
-    twoMat: "",
-    twoMatInc: "",
-    threeMat: "",
-    threeMatInc: "",
-    fourMat: "",
-    fourMatInc: "",
-
-    adjOneStory: 0,
-    adjTwoStory: 0,
-    corners: 0,
-    oneStoryDown: 0,
-    twoStoryDown: 0,
-    extraExtensions: 0,
+    adjOneStory: "",
+    adjOneStoryInc: "",
+    adjTwoStory: "",
+    corners: "",
+    oneStoryDown: "",
+    twoStoryDown: "",
+    extraExtensions: "",
 
     oneStoryPrice: 0,
     adjOneStoryPrice: 0,
@@ -71,68 +63,7 @@ export default function InputTable() {
     twoStoryDownPrice: 0,
     extraExtensionsPrice: 0,
     difficultyPrice: 0,
-
     oneStoryEaves: 0,
-
-    strip: false,
-    useNails: false,
-    caulkVentFlashing: false,
-    cleanEaves: false,
-    cleanRemoveDebris: false,
-    installSOverRV: false,
-    installDEOverFToE: false,
-    installIWEProtection: false,
-    installIWVProtection: false,
-    installUtoRoof: false,
-    installPly: false,
-    convertPEtoAbsP: false,
-    convertPEtoAbsPMat: false,
-
-    stripValue: 0,
-    useNailsValue: 0,
-    caulkVentFlashingValue: 0,
-    cleanEavesValue: 0,
-    cleanRemoveDebrisValue: 0,
-    installSOverRVValue: 0,
-    installDEOverFToEValue: 0,
-    installIWEProtectionValue: 0,
-    installIWVProtectionValue: 0,
-    installUtoRoofValue: 0,
-    installPlyValue: 0,
-    convertPEtoAbsPValue: 0,
-
-    installDEFtoE: false,
-    installIWMembrane: false,
-    installBStoRoof: false,
-    installMetalVF: false,
-    installHPHRCapping: false,
-    reflashCFChimney: false,
-    chimneyRemoval: false,
-    roofDeckReplace: false,
-
-    installDEFtoEHome: false,
-    installIWMembraneHome: false,
-    installBStoRoofHome: false,
-    installMetalVFHome: false,
-    installHPHRCappingHome: false,
-    reflashCFChimneyHome: false,
-    chimneyRemovalHome: false,
-    roofDeckReplaceHome: false,
-
-    installDEFtoEGarage: false,
-    installIWMembraneGarage: false,
-    installBStoRoofGarage: false,
-    installMetalVFGrage: false,
-    installHPHRCappingGarage: false,
-    reflashCFChimneyGarage: false,
-    chimneyRemovalGarage: false,
-    roofDeckReplaceGarage: false,
-
-    roofDeckAmount: 0,
-    underlayWarranty: false,
-    existingShingleColor: "",
-    newShingleColor: "",
-    underlayNotes: "",
   });
 
   useEffect(() => {
@@ -181,6 +112,8 @@ export default function InputTable() {
         <CCardBody>
           <Form pricesData={pricesData} form={form} setForm={setForm} />
           <div className="mt-4">
+            <Selections />
+
             <BundlePrices
               handleSubmit={handleSubmit}
               pricesData={pricesData}

@@ -9,24 +9,74 @@ export default function Roof(props) {
   const load = props.load;
   const form = props.form;
   const setForm = props.setForm;
+  const [formErr, setFormErr] = useState({
+    lengthGrnd: false,
+    width: false,
+    eave: false,
+    gableGrnd: false,
+    valleyRM: false,
+    hipRM: false,
+    ridge: false,
+    wall: false,
+    chimney: false,
+
+    lengthGrndInc: false,
+    widthInc: false,
+    eaveInc: false,
+    gableGrndInc: false,
+    valleyRMInc: false,
+    hipRMInc: false,
+    ridgeInc: false,
+    wallInc: false,
+    chimneyInc: false,
+  });
   const [accordion, setAccordion] = useState(0);
   const topRef = useRef(null);
   const removeRoofFace = props.removeRoofFace;
   const [error, setError] = useState(false);
-  const [tempVal, setTempVal] = useState({
-    lengthGrnd: "",
-    width: "",
-    eave: "",
-    gableGrnd: "",
-    valleyRM: "",
-    hipRM: "",
-    ridge: "",
-    wall: "",
-    chimney: "",
-  });
+  const expression = /^-?[0-9]+$/;
 
-  const CheckFields = () => {
+  const ftFormFields = (field) => {
     let isValid = true;
+    if (field !== "") {
+      if (!expression.test(field) || field > 999 || field < 0) {
+        isValid = false;
+      }
+    }
+    return isValid;
+  };
+  const incFormFields = (field) => {
+    let isValid = true;
+    if (field !== "") {
+      if (!expression.test(field) || field > 11 || field < 0) {
+        isValid = false;
+      }
+    }
+    return isValid;
+  };
+
+  //add new row
+  const AddArray = (e) => {
+    e.preventDefault();
+    let islengthGrndValid = ftFormFields(form.lengthGrnd);
+    let islengthGrndIncValid = incFormFields(form.lengthGrndInc);
+    let iswidthValid = ftFormFields(form.width);
+    let iswidthIncValid = incFormFields(form.widthInc);
+    let iseaveValid = ftFormFields(form.eave);
+    let iseaveIncValid = incFormFields(form.eaveInc);
+    let isgableGrndValid = ftFormFields(form.gableGrnd);
+    let isgableGrndIncValid = incFormFields(form.gableGrndInc);
+    let isvalleyRMValid = ftFormFields(form.valleyRM);
+    let isvalleyRMIncValid = incFormFields(form.valleyRMInc);
+    let ishipRMValid = ftFormFields(form.hipRM);
+    let ishipRMIncValid = incFormFields(form.hipRMInc);
+    let isridgeValid = ftFormFields(form.ridge);
+    let isridgeIncValid = incFormFields(form.ridgeInc);
+    let iswallValid = ftFormFields(form.wall);
+    let iswallIncValid = incFormFields(form.wallInc);
+    let ischimneyValid = ftFormFields(form.chimney);
+    let ischimneyIncValid = incFormFields(form.chimneyInc);
+
     if (
       form.pitch === 0 &&
       form.stories === 0 &&
@@ -43,16 +93,54 @@ export default function Roof(props) {
       form.wall === "" &&
       form.chimney === ""
     ) {
-      isValid = false;
-    }
-    return isValid;
-  };
-  const isValid = CheckFields();
-  //add new row
-  const AddArray = (e) => {
-    e.preventDefault();
+      setError(true);
+      setTimeout(() => {
+        setError(false);
+      }, 4000);
+    } else if (form.lengthGrnd === "" || form.width === "") {
+      setError(true);
+      setTimeout(() => {
+        setError(false);
+      }, 4000);
+    } else if (!islengthGrndValid) {
+      setFormErr({ lengthGrnd: true });
+    } else if (!islengthGrndIncValid) {
+      setFormErr({ lengthGrndInc: true });
+    } else if (!iswidthValid) {
+      setFormErr({ width: true });
+    } else if (!iswidthIncValid) {
+      setFormErr({ widthInc: true });
+    } else if (!iseaveValid) {
+      setFormErr({ eave: true });
+    } else if (!iseaveIncValid) {
+      setFormErr({ eaveInc: true });
+    } else if (!isgableGrndValid) {
+      setFormErr({ gableGrnd: true });
+    } else if (!isgableGrndIncValid) {
+      setFormErr({ gableGrndInc: true });
+    } else if (!isvalleyRMValid) {
+      setFormErr({ valleyRM: true });
+    } else if (!isvalleyRMIncValid) {
+      setFormErr({ valleyRMInc: true });
+    } else if (!ishipRMValid) {
+      setFormErr({ hipRM: true });
+    } else if (!ishipRMIncValid) {
+      setFormErr({ hipRMInc: true });
+    } else if (!isridgeValid) {
+      setFormErr({ ridge: true });
+    } else if (!isridgeIncValid) {
+      setFormErr({ ridgeInc: true });
+    } else if (!iswallValid) {
+      setFormErr({ wall: true });
+    } else if (!iswallIncValid) {
+      setFormErr({ wallInc: true });
+    } else if (!ischimneyValid) {
+      setFormErr({ chimney: true });
+    } else if (!ischimneyIncValid) {
+      setFormErr({ chimneyInc: true });
+    } else {
+      setFormErr(false);
 
-    if (isValid) {
       let item = items;
       let rT = "";
       let b = "";
@@ -86,15 +174,15 @@ export default function Roof(props) {
       const wall = setToZero(form.wall);
       const chimney = setToZero(form.chimney);
 
-      const lengthGrndInc = setToZero(tempVal.lengthGrnd);
-      const widthInc = setToZero(tempVal.width);
-      const eaveInc = setToZero(tempVal.eave);
-      const gableGrndInc = setToZero(tempVal.gableGrnd);
-      const valleyRMInc = setToZero(tempVal.valleyRM);
-      const hipRMInc = setToZero(tempVal.hipRM);
-      const ridgeInc = setToZero(tempVal.ridge);
-      const wallInc = setToZero(tempVal.wall);
-      const chimneyInc = setToZero(tempVal.chimney);
+      const lengthGrndInc = setToZero(form.lengthGrndInc);
+      const widthInc = setToZero(form.widthInc);
+      const eaveInc = setToZero(form.eaveInc);
+      const gableGrndInc = setToZero(form.gableGrndInc);
+      const valleyRMInc = setToZero(form.valleyRMInc);
+      const hipRMInc = setToZero(form.hipRMInc);
+      const ridgeInc = setToZero(form.ridgeInc);
+      const wallInc = setToZero(form.wallInc);
+      const chimneyInc = setToZero(form.chimneyInc);
 
       item.push({
         pitch: form.pitch,
@@ -138,25 +226,18 @@ export default function Roof(props) {
         ridge: "",
         wall: "",
         chimney: "",
-      });
-      setTempVal({
-        lengthGrnd: "",
-        width: "",
-        eave: "",
-        gableGrnd: "",
-        valleyRM: "",
-        hipRM: "",
-        ridge: "",
-        wall: "",
-        chimney: "",
+        lengthGrndInc: "",
+        widthInc: "",
+        eaveInc: "",
+        gableGrndInc: "",
+        valleyRMInc: "",
+        hipRMInc: "",
+        ridgeInc: "",
+        wallInc: "",
+        chimneyInc: "",
       });
 
       topRef.current.focus();
-    } else {
-      setError(true);
-      setTimeout(() => {
-        setError(false);
-      }, 4000);
     }
   };
 
@@ -171,14 +252,14 @@ export default function Roof(props) {
           {items.map((item, index) => {
             return (
               <div key={index}>
-                <h5
+                <h6
                   className="customersTable_sliderBtn border w-100 text-center p-1"
-                  onClick={() =>
-                    setAccordion(accordion === index ? null : index)
-                  }
+                  onClick={() => {
+                    setAccordion(accordion === index ? null : index);
+                  }}
                 >
                   Roof Face {index + 1}
-                </h5>
+                </h6>
                 <CCollapse show={accordion === index}>
                   <RoofFaces
                     item={item}
@@ -194,6 +275,7 @@ export default function Roof(props) {
           })}{" "}
         </>
       )}
+      {items.length != 0 ? <div className="mt-4"></div> : null}
 
       <div className="row no-gutters">
         <div className="col-12 mt-2">
@@ -301,21 +383,17 @@ export default function Roof(props) {
           <CustomInput
             type="number"
             id="lengthGrnd"
-            label="Length (Ground)"
-            rightSideLabel="Ft-In"
+            label="Length"
+            error={formErr.lengthGrnd}
+            errorInc={formErr.lengthGrndInc}
             value={form.lengthGrnd}
-            onChange={(e) =>
+            onChange={(e) => setForm({ ...form, lengthGrnd: e.target.value })}
+            idInc="lengthGrndInc"
+            valueInc={form.lengthGrndInc}
+            onChangeInc={(e) => {
               setForm({
                 ...form,
-                lengthGrnd: e.target.value,
-              })
-            }
-            idInc="lengthGrndInc"
-            valueInc={tempVal.lengthGrnd}
-            onChangeInc={(e) => {
-              setTempVal({
-                ...tempVal,
-                lengthGrnd: e.target.value,
+                lengthGrndInc: e.target.value,
               });
             }}
           />
@@ -325,7 +403,7 @@ export default function Roof(props) {
             type="number"
             id="width"
             label="Width"
-            rightSideLabel="Ft.In"
+            error={formErr.width}
             value={form.width}
             onChange={(e) =>
               setForm({
@@ -334,11 +412,12 @@ export default function Roof(props) {
               })
             }
             idInc="widthInc"
-            valueInc={tempVal.width}
+            errorInc={formErr.widthInc}
+            valueInc={form.widthInc}
             onChangeInc={(e) => {
-              setTempVal({
-                ...tempVal,
-                width: e.target.value,
+              setForm({
+                ...form,
+                widthInc: e.target.value,
               });
             }}
           />
@@ -348,15 +427,16 @@ export default function Roof(props) {
             type="number"
             id="eave"
             label="Eaves"
-            rightSideLabel="Ft.In"
+            error={formErr.eave}
+            errorInc={formErr.eaveInc}
             value={form.eave}
             onChange={(e) => setForm({ ...form, eave: e.target.value })}
             idInc="eaveInc"
-            valueInc={tempVal.eave}
+            valueInc={form.eaveInc}
             onChangeInc={(e) => {
-              setTempVal({
-                ...tempVal,
-                eave: e.target.value,
+              setForm({
+                ...form,
+                eaveInc: e.target.value,
               });
             }}
           />
@@ -365,8 +445,9 @@ export default function Roof(props) {
           <CustomInput
             type="number"
             id="gableGrnd"
-            label="Gable (Ground)"
-            rightSideLabel="Ft.In"
+            label="Gable"
+            error={formErr.gableGrnd}
+            errorInc={formErr.gableGrndInc}
             value={form.gableGrnd}
             onChange={(e) =>
               setForm({
@@ -375,11 +456,11 @@ export default function Roof(props) {
               })
             }
             idInc="gableGrndInc"
-            valueInc={tempVal.gableGrnd}
+            valueInc={form.gableGrndInc}
             onChangeInc={(e) => {
-              setTempVal({
-                ...tempVal,
-                gableGrnd: e.target.value,
+              setForm({
+                ...form,
+                gableGrndInc: e.target.value,
               });
             }}
           />
@@ -388,8 +469,9 @@ export default function Roof(props) {
           <CustomInput
             type="number"
             id="valleyRM"
-            label="Valley (Roof Measure)"
-            rightSideLabel="Ft.In"
+            label="Valley"
+            error={formErr.valleyRM}
+            errorInc={formErr.valleyRMInc}
             value={form.valleyRM}
             onChange={(e) =>
               setForm({
@@ -398,11 +480,11 @@ export default function Roof(props) {
               })
             }
             idInc="valleyRMInc"
-            valueInc={tempVal.valleyRM}
+            valueInc={form.valleyRMInc}
             onChangeInc={(e) => {
-              setTempVal({
-                ...tempVal,
-                valleyRM: e.target.value,
+              setForm({
+                ...form,
+                valleyRMInc: e.target.value,
               });
             }}
           />
@@ -411,8 +493,9 @@ export default function Roof(props) {
           <CustomInput
             type="number"
             id="hipRM"
-            label="Hip (Roof Measure)"
-            rightSideLabel="Ft.In"
+            label="Hip"
+            error={formErr.hipRM}
+            errorInc={formErr.hipRMInc}
             value={form.hipRM}
             onChange={(e) =>
               setForm({
@@ -421,11 +504,11 @@ export default function Roof(props) {
               })
             }
             idInc="hipRMInc"
-            valueInc={tempVal.hipRM}
+            valueInc={form.hipRMInc}
             onChangeInc={(e) => {
-              setTempVal({
-                ...tempVal,
-                hipRM: e.target.value,
+              setForm({
+                ...form,
+                hipRMInc: e.target.value,
               });
             }}
           />
@@ -435,7 +518,8 @@ export default function Roof(props) {
             type="number"
             id="ridge"
             label="Ridge"
-            rightSideLabel="Ft.In"
+            error={formErr.ridge}
+            errorInc={formErr.ridgeInc}
             value={form.ridge}
             onChange={(e) =>
               setForm({
@@ -444,11 +528,11 @@ export default function Roof(props) {
               })
             }
             idInc="ridgeInc"
-            valueInc={tempVal.ridge}
+            valueInc={form.ridgeInc}
             onChangeInc={(e) => {
-              setTempVal({
-                ...tempVal,
-                ridge: e.target.value,
+              setForm({
+                ...form,
+                ridgeInc: e.target.value,
               });
             }}
           />
@@ -457,16 +541,17 @@ export default function Roof(props) {
           <CustomInput
             type="number"
             id="wall"
-            label="Wall"
-            rightSideLabel="Ft.In"
+            label="Roof"
+            error={formErr.wall}
+            errorInc={formErr.wallInc}
             value={form.wall}
             onChange={(e) => setForm({ ...form, wall: e.target.value })}
             idInc="wallInc"
-            valueInc={tempVal.wall}
+            valueInc={form.wallInc}
             onChangeInc={(e) => {
-              setTempVal({
-                ...tempVal,
-                wall: e.target.value,
+              setForm({
+                ...form,
+                wallInc: e.target.value,
               });
             }}
           />
@@ -476,7 +561,8 @@ export default function Roof(props) {
             type="number"
             id="chimney"
             label="Chimney"
-            rightSideLabel="Ft.In"
+            error={formErr.chimney}
+            errorInc={formErr.chimneyInc}
             value={form.chimney}
             onChange={(e) =>
               setForm({
@@ -485,11 +571,11 @@ export default function Roof(props) {
               })
             }
             idInc="chimneyInc"
-            valueInc={tempVal.chimney}
+            valueInc={form.chimneyInc}
             onChangeInc={(e) => {
-              setTempVal({
-                ...tempVal,
-                chimney: e.target.value,
+              setForm({
+                ...form,
+                chimneyInc: e.target.value,
               });
             }}
           />
@@ -519,39 +605,13 @@ const setToZero = (val) => {
   return newVal;
 };
 
-/*
-const inchConverter = (val) => {
-  let newVal = 0;
-  if (val === "1") {
-    newVal = 0.0833;
-  } else if (val === "2") {
-    newVal = 0.1666;
-  } else if (val === "3") {
-    newVal = 0.25;
-  } else if (val === "4") {
-    newVal = 0.3333;
-  } else if (val === "5") {
-    newVal = 0.4166;
-  } else if (val === "6") {
-    newVal = 0.5;
-  } else if (val === "7") {
-    newVal = 0.5833;
-  } else if (val === "8") {
-    newVal = 0.66;
-  } else if (val === "9") {
-    newVal = 0.75;
-  } else if (val === "10") {
-    newVal = 0.8333;
-  } else if (val === "12") {
-    newVal = 0.9166;
-  }
-  return newVal;
-};
-*/
 const CustomInput = (props) => {
   return (
     <div>
       <div className="row no-gutters">
+        <div className="col-12 mt-2">
+          <span className="p2">{props.label}</span>
+        </div>
         <div className="col-6">
           <input
             type={props.type}
@@ -561,7 +621,7 @@ const CustomInput = (props) => {
             maxLength="4"
             placeholder="Ft"
             autoComplete="off"
-            style={leftInputStyle}
+            style={props.error ? leftInputErrorStyle : leftInputStyle}
             value={props.value}
             onChange={props.onChange}
           />
@@ -574,17 +634,13 @@ const CustomInput = (props) => {
             maxLength="2"
             max="11"
             min="1"
-            step="1"
             name={props.idInc}
             placeholder="In"
             autoComplete="off"
-            style={rightInputStyle}
+            style={props.errorInc ? rightInputErrorStyle : rightInputStyle}
             value={props.valueInc}
             onChange={props.onChangeInc}
           />
-        </div>
-        <div className="col-12 text-center">
-          <span className="small">{props.label}</span>
         </div>
       </div>
     </div>
@@ -623,12 +679,26 @@ const leftInputStyle = {
   borderRight: "0px",
   borderRadius: "0.25rem 0px 0px 0.25rem",
 };
+const leftInputErrorStyle = {
+  outline: "none",
+  boxShadow: "none",
+  border: "1px solid #e60029",
+  borderRight: "0px",
+  borderRadius: "0.25rem 0px 0px 0.25rem",
+};
 const rightInputStyle = {
   outline: "none",
   boxShadow: "none",
   border: "1px solid lightgray",
   borderRadius: "0px 0.25rem 0.25rem 0px",
 };
+const rightInputErrorStyle = {
+  outline: "none",
+  boxShadow: "none",
+  border: "1px solid #e60029",
+  borderRadius: "0px 0.25rem 0.25rem 0px",
+};
+
 const inputStyle = {
   outline: "none",
   boxShadow: "none",
