@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { CCard, CCardBody, CCollapse } from "@coreui/react";
+import { CCard, CCollapse } from "@coreui/react";
 
 export default function Selections() {
   const [collapse, setCollapse] = useState(false);

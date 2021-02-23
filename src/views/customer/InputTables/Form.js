@@ -87,7 +87,7 @@ export default function Form(props) {
                 </CCardBody>
               </CCard>
             </CCollapse>
-            {/*Calculations Table */}
+            {/*Calculations Table 
             <h6
               className="customersTable_sliderBtn border w-100 text-center p-1"
               onClick={() => setAccordion(accordion === 8 ? null : 8)}
@@ -106,7 +106,7 @@ export default function Form(props) {
               </CCard>
             </CCollapse>
 
-            {/*Accessories Table */}
+            {/*Accessories Table 
             <h6
               className="customersTable_sliderBtn border w-100 text-center p-1"
               onClick={() => setAccordion(accordion === 9 ? null : 9)}
@@ -123,11 +123,12 @@ export default function Form(props) {
                   />
                 </CCardBody>
               </CCard>
-            </CCollapse>
+            </CCollapse>*/}
             <div className="mt-1">
               <input
                 type="submit"
-                className="btn btn-success w-100 rounded-0"
+                style={btnStyle}
+                className="btn w-100 rounded-0"
                 value="Save"
               />
             </div>
@@ -138,3 +139,11 @@ export default function Form(props) {
     </div>
   );
 }
+
+const btnStyle = {
+  outline: "none",
+  boxShadow: "none",
+  border: "none",
+  backgroundColor: "#e60029",
+  color: "#fff",
+};

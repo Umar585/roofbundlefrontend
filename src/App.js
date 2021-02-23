@@ -24,24 +24,7 @@ import CustomerFile from "./views/customer/CustomerFile/CustomerFile";
 import CustomerDocument from "./views/customer/Documents/Documents";
 import UpdateCustomer from "./views/customer/UpdateCustomer/UpdatedCustomer";
 import InputTables from "./views/customer/InputTables/InputTable";
-/* const Customer = React.lazy(
-  () => import("./views/customer/customer")
-);
-const NewCustomer = React.lazy(() =>
-  import("./views/customer/NewCustomer/NewCustomer")
-);
-const CustomerFile = React.lazy(() =>
-  import("./views/customer/CustomerFile/CustomerFile")
-);
-const CustomerDocument = React.lazy(() =>
-  import("./views/customer/Documents/Documents")
-);
-const UpdateCustomer = React.lazy(() =>
-  import("./views/customer/UpdateCustomer/UpdatedCustomer")
-);
-const InputTables = React.lazy(() =>
-  import("./views/customer/InputTables/InputTable")
-);*/
+import Tools from "./views/Tools/Tools";
 
 const loading = (
   <div className="pt-3 text-center">
@@ -79,6 +62,7 @@ function App() {
             path="/album/photos/photo/:id"
             component={Photo}
           />
+          <PrivateRouting exact path="/tools" component={Tools} />
           <PrivateRouting exact path="/diagram/:id" component={Diagram} />
           <PrivateRouting exact path="/diagram/sketch/:id" component={Sketch} />
           <Route path="/signin" exact component={SignIn} />

@@ -10,11 +10,10 @@ export default function Eaves(props) {
     adjOneStory: false,
     adjOneStoryInc: false,
   });
-
   const ftFormFields = (field) => {
     let isValid = true;
-    if (field !== "") {
-      if (!expression.test(field) || field > 999 || field < 0) {
+    if (field != "" && field !== undefined) {
+      if (!expression.test(field) || field > 999 || field < -10) {
         isValid = false;
       }
     }
@@ -22,75 +21,94 @@ export default function Eaves(props) {
   };
   const incFormFields = (field) => {
     let isValid = true;
-    if (field !== "") {
-      if (!expression.test(field) || field > 11 || field < 0) {
+    if (field !== "" && field !== undefined) {
+      if (!expression.test(field) || field > 11 || field < -11) {
         isValid = false;
       }
     }
     return isValid;
   };
-
   const inchConverter = (val) => {
     let newVal = 0;
     if (val === "1") {
-      newVal = 0.08;
+      newVal = 0.0833;
     } else if (val === "2") {
-      newVal = 0.16;
+      newVal = 0.1666;
     } else if (val === "3") {
       newVal = 0.25;
     } else if (val === "4") {
-      newVal = 0.33;
+      newVal = 0.3333;
     } else if (val === "5") {
-      newVal = 0.41;
+      newVal = 0.4166;
     } else if (val === "6") {
       newVal = 0.5;
     } else if (val === "7") {
-      newVal = 0.58;
+      newVal = 0.5833;
     } else if (val === "8") {
-      newVal = 0.66;
+      newVal = 0.6666;
     } else if (val === "9") {
       newVal = 0.75;
     } else if (val === "10") {
-      newVal = 0.83;
+      newVal = 0.8333;
     } else if (val === "11") {
-      newVal = 0.91;
+      newVal = 0.9166;
+    } else if (val === "-1") {
+      newVal = -0.0833;
+    } else if (val === "-2") {
+      newVal = -0.1666;
+    } else if (val === "-3") {
+      newVal = -0.25;
+    } else if (val === "-4") {
+      newVal = -0.3333;
+    } else if (val === "-5") {
+      newVal = -0.4166;
+    } else if (val === "-6") {
+      newVal = -0.5;
+    } else if (val === "-7") {
+      newVal = -0.5833;
+    } else if (val === "-8") {
+      newVal = -0.6666;
+    } else if (val === "-9") {
+      newVal = -0.75;
+    } else if (val === "-10") {
+      newVal = -0.8333;
+    } else if (val === "-11") {
+      newVal = -0.9166;
     }
     return newVal;
   };
-
   const reverseInchConverter = (val) => {
-    let newVal = "";
-    if (val === "08") {
-      newVal = "1";
-    } else if (val === "16") {
-      newVal = "2";
-    } else if (val === "25") {
-      newVal = "3";
-    } else if (val === "33") {
-      newVal = "4";
-    } else if (val === "41") {
-      newVal = "5";
-    } else if (val === "50") {
-      newVal = "6";
-    } else if (val === "58") {
-      newVal = "7";
-    } else if (val === "66") {
-      newVal = "8";
-    } else if (val === "75") {
-      newVal = "9";
-    } else if (val === "83") {
-      newVal = "10";
-    } else if (val === "91") {
-      newVal = "11";
+    let newVal = 0;
+    if (val <= "0834" && val > "0800") {
+      newVal = 1;
+    } else if (val <= "1667" && val > "0834") {
+      newVal = 2;
+    } else if (val <= "2500" && val > "1667") {
+      newVal = 3;
+    } else if (val <= "3334" && val > "2500") {
+      newVal = 4;
+    } else if (val <= "4167" && val > "3334") {
+      newVal = 5;
+    } else if (val <= "5000" && val > "4167") {
+      newVal = 6;
+    } else if (val <= "5834" && val > "5000") {
+      newVal = 7;
+    } else if (val <= "6667" && val > "5834") {
+      newVal = 8;
+    } else if (val <= "7500" && val > "6667") {
+      newVal = 9;
+    } else if (val <= "8334" && val > "7500") {
+      newVal = 10;
+    } else if (val <= "9166" && val > "8334") {
+      newVal = 11;
     } else {
-      newVal = "0";
+      newVal = 0;
     }
     return newVal;
   };
-
+  //1st Sotries Eaves
   const [firstStoryEaves, setFirstStoryEaves] = useState([]);
   const [firstStoryEavesInc, setFirstStoryEavesInc] = useState("");
-
   const FirstStoryEaves = () => {
     var t = [];
     var y = [];
@@ -109,20 +127,25 @@ export default function Eaves(props) {
       return t;
     });
     //reverseInchConverter
+    if (form.adjOneStoryInc !== "") {
+      t.push(inchConverter(form.adjOneStoryInc));
+    }
     setFirstStoryEaves(Math.floor(t.reduce((a, b) => a + b, 0)));
-    y = t.reduce((a, b) => a + b, 0).toFixed(2);
+    y = t.reduce((a, b) => a + b, 0).toFixed(4);
     var str = y.toString();
     str = str.substring(str.indexOf(".") + 1);
     setFirstStoryEavesInc(reverseInchConverter(str));
+    if (str === "9999") {
+      setFirstStoryEaves(firstStoryEaves + 1);
+    }
   };
-
   //2nd Stories Eaves
   const [secondStoryEaves, setSecondStoryEaves] = useState([]);
   const [secondStoryEavesInc, setSecondStoryEavesInc] = useState([]);
   const SecondStoryEaves = () => {
     var t = [];
-    var e = [];
     var y = [];
+    var e = [];
 
     items.map(function (singleElement) {
       e.push(parseFloat(singleElement.stories));
@@ -130,38 +153,55 @@ export default function Eaves(props) {
       if (index > -1) {
         e.splice(index, 1);
         e.push(parseFloat(singleElement.eave));
-
         return e;
       }
       t.push(parseFloat(singleElement.eave));
       t.push(inchConverter(singleElement.eaveInc));
       return t;
     });
+    //reverseInchConverter
+    if (form.adjTwoStoryInc !== "") {
+      t.push(inchConverter(form.adjTwoStoryInc));
+    }
+    setSecondStoryEaves(Math.floor(t.reduce((a, b) => a + b, 0)));
 
-    setSecondStoryEaves(t.reduce((a, b) => a + b, 0).toFixed(0));
-    y = t.reduce((a, b) => a + b, 0).toFixed(2);
+    y = t.reduce((a, b) => a + b, 0).toFixed(4);
     var str = y.toString();
     str = str.substring(str.indexOf(".") + 1);
     setSecondStoryEavesInc(reverseInchConverter(str));
+    if (str === "9999") {
+      setSecondStoryEaves(secondStoryEaves + 1);
+    }
   };
 
   useEffect(() => {
     FirstStoryEaves();
     SecondStoryEaves();
-  });
+  }, [form]);
 
   useEffect(() => {
-    let isadjOneStoryValid = ftFormFields(form.adjOneStory);
-    let isadjOneStoryIncValid = incFormFields(form.adjOneStoryInc);
+    ftFormFields(form.adjOneStory)
+      ? setFormErr({ adjOneStory: false })
+      : setFormErr({ adjOneStory: true });
+  }, [form.adjOneStory]);
 
-    if (!isadjOneStoryValid) {
-      setFormErr({ adjOneStory: true });
-    } else if (!isadjOneStoryIncValid) {
-      setFormErr({ adjOneStoryInc: true });
-    } else {
-      setFormErr(false);
-    }
-  }, [form.adjOneStory, form.adjOneStoryInc]);
+  useEffect(() => {
+    incFormFields(form.adjOneStoryInc)
+      ? setFormErr({ adjOneStoryInc: false })
+      : setFormErr({ adjOneStoryInc: true });
+  }, [form.adjOneStoryInc]);
+
+  useEffect(() => {
+    ftFormFields(form.adjTwoStory)
+      ? setFormErr({ adjTwoStory: false })
+      : setFormErr({ adjTwoStory: true });
+  }, [form.adjTwoStory]);
+
+  useEffect(() => {
+    ftFormFields(form.adjTwoStoryInc)
+      ? setFormErr({ adjTwoStoryInc: false })
+      : setFormErr({ adjTwoStoryInc: true });
+  }, [form.adjTwoStoryInc]);
 
   return (
     <div>
@@ -190,7 +230,7 @@ export default function Eaves(props) {
           <CustomSplitInput
             type="number"
             id="adjOneStory"
-            label="1st Story Eave Adjustment"
+            label="1st Story Eavethrough Adjustment"
             error={formErr.adjOneStory}
             errorInc={formErr.adjOneStoryInc}
             value={form.adjOneStory}
@@ -209,22 +249,8 @@ export default function Eaves(props) {
               });
             }}
           />
-          {/*<CustomInput
-            type="number"
-            id="adjOneStory"
-            label="1st Story Eave Adjustment"
-            placeholder="1st Story Eave Adjustment"
-            rightSideLabel="Ln.ft"
-            value={form.adjOneStory}
-            onChange={(e) =>
-              setForm({
-                ...form,
-                adjOneStory: e.target.value,
-              })
-            }
-          />*/}
         </div>
-        <div className="col-12 col-md-6">
+        <div className="col-12">
           <CustomInput
             type="text"
             id="secondSE"
@@ -232,7 +258,7 @@ export default function Eaves(props) {
             label="2nd Story Eaves"
             rightSideLabel="Ft.In"
             value={
-              form.adjOneStory
+              form.adjTwoStory
                 ? `${
                     secondStoryEaves + parseFloat(form.adjTwoStory)
                   }' - ${secondStoryEavesInc}"`
@@ -241,22 +267,31 @@ export default function Eaves(props) {
             disabled={true}
           />
         </div>
-        <div className="col-12 col-md-6">
-          <CustomInput
+        <div className="col-12">
+          <CustomSplitInput
             type="number"
             id="adjTwoStory"
-            label="2nd Story Eave Adjustment"
-            rightSideLabel="Ln.ft"
+            label="2nd Story Eavethrough Adjustment"
+            error={formErr.adjTwoStory}
+            errorInc={formErr.adjTwoStoryInc}
             value={form.adjTwoStory}
             onChange={(e) =>
               setForm({
                 ...form,
-                adjTwoStory: e.target.value,
+                adjTwoStory: setToZero(e.target.value),
               })
             }
+            idInc="adjTwoStoryInc"
+            valueInc={form.adjTwoStoryInc}
+            onChangeInc={(e) => {
+              setForm({
+                ...form,
+                adjTwoStoryInc: setToZero(e.target.value),
+              });
+            }}
           />
         </div>
-        <div className="col-12 col-md-6">
+        <div className="col-12">
           <CustomInput
             type="number"
             id="corners"
@@ -271,7 +306,7 @@ export default function Eaves(props) {
             }
           />
         </div>
-        <div className="col-12 col-md-6">
+        <div className="col-12">
           <CustomInput
             type="number"
             id="oneStoryDown"
@@ -286,7 +321,7 @@ export default function Eaves(props) {
             }
           />
         </div>
-        <div className="col-12 col-md-6">
+        <div className="col-12">
           <CustomInput
             type="number"
             id="twoStoryDown"
@@ -301,7 +336,7 @@ export default function Eaves(props) {
             }
           />
         </div>
-        <div className="col-12 col-md-6">
+        <div className="col-12">
           <CustomInput
             type="number"
             id="extraExtensions"
@@ -316,31 +351,29 @@ export default function Eaves(props) {
             }
           />
         </div>
-        <div className="col-12 col-md-6">
+        <div className="col-12">
           <CustomInput
             type="number"
             id="elbow"
             label="Elbows"
             rightSideLabel="Elbows"
-            disabled={true}
-            value={
-              form.twoStoryDown
-                ? (parseFloat(form.twoStoryDown) +
-                    parseFloat(form.oneStoryDown)) *
-                  3
-                : parseFloat(form.oneStoryDown) * 3
+            value={form.elbows}
+            onChange={(e) =>
+              setForm({
+                ...form,
+                elbows: e.target.value,
+              })
             }
           />
         </div>
-
         <div className="col-12 mt-3">
           <h6>Prices</h6>
         </div>
-        <div className="col-12 col-md-6 ">
+        <div className="col-12">
           <CustomInput
             type="number"
             id="oneStoryPrice"
-            label="1st Story Eaves"
+            label="1st Story Eavestroughs"
             sideLabel="$"
             rightSideLabel="Ln.ft"
             value={form.oneStoryPrice}
@@ -352,11 +385,11 @@ export default function Eaves(props) {
             }
           />
         </div>
-        <div className="col-12 col-md-6 ">
+        <div className="col-12">
           <CustomInput
             type="number"
             id="twoStoryPrice"
-            label="2nd Story Eaves"
+            label="2nd Story Eavestroughs"
             sideLabel="$"
             rightSideLabel="Ln.ft"
             value={form.twoStoryPrice}
@@ -368,7 +401,7 @@ export default function Eaves(props) {
             }
           />
         </div>
-        <div className="col-12 col-md-6 ">
+        <div className="col-12">
           <CustomInput
             type="number"
             id="cornersPrice"
@@ -384,7 +417,7 @@ export default function Eaves(props) {
             }
           />
         </div>
-        <div className="col-12 col-md-6 ">
+        <div className="col-12">
           <CustomInput
             type="number"
             id="oneStoryDownPrice"
@@ -400,7 +433,7 @@ export default function Eaves(props) {
             }
           />
         </div>
-        <div className="col-12 col-md-6 ">
+        <div className="col-12">
           <CustomInput
             type="number"
             id="twoStoryDownPrice"
@@ -416,7 +449,7 @@ export default function Eaves(props) {
             }
           />
         </div>
-        <div className="col-12 col-md-6 ">
+        <div className="col-12">
           <CustomInput
             type="number"
             id="extraExtensionsPrice"
@@ -432,7 +465,7 @@ export default function Eaves(props) {
             }
           />
         </div>
-        <div className="col-12 col-md-6 ">
+        <div className="col-12">
           <CustomInput
             type="number"
             id="difficultyPrice"
@@ -451,7 +484,7 @@ export default function Eaves(props) {
         <div className="col-12 mt-3">
           <h6>Total</h6>
         </div>
-        <div className="col-12 col-md-6 ">
+        <div className="col-12">
           <CustomInput
             type="number"
             id="totalOSP"
@@ -461,15 +494,16 @@ export default function Eaves(props) {
             disabled={true}
             value={
               form.oneStoryPrice
-                ? form.adjOneStory
-                  ? (firstStoryEaves + parseFloat(form.adjOneStory)) *
+                ? (
+                    (firstStoryEaves +
+                      inchConverter(firstStoryEavesInc.toString())) *
                     form.oneStoryPrice
-                  : firstStoryEaves * form.oneStoryPrice
+                  ).toFixed(2)
                 : "0.00"
             }
           />
         </div>
-        <div className="col-12 col-md-6 ">
+        <div className="col-12">
           <CustomInput
             type="number"
             id="totalTSP"
@@ -479,15 +513,16 @@ export default function Eaves(props) {
             disabled={true}
             value={
               form.twoStoryPrice
-                ? form.adjTwoStory
-                  ? (secondStoryEaves + parseFloat(form.adjTwoStory)) *
+                ? (
+                    (secondStoryEaves +
+                      inchConverter(secondStoryEavesInc.toString())) *
                     form.twoStoryPrice
-                  : secondStoryEaves * form.twoStoryPrice
+                  ).toFixed(2)
                 : "0.00"
             }
           />
         </div>
-        <div className="col-12 col-md-6 ">
+        <div className="col-12">
           <CustomInput
             type="number"
             id="totalCorner"
@@ -500,7 +535,7 @@ export default function Eaves(props) {
             }
           />
         </div>
-        <div className="col-12 col-md-6 ">
+        <div className="col-12">
           <CustomInput
             type="number"
             id="totalOSPD"
@@ -515,7 +550,7 @@ export default function Eaves(props) {
             }
           />
         </div>
-        <div className="col-12 col-md-6 ">
+        <div className="col-12">
           <CustomInput
             type="number"
             id="totalTSPD"
@@ -529,7 +564,7 @@ export default function Eaves(props) {
             }
           />
         </div>
-        <div className="col-12 col-md-6 ">
+        <div className="col-12">
           <CustomInput
             type="number"
             id="totalEXE"
@@ -561,7 +596,9 @@ const CustomSplitInput = (props) => {
             className="form-control"
             id={props.id}
             name={props.id}
-            maxLength="4"
+            maxLength={3}
+            min={1}
+            max={999}
             placeholder="Ft"
             autoComplete="off"
             style={props.error ? leftInputErrorStyle : leftInputStyle}
@@ -574,9 +611,9 @@ const CustomSplitInput = (props) => {
             type={props.type}
             className="form-control"
             id={props.idInc}
-            maxLength="2"
-            max="11"
-            min="1"
+            maxLength={2}
+            max={11}
+            min={1}
             name={props.idInc}
             placeholder="In"
             autoComplete="off"
@@ -659,7 +696,7 @@ const CustomInput = (props) => {
 const setToZero = (val) => {
   let newVal;
   if (val === "" || val === undefined) {
-    newVal = "0";
+    newVal = "";
   } else {
     newVal = val;
   }

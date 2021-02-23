@@ -21,9 +21,8 @@ const _nav = [
   {
     _tag: "CSidebarNavItem",
     name: "Tools",
+    to: "/tools",
     icon: <ImIcon.ImWrench className="c-sidebar-nav-icon" />,
-    addLinkClass: "c-disabled",
-    disabled: true,
   },
 ];
 
