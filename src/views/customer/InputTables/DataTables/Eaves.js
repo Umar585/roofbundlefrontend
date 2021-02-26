@@ -1,14 +1,21 @@
 import React, { useState, useEffect } from "react";
+import { CButton } from "@coreui/react";
 
 export default function Eaves(props) {
-  const form = props.form;
-  const setForm = props.setForm;
+  //const form = props.form;
+  //const setForm = props.setForm;
+  const [form, setForm] = useState([]);
   const items = props.items;
+  const eaveItems = props.eaveItems;
+  const removeEave = props.removeEave;
+  const [msg, setMsg] = useState(false);
+  const removeMsg = props.removeMsg;
   const expression = /^-?[0-9]+$/;
 
   const [formErr, setFormErr] = useState({
     adjOneStory: false,
     adjOneStoryInc: false,
+    allForm: false,
   });
   const ftFormFields = (field) => {
     let isValid = true;
@@ -106,6 +113,11 @@ export default function Eaves(props) {
     }
     return newVal;
   };
+  const uslessFunc = (val) => {
+    let t = 0;
+    t = parseInt(val);
+    return t;
+  };
   //1st Sotries Eaves
   const [firstStoryEaves, setFirstStoryEaves] = useState([]);
   const [firstStoryEavesInc, setFirstStoryEavesInc] = useState("");
@@ -130,7 +142,9 @@ export default function Eaves(props) {
     if (form.adjOneStoryInc !== "") {
       t.push(inchConverter(form.adjOneStoryInc));
     }
+
     setFirstStoryEaves(Math.floor(t.reduce((a, b) => a + b, 0)));
+
     y = t.reduce((a, b) => a + b, 0).toFixed(4);
     var str = y.toString();
     str = str.substring(str.indexOf(".") + 1);
@@ -163,6 +177,7 @@ export default function Eaves(props) {
     if (form.adjTwoStoryInc !== "") {
       t.push(inchConverter(form.adjTwoStoryInc));
     }
+
     setSecondStoryEaves(Math.floor(t.reduce((a, b) => a + b, 0)));
 
     y = t.reduce((a, b) => a + b, 0).toFixed(4);
@@ -177,7 +192,7 @@ export default function Eaves(props) {
   useEffect(() => {
     FirstStoryEaves();
     SecondStoryEaves();
-  }, [form]);
+  });
 
   useEffect(() => {
     ftFormFields(form.adjOneStory)
@@ -203,6 +218,79 @@ export default function Eaves(props) {
       : setFormErr({ adjTwoStoryInc: true });
   }, [form.adjTwoStoryInc]);
 
+  //add new row
+  const AddArray = (e) => {
+    e.preventDefault();
+
+    if (
+      form.oneStoryPrice === undefined ||
+      (form.oneStoryPrice === "" && form.oneStoryPrice === undefined) ||
+      (form.oneStoryPrice === "" && form.twoStoryPrice === undefined) ||
+      (form.twoStoryPrice === "" && form.cornersPrice === undefined) ||
+      (form.cornersPrice === "" && form.oneStoryDownPrice === undefined) ||
+      (form.oneStoryDownPrice === "" && form.twoStoryDownPrice === undefined) ||
+      (form.twoStoryDownPrice === "" &&
+        form.extraExtensionsPrice === undefined) ||
+      (form.extraExtensionsPrice === "" &&
+        form.difficultyPrice === undefined) ||
+      form.difficultyPrice === ""
+    ) {
+      setFormErr({ allForm: true });
+      setTimeout(() => {
+        setFormErr({ allForm: false });
+      }, 4000);
+    } else {
+      const adjOneStory = setToZero(form.adjOneStory);
+      const adjOneStoryInc = setToZero(form.adjOneStoryInc);
+      const adjTwoStory = setToZero(form.adjTwoStory);
+      const adjTwoStoryInc = setToZero(form.adjTwoStoryInc);
+      const corners = setToZero(form.corners);
+      const oneStoryDown = setToZero(form.oneStoryDown);
+      const twoStoryDown = setToZero(form.twoStoryDown);
+      const extraExtensions = setToZero(form.extraExtensions);
+      const elbows = setToZero(form.elbows);
+
+      const oneStoryPrice = setToZero(form.oneStoryPrice);
+      const adjOneStoryPrice = setToZero(form.adjOneStoryPrice);
+      const twoStoryPrice = setToZero(form.twoStoryPrice);
+      const adjTwoStoryPrice = setToZero(form.adjTwoStoryPrice);
+      const cornersPrice = setToZero(form.cornersPrice);
+      const oneStoryDownPrice = setToZero(form.oneStoryDownPrice);
+      const twoStoryDownPrice = setToZero(form.twoStoryDownPrice);
+      const extraExtensionsPrice = setToZero(form.extraExtensionsPrice);
+      const difficultyPrice = setToZero(form.difficultyPrice);
+      const oneStoryEaves = setToZero(form.oneStoryEaves);
+
+      eaveItems.push({
+        adjOneStory: adjOneStory,
+        adjOneStoryInc: adjOneStoryInc,
+        adjTwoStory: adjTwoStory,
+        adjTwoStoryInc: adjTwoStoryInc,
+        corners: corners,
+        oneStoryDown: oneStoryDown,
+        twoStoryDown: twoStoryDown,
+        extraExtensions: extraExtensions,
+        elbows: elbows,
+
+        oneStoryPrice: oneStoryPrice,
+        adjOneStoryPrice: adjOneStoryPrice,
+        twoStoryPrice: twoStoryPrice,
+        adjTwoStoryPrice: adjTwoStoryPrice,
+        cornersPrice: cornersPrice,
+        oneStoryDownPrice: oneStoryDownPrice,
+        twoStoryDownPrice: twoStoryDownPrice,
+        extraExtensionsPrice: extraExtensionsPrice,
+        difficultyPrice: difficultyPrice,
+        oneStoryEaves: oneStoryEaves,
+      });
+
+      setMsg(true);
+      setTimeout(() => {
+        setMsg(false);
+      }, 4000);
+    }
+  };
+
   return (
     <div>
       <div className="row">
@@ -219,7 +307,7 @@ export default function Eaves(props) {
             value={
               form.adjOneStory
                 ? `${
-                    firstStoryEaves + parseFloat(form.adjOneStory)
+                    firstStoryEaves + parseInt(form.adjOneStory)
                   }' - ${firstStoryEavesInc}"`
                 : `${firstStoryEaves}' - ${firstStoryEavesInc}"`
             }
@@ -237,7 +325,7 @@ export default function Eaves(props) {
             onChange={(e) =>
               setForm({
                 ...form,
-                adjOneStory: setToZero(e.target.value),
+                adjOneStory: e.target.value,
               })
             }
             idInc="adjOneStoryInc"
@@ -245,7 +333,7 @@ export default function Eaves(props) {
             onChangeInc={(e) => {
               setForm({
                 ...form,
-                adjOneStoryInc: setToZero(e.target.value),
+                adjOneStoryInc: e.target.value,
               });
             }}
           />
@@ -260,7 +348,7 @@ export default function Eaves(props) {
             value={
               form.adjTwoStory
                 ? `${
-                    secondStoryEaves + parseFloat(form.adjTwoStory)
+                    secondStoryEaves + parseInt(form.adjTwoStory)
                   }' - ${secondStoryEavesInc}"`
                 : `${secondStoryEaves}' - ${secondStoryEavesInc}"`
             }
@@ -278,7 +366,7 @@ export default function Eaves(props) {
             onChange={(e) =>
               setForm({
                 ...form,
-                adjTwoStory: setToZero(e.target.value),
+                adjTwoStory: e.target.value,
               })
             }
             idInc="adjTwoStoryInc"
@@ -286,7 +374,7 @@ export default function Eaves(props) {
             onChangeInc={(e) => {
               setForm({
                 ...form,
-                adjTwoStoryInc: setToZero(e.target.value),
+                adjTwoStoryInc: e.target.value,
               });
             }}
           />
@@ -296,6 +384,7 @@ export default function Eaves(props) {
             type="number"
             id="corners"
             label="Eavestrough Corners"
+            placeholder="Eavestrough Corners"
             rightSideLabel="Corners"
             value={form.corners}
             onChange={(e) =>
@@ -311,6 +400,7 @@ export default function Eaves(props) {
             type="number"
             id="oneStoryDown"
             label="1st Story Downspouts"
+            placeholder="1st Story Downspouts"
             rightSideLabel="Downspouts"
             value={form.oneStoryDown}
             onChange={(e) =>
@@ -326,6 +416,7 @@ export default function Eaves(props) {
             type="number"
             id="twoStoryDown"
             label="2nd Story Downspouts"
+            placeholder="2nd Story Downspouts"
             rightSideLabel="Downspouts"
             value={form.twoStoryDown}
             onChange={(e) =>
@@ -341,6 +432,7 @@ export default function Eaves(props) {
             type="number"
             id="extraExtensions"
             label="Downspout Extensions"
+            placeholder="Downspout Extensions"
             rightSideLabel="Extensions"
             value={form.extraExtensions}
             onChange={(e) =>
@@ -356,6 +448,7 @@ export default function Eaves(props) {
             type="number"
             id="elbow"
             label="Elbows"
+            placeholder="Elbows"
             rightSideLabel="Elbows"
             value={form.elbows}
             onChange={(e) =>
@@ -374,6 +467,7 @@ export default function Eaves(props) {
             type="number"
             id="oneStoryPrice"
             label="1st Story Eavestroughs"
+            placeholder="1st Story Eavestroughs"
             sideLabel="$"
             rightSideLabel="Ln.ft"
             value={form.oneStoryPrice}
@@ -390,6 +484,7 @@ export default function Eaves(props) {
             type="number"
             id="twoStoryPrice"
             label="2nd Story Eavestroughs"
+            placeholder="2nd Story Eavestroughs"
             sideLabel="$"
             rightSideLabel="Ln.ft"
             value={form.twoStoryPrice}
@@ -406,6 +501,7 @@ export default function Eaves(props) {
             type="number"
             id="cornersPrice"
             label="Corner"
+            placeholder="Corner"
             sideLabel="$"
             rightSideLabel="Corner"
             value={form.cornersPrice}
@@ -422,6 +518,7 @@ export default function Eaves(props) {
             type="number"
             id="oneStoryDownPrice"
             label="1st Story Downspouts"
+            placeholder="1st Story Downspouts"
             sideLabel="$"
             rightSideLabel="Downspout"
             value={form.oneStoryDownPrice}
@@ -438,6 +535,7 @@ export default function Eaves(props) {
             type="number"
             id="twoStoryDownPrice"
             label="2nd Story Downspouts"
+            placeholder="2nd Story Downspouts"
             sideLabel="$"
             rightSideLabel="Downspout"
             value={form.twoStoryDownPrice}
@@ -454,6 +552,7 @@ export default function Eaves(props) {
             type="number"
             id="extraExtensionsPrice"
             label="Downspout Extensions"
+            placeholder="Downspout Extensions"
             sideLabel="$"
             rightSideLabel="Extensions"
             value={form.extraExtensionsPrice}
@@ -470,6 +569,7 @@ export default function Eaves(props) {
             type="number"
             id="difficultyPrice"
             label="Project Difficulty Fee"
+            placeholder="Project Difficulty Fee"
             sideLabel="$"
             rightSideLabel="Difficulty"
             value={form.difficultyPrice}
@@ -494,11 +594,33 @@ export default function Eaves(props) {
             disabled={true}
             value={
               form.oneStoryPrice
-                ? (
-                    (firstStoryEaves +
-                      inchConverter(firstStoryEavesInc.toString())) *
-                    form.oneStoryPrice
-                  ).toFixed(2)
+                ? form.adjOneStory
+                  ? form.difficultyPrice
+                    ? (
+                        parseFloat(form.difficultyPrice) +
+                        (firstStoryEaves +
+                          parseInt(form.adjOneStory) +
+                          inchConverter(firstStoryEavesInc.toString())) *
+                          form.oneStoryPrice
+                      ).toFixed(2)
+                    : (
+                        (firstStoryEaves +
+                          parseInt(form.adjOneStory) +
+                          inchConverter(firstStoryEavesInc.toString())) *
+                        form.oneStoryPrice
+                      ).toFixed(2)
+                  : form.difficultyPrice
+                  ? (
+                      parseFloat(form.difficultyPrice) +
+                      (firstStoryEaves +
+                        inchConverter(firstStoryEavesInc.toString())) *
+                        form.oneStoryPrice
+                    ).toFixed(2)
+                  : (
+                      (firstStoryEaves +
+                        inchConverter(firstStoryEavesInc.toString())) *
+                      form.oneStoryPrice
+                    ).toFixed(2)
                 : "0.00"
             }
           />
@@ -513,11 +635,18 @@ export default function Eaves(props) {
             disabled={true}
             value={
               form.twoStoryPrice
-                ? (
-                    (secondStoryEaves +
-                      inchConverter(secondStoryEavesInc.toString())) *
-                    form.twoStoryPrice
-                  ).toFixed(2)
+                ? form.adjTwoStory
+                  ? (
+                      (secondStoryEaves +
+                        parseInt(form.adjTwoStory) +
+                        inchConverter(secondStoryEavesInc.toString())) *
+                      form.twoStoryPrice
+                    ).toFixed(2)
+                  : (
+                      (secondStoryEaves +
+                        inchConverter(secondStoryEavesInc.toString())) *
+                      form.twoStoryPrice
+                    ).toFixed(2)
                 : "0.00"
             }
           />
@@ -577,6 +706,57 @@ export default function Eaves(props) {
                 : "0.00"
             }
           />
+        </div>
+        <div className="col-12 text-center  mt-4">
+          {formErr.allForm ? (
+            <span className="text-danger">
+              Please enter in at least 1 field
+            </span>
+          ) : null}
+          {msg ? <span className="text-success">Added to Estimate</span> : null}
+          {removeMsg ? (
+            <span className="text-danger">Removed from Estimate</span>
+          ) : null}
+          {eaveItems.length === 0 ? (
+            <CButton className="btn w-100" style={btnStyle} onClick={AddArray}>
+              Complete Eavetroughs
+            </CButton>
+          ) : (
+            <CButton
+              className="btn w-100"
+              style={btnStyle}
+              onClick={(e) => {
+                e.preventDefault();
+                eaveItems.map((n, i) => {
+                  removeEave(i);
+                });
+                setForm({
+                  adjOneStory: "",
+                  adjOneStoryInc: "",
+                  adjTwoStory: "",
+                  adjTwoStoryInc: "",
+                  corners: "",
+                  oneStoryDown: "",
+                  twoStoryDown: "",
+                  extraExtensions: "",
+                  elbows: "",
+
+                  oneStoryPrice: 0,
+                  adjOneStoryPrice: 0,
+                  twoStoryPrice: 0,
+                  adjTwoStoryPrice: 0,
+                  cornersPrice: 0,
+                  oneStoryDownPrice: 0,
+                  twoStoryDownPrice: 0,
+                  extraExtensionsPrice: 0,
+                  difficultyPrice: 0,
+                  oneStoryEaves: 0,
+                });
+              }}
+            >
+              Reset Eavetroughs
+            </CButton>
+          )}
         </div>
       </div>
     </div>
@@ -696,7 +876,7 @@ const CustomInput = (props) => {
 const setToZero = (val) => {
   let newVal;
   if (val === "" || val === undefined) {
-    newVal = "";
+    newVal = "0";
   } else {
     newVal = val;
   }
@@ -743,4 +923,11 @@ const rightInputErrorStyle = {
   boxShadow: "none",
   border: "1px solid #e60029",
   borderRadius: "0px 0.25rem 0.25rem 0px",
+};
+const btnStyle = {
+  outline: "none",
+  boxShadow: "none",
+  border: "none",
+  backgroundColor: "#e60029",
+  color: "#fff",
 };

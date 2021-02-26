@@ -1,21 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { CCard, CCardBody, CCollapse } from "@coreui/react";
 //Components
 import RoofInputTable from "./DataTables/Roof";
 import EavesInputTable from "./DataTables/Eaves";
-import CalculationsTable from "./CalculationsTable/CalculationsTable";
-import AccessoriesTable from "./CalculationsTable/AccessoriesTable";
+//import CalculationsTable from "./CalculationsTable/CalculationsTable";
+//import AccessoriesTable from "./CalculationsTable/AccessoriesTable";
 //style sheet
 import "./style.scss";
 
-export default function Form(props) {
-  const form = props.form;
+export default function Form() {
+  const [form, setForm] = useState([]);
   const [load, setLoad] = useState(false);
-  const setForm = props.setForm;
   const [items, setItems] = useState([]);
+  const [eaveItems, setEaveItems] = useState([]);
+  //  const [eaveArray, setEaveArray] = useState([]);
   const [formLoading, setFormLoading] = useState(false);
-  const pricesData = props.pricesData;
   const [accordion, setAccordion] = useState(0);
+  const [removeMsg, setRemoveMsg] = useState(false);
 
   const removeRoofFace = (i) => {
     items.splice(i, 1);
@@ -26,24 +27,27 @@ export default function Form(props) {
     }, 1000);
   };
 
-  function handleEnter(event) {
-    if (event.keyCode === 13) {
-      const inputs = event.target.form;
-      const index = Array.prototype.indexOf.call(inputs, event.target);
-      inputs.elements[index + 1].focus();
-      event.preventDefault();
-    }
-  }
+  const removeEave = (i) => {
+    eaveItems.splice(i, 1);
+    setEaveItems(eaveItems);
+    setRemoveMsg(true);
+    setTimeout(() => {
+      setRemoveMsg(false);
+    }, 4000);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setForm({ ...form, tableArray: items });
     setFormLoading(true);
     setTimeout(() => {
       setFormLoading(false);
       console.log(form);
     }, 1000);
   };
+
+  useEffect(() => {
+    setForm({ ...form, tableArray: items, eaveArray: eaveItems });
+  }, [items, eaveItems]);
 
   return (
     <div>
@@ -60,8 +64,8 @@ export default function Form(props) {
             <CCollapse show={accordion === 1}>
               <CCard className="p-2">
                 <RoofInputTable
-                  form={form}
-                  setForm={setForm}
+                  /*form={form}
+                  setForm={setForm}*/
                   items={items}
                   load={load}
                   removeRoofFace={removeRoofFace}
@@ -81,8 +85,10 @@ export default function Form(props) {
                   <EavesInputTable
                     form={form}
                     setForm={setForm}
-                    handleEnter={handleEnter}
                     items={items}
+                    eaveItems={eaveItems}
+                    removeEave={removeEave}
+                    removeMsg={removeMsg}
                   />
                 </CCardBody>
               </CCard>

@@ -18,7 +18,7 @@ export default function RoofFaces(props) {
   }
 
   return (
-    <div className="row no-gutters" key={props.keys}>
+    <div className="row no-gutters mb-2" key={props.keys}>
       <div className="col-12 mb-2 text-right">
         <span className="text-danger" onClick={props.onClick}>
           Delete <FiIcon.FiTrash />

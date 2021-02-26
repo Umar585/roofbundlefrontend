@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { CCard, CCollapse } from "@coreui/react";
+import jsonData from "./data.json";
 
 export default function Selections() {
   const [collapse, setCollapse] = useState(false);
@@ -56,6 +57,68 @@ export default function Selections() {
     work_warranty: false,
     registered_warranty: false,
   });
+
+  const [brandShingles, setBrandShingles] = useState([]);
+  const [colorShingles, setColorShingles] = useState([]);
+  const [cappingShingles, setCappingShingles] = useState([]);
+  const [starterShingles, setStarterShingles] = useState([]);
+  const [hrShingles, setHrShingles] = useState([]);
+  const [underlayProtection, setUnderlayProtection] = useState([]);
+
+  useEffect(() => {
+    let brands;
+    if (form.brand_roof !== "") {
+      //set Shingle
+      brands = jsonData.brand.filter((x) => x.name.includes(form.brand_roof));
+      setBrandShingles(brands[0].shingles);
+
+      //set Capping
+      brands = jsonData.brand.filter((x) => x.name.includes(form.brand_roof));
+      setCappingShingles(brands[0].cappings);
+    }
+
+    //set Shingle Color
+    if (form.shingle_roof !== "" && form.brand_roof !== "") {
+      brands = jsonData.brand.filter((x) => x.name.includes(form.brand_roof));
+      const shingle = brands[0].shingles.filter((x) =>
+        x.name.includes(form.shingle_roof)
+      );
+      setColorShingles(shingle[0].colors);
+    }
+
+    //set starter Shingle
+    if (form.starter_brand !== "") {
+      //set Shingle
+      brands = jsonData.starterShingle.filter((x) =>
+        x.name.includes(form.starter_brand)
+      );
+      setStarterShingles(brands[0].shingles);
+    }
+
+    //set Hip & Ridge Shingle
+    if (form.hr_brand !== "") {
+      //set Hip & Ridge Shingle
+      brands = jsonData.hrShingle.filter((x) => x.name.includes(form.hr_brand));
+      setHrShingles(brands[0].shingles);
+    }
+
+    //set Hip & Ridge Shingle
+    if (form.ice_water_protection !== "") {
+      //set Hip & Ridge Shingle
+      brands = jsonData.deckProtection.filter((x) =>
+        x.name.includes(form.ice_water_protection)
+      );
+      setUnderlayProtection(brands[0].underlay);
+    }
+  }, [
+    form,
+    brandShingles,
+    colorShingles,
+    cappingShingles,
+    starterShingles,
+    hrShingles,
+    underlayProtection,
+  ]);
 
   return (
     <div>
@@ -238,22 +301,25 @@ export default function Selections() {
                   name="brand"
                   style={inputStyle}
                   value={form.brand_roof}
-                  onChange={(e) =>
+                  onChange={(e) => {
+                    setColorShingles([]);
+                    setBrandShingles([]);
+                    setColorShingles([]);
                     setForm({
                       ...form,
                       brand_roof: e.target.value,
-                    })
-                  }
+                      shingle_roof: "",
+                    });
+                  }}
                 >
                   <option value="">Brand</option>
-                  <option value="Atlas">Atlas</option>
-                  <option value="BP">BP</option>
-                  <option value="CertainTeed">CertainTeed</option>
-                  <option value="GAF">GAF</option>
-                  <option value="IKO">IKO</option>
-                  <option value="Malarkey">Malarkey</option>
-                  <option value="Owens Corning">Owens Corning</option>
-                  <option value="TAMKO">TAMKO</option>
+                  {jsonData.brand.map((n, i) => {
+                    return (
+                      <option key={i} value={n.name}>
+                        {n.name}
+                      </option>
+                    );
+                  })}
                 </select>
               </div>
               <div className="col-6 mb-1  gb-pl">
@@ -263,48 +329,24 @@ export default function Selections() {
                   name="shingle_roof"
                   style={inputStyle}
                   value={form.shingle_roof}
-                  onChange={(e) =>
+                  onChange={(e) => {
                     setForm({
                       ...form,
                       shingle_roof: e.target.value,
-                    })
-                  }
+                    });
+                    setColorShingles([]);
+                  }}
                 >
-                  {form.brand_roof === "CertainTeed" ? (
-                    certainTeedOptions.map((item, i) => {
-                      return (
-                        <option key={i} value={item.val}>
-                          {item.val}
-                        </option>
-                      );
-                    })
-                  ) : form.brand_roof === "GAF" ? (
-                    gafOptions.map((item, i) => {
-                      return (
-                        <option key={i} value={item.val}>
-                          {item.val}
-                        </option>
-                      );
-                    })
-                  ) : form.brand_roof === "IKO" ? (
-                    ikoOptions.map((item, i) => {
-                      return (
-                        <option key={i} value={item.val}>
-                          {item.val}
-                        </option>
-                      );
-                    })
-                  ) : form.brand_roof === "Owens Corning" ? (
-                    owensCorningOptions.map((item, i) => {
-                      return (
-                        <option key={i} value={item.val}>
-                          {item.val}
-                        </option>
-                      );
-                    })
-                  ) : (
-                    <option value="">Shingle</option>
-                  )}
+                  <option value="">Shingle</option>
+                  {form.brand_roof
+                    ? brandShingles.map((n, i) => {
+                        return (
+                          <option key={i} value={n.name}>
+                            {n.name}
+                          </option>
+                        );
+                      })
+                    : null}
                 </select>
               </div>
               <div className="col-6 gb-pr mb-1">
@@ -322,8 +364,15 @@ export default function Selections() {
                   }
                 >
                   <option value="">Color</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
+                  {form.brand_roof
+                    ? colorShingles.map((n, i) => {
+                        return (
+                          <option key={i} value={n.color}>
+                            {n.color}
+                          </option>
+                        );
+                      })
+                    : null}
                 </select>
               </div>
               <div className="col-6 gb-pl">
@@ -341,8 +390,11 @@ export default function Selections() {
                   }
                 >
                   <option value="">Capping</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
+                  {form.brand_roof
+                    ? cappingShingles.map((n, i) => {
+                        return <option key={i}>{n.capping}</option>;
+                      })
+                    : null}
                 </select>
               </div>
               <div className="col-12" style={subHeader}>
@@ -363,8 +415,13 @@ export default function Selections() {
                   }
                 >
                   <option value="">Brand</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
+                  {jsonData.starterShingle.map((n, i) => {
+                    return (
+                      <option key={i} value={n.name}>
+                        {n.name}
+                      </option>
+                    );
+                  })}
                 </select>
               </div>
               <div className="col-6 gb-pr">
@@ -382,8 +439,15 @@ export default function Selections() {
                   }
                 >
                   <option value="">Shingle</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
+                  {form.starter_brand
+                    ? starterShingles.map((n, i) => {
+                        return (
+                          <option key={i} value={n.name}>
+                            {n.name}
+                          </option>
+                        );
+                      })
+                    : null}
                 </select>
               </div>
               <div className="col-12" style={subHeader}>
@@ -404,8 +468,13 @@ export default function Selections() {
                   }
                 >
                   <option value="">Brand</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
+                  {jsonData.hrShingle.map((n, i) => {
+                    return (
+                      <option key={i} value={n.name}>
+                        {n.name}
+                      </option>
+                    );
+                  })}
                 </select>
               </div>
               <div className="col-6 gb-pr mb-1">
@@ -423,8 +492,15 @@ export default function Selections() {
                   }
                 >
                   <option value="">Shingle</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
+                  {form.hr_brand
+                    ? hrShingles.map((n, i) => {
+                        return (
+                          <option key={i} value={n.name}>
+                            {n.name}
+                          </option>
+                        );
+                      })
+                    : null}
                 </select>
               </div>
               <div className="col-12 mt-2 text-center pt-2" style={headerStyle}>
@@ -448,8 +524,13 @@ export default function Selections() {
                   }
                 >
                   <option value="">Ice & Water</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
+                  {jsonData.deckProtection.map((n, i) => {
+                    return (
+                      <option key={i} value={n.name}>
+                        {n.name}
+                      </option>
+                    );
+                  })}
                 </select>
               </div>
               <div className="col-6 gb-pr">
@@ -467,8 +548,15 @@ export default function Selections() {
                   }
                 >
                   <option value="">Underlay</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
+                  {form.ice_water_protection
+                    ? underlayProtection.map((n, i) => {
+                        return (
+                          <option key={i} value={n.name}>
+                            {n.name}
+                          </option>
+                        );
+                      })
+                    : null}
                 </select>
               </div>
               <div className="col-12" style={subHeader}>
@@ -879,46 +967,6 @@ export default function Selections() {
     </div>
   );
 }
-
-//shingle Options
-const certainTeedOptions = [
-  { val: "Grand Manor" },
-  { val: "Carriage House" },
-  { val: "Belmont IR" },
-  { val: "Presidential Shake" },
-  { val: "Landmark" },
-  { val: "Northgate" },
-  { val: "Highland Slate" },
-  { val: "XT 25" },
-  { val: "Dryroof SA Underlayment" },
-  { val: "Diamond Deck" },
-  { val: "Roof Runner" },
-  { val: "Roofers' Select" },
-];
-const gafOptions = [
-  { val: "Marquis WeatherMax (3-Tab)" },
-  { val: "Royal Sovereign (3-Tab)" },
-  { val: "Timberline HDZ" },
-  { val: "Timberline UHD" },
-  { val: "Camelot 2" },
-  { val: "Glenwood" },
-  { val: "Grand Canyon" },
-  { val: "Grand Sequoia" },
-  { val: "Slateline" },
-  { val: "Woodland" },
-];
-const ikoOptions = [
-  { val: "Marathon Plus AR" },
-  { val: "Dynasty" },
-  { val: "Nordic" },
-  { val: "Crown Slate" },
-  { val: "Armourshake" },
-];
-const owensCorningOptions = [
-  { val: "Supreme (3-Tab)" },
-  { val: "TruDefinition" },
-  { val: "Oakridge" },
-];
 
 const CustomCheckBoxButtom = (props) => {
   return (

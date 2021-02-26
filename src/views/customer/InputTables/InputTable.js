@@ -11,7 +11,7 @@ import * as AiIcon from "react-icons/ai";
 export default function InputTable() {
   const history = useHistory();
 
-  //form
+  /*//form
   const [form, setForm] = useState({
     tableArray: [],
     pitch: 0,
@@ -59,8 +59,9 @@ export default function InputTable() {
     extraExtensionsPrice: 0,
     difficultyPrice: 0,
     oneStoryEaves: 0,
-  });
+  });*/
 
+  //const [form, setForm] = useState([]);
   return (
     <div>
       <div className="float-left">
@@ -74,7 +75,7 @@ export default function InputTable() {
       </div>
       <CCard className="shadow mt-3">
         <CCardBody>
-          <Form form={form} setForm={setForm} />
+          <Form /*form={form} setForm={setForm}*/ />
           <div className="mt-4">
             <Selections />
             <ProjectPrice />

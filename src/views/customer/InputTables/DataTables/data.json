@@ -1,0 +1,1398 @@
+{
+  "brand": [
+    {
+      "name": "Atlas",
+      "shingles": [
+        {
+          "name": "GlassMaster (3-Tab)",
+          "colors": [
+            {
+              "color": "Black Shadow"
+            },
+            {
+              "color": "Burnt Sienna"
+            },
+            {
+              "color": "Cool White"
+            },
+            {
+              "color": "Desert Shake"
+            },
+            {
+              "color": "Hearthstone Gray"
+            },
+            {
+              "color": "Heatherblend"
+            },
+            {
+              "color": "Oyster Shell"
+            },
+            {
+              "color": "Pewter"
+            },
+            {
+              "color": "Tan Mist"
+            },
+            {
+              "color": "Weathered Wood"
+            }
+          ]
+        },
+        {
+          "name": "Tough-Glass (3-Tab)",
+          "colors": [
+            {
+              "color": "Black Shadow"
+            },
+            {
+              "color": "Burnt Sienna"
+            },
+            {
+              "color": "Cool White"
+            },
+            {
+              "color": "Desert Shake"
+            },
+            {
+              "color": "Hearthstone Gray"
+            },
+            {
+              "color": "Heatherblend"
+            },
+            {
+              "color": "Oyster Shell"
+            },
+            {
+              "color": "Pewter"
+            },
+            {
+              "color": "Tan Mist"
+            },
+            {
+              "color": "Weathered Wood"
+            }
+          ]
+        },
+        {
+          "name": "Legend Designer (3-Tab)",
+          "colors": [
+            {
+              "color": "Black Shadow"
+            },
+            {
+              "color": "Desert Shake"
+            },
+            {
+              "color": "Hearthstone Gray"
+            },
+            {
+              "color": "Heatherblend"
+            },
+            {
+              "color": "Weathered Wood"
+            }
+          ]
+        },
+        {
+          "name": "Briarwoord Pro",
+          "colors": [
+            {
+              "color": "Blackstone HD"
+            },
+            {
+              "color": "Chestnut HD"
+            },
+            {
+              "color": "Driftwood HD"
+            },
+            {
+              "color": "Granite HD"
+            },
+            {
+              "color": "Majestic HD"
+            }
+          ]
+        },
+        {
+          "name": "Pro Lam",
+          "colors": [
+            {
+              "color": "Black Shadow"
+            },
+            {
+              "color": "Burnt Sienna"
+            },
+            {
+              "color": "Desert Shake"
+            },
+            {
+              "color": "Hearthstone Gray"
+            },
+            {
+              "color": "Heather"
+            },
+            {
+              "color": "Pewter"
+            },
+            {
+              "color": "Weathered Wood"
+            }
+          ]
+        },
+        {
+          "name": "Castlebrook",
+          "colors": [
+            {
+              "color": "Black Shadow"
+            },
+            {
+              "color": "Burnt Sienna"
+            },
+            {
+              "color": "Desert Shake"
+            },
+            {
+              "color": "Dove Gray"
+            },
+            {
+              "color": "Hearthstone Gray"
+            },
+            {
+              "color": "Pewter"
+            },
+            {
+              "color": "Weathered Wood"
+            }
+          ]
+        },
+        {
+          "name": "Pinnacle Pristine",
+          "colors": [
+            {
+              "color": "Pristine Black"
+            },
+            {
+              "color": "Pristine Desert"
+            },
+            {
+              "color": "Pristine Green"
+            },
+            {
+              "color": "Pristine Hearthston"
+            },
+            {
+              "color": "Pristine Heather"
+            },
+            {
+              "color": "Pristine Hickory"
+            },
+            {
+              "color": "Pristine Oyster"
+            },
+            {
+              "color": "Pristine Pearl"
+            },
+            {
+              "color": "Pristine Pewter"
+            },
+            {
+              "color": "Pristine Sienna"
+            },
+            {
+              "color": "Pristine Sunset"
+            },
+            {
+              "color": "Pristine Tan"
+            },
+            {
+              "color": "Pristine Weathered Shadow"
+            },
+            {
+              "color": "Pristine Weathered Wood"
+            },
+            {
+              "color": "Costal Granite"
+            },
+            {
+              "color": "Costal Canyon"
+            },
+            {
+              "color": "Majestic Shake"
+            },
+            {
+              "color": "Morning Harvest"
+            },
+            {
+              "color": "Summer Storm"
+            }
+          ]
+        },
+        {
+          "name": "StormMaster Slate",
+          "colors": [
+            {
+              "color": "Blackstone Slate"
+            },
+            {
+              "color": "Chalkstone Slate"
+            },
+            {
+              "color": "Emerald Slate"
+            },
+            {
+              "color": "Hearthstone Slate"
+            },
+            {
+              "color": "Pewter Slate"
+            },
+            {
+              "color": "Weathered Slate"
+            }
+          ]
+        },
+        {
+          "name": "StormMaster Shake",
+          "colors": [
+            {
+              "color": "Black Shadow"
+            },
+            {
+              "color": "Chestnut"
+            },
+            {
+              "color": "Copper Canyon"
+            },
+            {
+              "color": "Hearthstone Gray"
+            },
+            {
+              "color": "Highland Brown"
+            },
+            {
+              "color": "Majestic Shake"
+            },
+            {
+              "color": "Morning Harvest"
+            },
+            {
+              "color": "Pewter"
+            },
+            {
+              "color": "Silver Stone"
+            },
+            {
+              "color": "Weathered Wood"
+            }
+          ]
+        }
+      ],
+      "cappings": [
+        { "capping": "StormMaster Hip & Ridge" },
+        { "capping": "Pro-Cut Hip & Ridge" },
+        { "capping": "Pro-Cut High Profile Hip & Ridge" }
+      ]
+    },
+    {
+      "name": "BP",
+      "shingles": [
+        {
+          "name": "Yukon SB (3-Tab)",
+          "colors": [
+            {
+              "color": "Slate Black"
+            },
+            {
+              "color": "Silver Grey"
+            },
+            {
+              "color": "Shadow Black"
+            },
+            {
+              "color": "Seychelles Blue"
+            },
+            {
+              "color": "Magenta Red"
+            },
+            {
+              "color": "Brown Stone"
+            },
+            {
+              "color": "Boreal Green"
+            },
+            {
+              "color": "Beachwood"
+            },
+            {
+              "color": "Autumn Brown"
+            },
+            {
+              "color": "Antique Wood"
+            },
+            {
+              "color": "Weathered Rock"
+            },
+            {
+              "color": "Twilight Grey"
+            },
+            {
+              "color": "Sunset Cedar"
+            },
+            {
+              "color": "Stone Wood"
+            }
+          ]
+        },
+        {
+          "name": "Dakota (3-Tab)",
+          "colors": [
+            {
+              "color": "Slate Black"
+            },
+            {
+              "color": "Silver Grey"
+            },
+            {
+              "color": "Shadow Black"
+            },
+            {
+              "color": "Seychelles Blue"
+            },
+            {
+              "color": "Magenta Red"
+            },
+            {
+              "color": "Brown Stone"
+            },
+            {
+              "color": "Boreal Green"
+            },
+            {
+              "color": "Beachwood"
+            },
+            {
+              "color": "Autumn Brown"
+            },
+            {
+              "color": "Antique Wood"
+            },
+            {
+              "color": "Weathered Rock"
+            },
+            {
+              "color": "Twilight Grey"
+            },
+            {
+              "color": "Sunset Cedar"
+            },
+            {
+              "color": "Stone Wood"
+            }
+          ]
+        },
+        {
+          "name": "Manoir",
+          "colors": [
+            {
+              "color": "Shadow Black"
+            },
+            {
+              "color": "Brown Stone"
+            },
+            {
+              "color": "Autumn Brown"
+            },
+            {
+              "color": "Weathered Rock"
+            },
+            {
+              "color": "Twilight Grey"
+            },
+            {
+              "color": "Silver Grey"
+            },
+            {
+              "color": "Sunset Cedar"
+            }
+          ]
+        },
+        {
+          "name": "Everest 42",
+          "colors": [
+            {
+              "color": "Shadow Black"
+            },
+            {
+              "color": "Brown Stone"
+            },
+            {
+              "color": "Autumn Brown"
+            },
+            {
+              "color": "Weathered Rock"
+            },
+            {
+              "color": "Twilight Grey"
+            },
+            {
+              "color": "Silver Grey"
+            },
+            {
+              "color": "Sunset Cedar"
+            }
+          ]
+        },
+        {
+          "name": "Mystique 42",
+          "colors": [
+            {
+              "color": "Slate Black"
+            },
+            {
+              "color": "Silver Grey"
+            },
+            {
+              "color": "Shadow Black"
+            },
+            {
+              "color": "Seychelles Blue"
+            },
+            {
+              "color": "Magenta Red"
+            },
+            {
+              "color": "Brown Stone"
+            },
+            {
+              "color": "Boreal Green"
+            },
+            {
+              "color": "Beachwood"
+            },
+            {
+              "color": "Autumn Brown"
+            },
+            {
+              "color": "Antique Wood"
+            },
+            {
+              "color": "Weathered Rock"
+            },
+            {
+              "color": "Twilight Grey"
+            },
+            {
+              "color": "Sunset Cedar"
+            },
+            {
+              "color": "Stone Wood"
+            }
+          ]
+        },
+        {
+          "name": "Vangard 42 IR",
+          "colors": [
+            {
+              "color": "Shadow Black"
+            },
+            {
+              "color": "Silver Grey"
+            },
+            {
+              "color": "Twilight Grey"
+            },
+            {
+              "color": "Weathered Rock"
+            },
+            {
+              "color": "Autumn Brown"
+            }
+          ]
+        }
+      ],
+      "cappings": [
+        { "capping": "Silhouette" },
+        { "capping": "BP Accu-Ridge" },
+        { "capping": "Yukon SB" }
+      ]
+    },
+    {
+      "name": "CertainTeed",
+      "shingles": [
+        {
+          "name": "XT 25 ",
+          "colors": [
+            {
+              "color": "Black"
+            },
+            {
+              "color": "Gray Frost"
+            },
+            {
+              "color": "Nickel Gray"
+            },
+            {
+              "color": "Oakwood"
+            },
+            {
+              "color": "Star White"
+            },
+            {
+              "color": "Weathered Wood"
+            }
+          ]
+        },
+        {
+          "name": "Grand Manor",
+          "colors": [
+            { "color": "Black Pearl" },
+            { "color": "Brown Stone" },
+            { "color": "Colonial Slate" },
+            { "color": "Gatehouse Slate" },
+            { "color": "Georgian Brick" },
+            { "color": "Sherwood Forrest" },
+            { "color": "Stonegate Gray" },
+            { "color": "Weathered Gray" }
+          ]
+        },
+        {
+          "name": "Carriage House",
+          "colors": [
+            { "color": "Black Pearl" },
+            { "color": "Brown Stone" },
+            { "color": "Colonial Slate" },
+            { "color": "Gatehouse Slate" },
+            { "color": "Georgian Brick" },
+            { "color": "Sherwood Forrest" },
+            { "color": "Stonegate Gray" },
+            { "color": "Victorian Blue" }
+          ]
+        },
+        {
+          "name": "Belmont IR",
+          "colors": [
+            { "color": "Black Granite" },
+            { "color": "Colonial Slate" },
+            { "color": "Gatehouse Slate" },
+            { "color": "Georgian Brick" },
+            { "color": "Shenandoah" },
+            { "color": "Stonegate Gray" },
+            { "color": "Weathered Gray" }
+          ]
+        },
+        {
+          "name": "Presidential Shake",
+          "colors": [
+            { "color": "Aged Bark" },
+            { "color": "Autumn Blend" },
+            { "color": "Charcoal Black" },
+            { "color": "Classic Weathered Wood" },
+            { "color": "Shadow Gray" },
+            { "color": "Weathered Wood" }
+          ]
+        },
+        {
+          "name": "Landmark TL",
+          "colors": [
+            { "color": "Atlantic Blue" },
+            { "color": "Burnt Sienna" },
+            { "color": "Cobblestone Gray" },
+            { "color": "Colonial Slate" },
+            { "color": "Cottage Red" },
+            { "color": "Driftwood" },
+            { "color": "Georgetown Gray" },
+            { "color": "Heatherblend" },
+            { "color": "Hunter Green" },
+            { "color": "Moire Black" },
+            { "color": "Pewter" },
+            { "color": "Resawn Shake" },
+            { "color": "Silver Birch" },
+            { "color": "Weathered Wood" }
+          ]
+        },
+        {
+          "name": "Northgate",
+          "colors": [
+            { "color": "Max Def Burnt Sienna" },
+            { "color": "Max Def Granite Gray" },
+            { "color": "Max Def Heather Blend" },
+            { "color": "Max Def Moire Black" },
+            { "color": "Max Def Reswan Shake" },
+            { "color": "Max Def Weathered Wood" },
+            { "color": "Max Def Hunter Green" },
+            { "color": "Max Def Silver Birch" },
+            { "color": "Max Def Driftwood" },
+            { "color": "Max Def Pewter" },
+            { "color": "Max Def Georgetown Gray" }
+          ]
+        },
+        {
+          "name": "Highland Slate",
+          "colors": [
+            { "color": "Black Granite" },
+            { "color": "Fieldstone" },
+            { "color": "Max Def Weathered Wood" },
+            { "color": "New England Slate" },
+            { "color": "Smokey Quartz" },
+            { "color": "Tudor Brown" }
+          ]
+        }
+      ],
+      "cappings": [
+        { "capping": "Mountain Ridge" },
+        { "capping": "Ceadarcrest" },
+        { "capping": "Shadow Ridge Climateflex" },
+        { "capping": "Shangle Ridge" },
+        { "capping": "Shadow Ridge" }
+      ]
+    },
+    {
+      "name": "GAF",
+      "shingles": [
+        {
+          "name": "Mineral Guard Residential Rool Roofing",
+          "colors": [
+            {
+              "color": "Charcoal"
+            },
+            {
+              "color": "White"
+            }
+          ]
+        },
+        {
+          "name": "Marquis WeatherMax (3-Tab)",
+          "colors": [
+            {
+              "color": "Charcoal"
+            },
+            {
+              "color": "Autumn Brown"
+            },
+            {
+              "color": "Weathered Grey"
+            }
+          ]
+        },
+        {
+          "name": "Royal Sovereign (3-Tab)",
+          "colors": [
+            {
+              "color": "Ash Brown"
+            },
+            {
+              "color": "Silver Lining"
+            },
+            {
+              "color": "Summer Sage"
+            },
+            {
+              "color": "Slate"
+            },
+            {
+              "color": "Weathered Gray"
+            },
+            {
+              "color": "White"
+            },
+            {
+              "color": "Autumn Brown"
+            },
+            {
+              "color": "Charcoal"
+            },
+            {
+              "color": "Cypress Tan"
+            },
+            {
+              "color": "Golden Cedar"
+            },
+            {
+              "color": "Russet Red"
+            },
+            {
+              "color": "Sandrift"
+            },
+            {
+              "color": "Nickel Gray"
+            }
+          ]
+        },
+        {
+          "name": "Timberline AH (American Harvest)",
+          "colors": [
+            { "color": "Appalachian Sky" },
+            { "color": "Cedar Falls" },
+            { "color": "Golden Harvest" },
+            { "color": "Nantucket Morning" }
+          ]
+        },
+        {
+          "name": "Timberline AS 11",
+          "colors": [
+            { "color": "Barkwood" },
+            { "color": "Charcoal" },
+            { "color": "Hickory" },
+            { "color": "Pewter Gray" },
+            { "color": "Shakewood" },
+            { "color": "Slate" },
+            { "color": "Weathered Wood" }
+          ]
+        },
+        {
+          "name": "Timberline CS",
+          "colors": [
+            { "color": "Appalachian Sky" },
+            { "color": "Cedar Falls" },
+            { "color": "Golden Harvest" },
+            { "color": "Nantucket Morning" }
+          ]
+        },
+        {
+          "name": "Timberline HDZ",
+          "colors": [
+            { "color": "Barkwood" },
+            { "color": "Hunter Green" },
+            { "color": "Hickory" },
+            { "color": "Oyster Gray" },
+            { "color": "Mission Brown" },
+            { "color": "Pewter Gray" },
+            { "color": "Shakewood" },
+            { "color": "Weathered Wood" },
+            { "color": "Birchwood" },
+            { "color": "Biscayne Blue" },
+            { "color": "Fox Hollow Gray" },
+            { "color": "Williamsburg Slate" },
+            { "color": "Patriot Red" },
+            { "color": "Charcoal" },
+            { "color": "Driftwood" }
+          ]
+        },
+        {
+          "name": "Timberline HDZ RS (Reflector Series)",
+          "colors": [
+            { "color": "Appalachian Sky" },
+            { "color": "Cedar Falls" },
+            { "color": "Golden Harvest" },
+            { "color": "Nantucket Morning" }
+          ]
+        },
+        {
+          "name": "Timberline NS",
+          "colors": [
+            { "color": "Appalachian Sky" },
+            { "color": "Cedar Falls" },
+            { "color": "Golden Harvest" },
+            { "color": "Nantucket Morning" }
+          ]
+        },
+        {
+          "name": "Timberline UHD",
+          "colors": [
+            { "color": "Barkwood" },
+            { "color": "Pewter Gray" },
+            { "color": "Shakewood" },
+            { "color": "Slate" },
+            { "color": "Weathered Wood" },
+            { "color": "Birchwood" },
+            { "color": "Charcoal" }
+          ]
+        },
+        {
+          "name": "Timberline UHD with (Dual shadow Line)",
+          "colors": [
+            { "color": "Barkwood" },
+            { "color": "Pewter Gray" },
+            { "color": "Shakewood" },
+            { "color": "Slate" },
+            { "color": "Weathered Wood" },
+            { "color": "Birchwood" },
+            { "color": "Charcoal" }
+          ]
+        },
+        {
+          "name": "Camelot 11",
+          "colors": [
+            { "color": "Barkwood" },
+            { "color": "Weathered Timber" },
+            { "color": "Charcoal" },
+            { "color": "Antique Slate" },
+            { "color": "Royal Slate" }
+          ]
+        },
+        {
+          "name": "Glenwood",
+          "colors": [
+            { "color": "Autumn Harvest" },
+            { "color": "Weathered Wood" },
+            { "color": "Dusty Gray" }
+          ]
+        },
+        {
+          "name": "Grand Canyon",
+          "colors": [
+            { "color": "Black Oak" },
+            { "color": "Mission Brown" },
+            { "color": "Storm Cloud" },
+            { "color": "Stone Wood" }
+          ]
+        },
+        {
+          "name": "Grand Sequoia",
+          "colors": [
+            { "color": "Autumn Brown" },
+            { "color": "Charcoal" },
+            { "color": "Charcoal Plus" },
+            { "color": "Weathered Timber" },
+            { "color": "Weathered Wood" },
+            { "color": "Adobe Sunset" },
+            { "color": "Dusty Gray" },
+            { "color": "Forrest Brown" },
+            { "color": "Forrest Brown Plus" },
+            { "color": "Ocean Gray" },
+            { "color": "Sagewood" },
+            { "color": "Sandalwood" }
+          ]
+        },
+        {
+          "name": "Grand Sequoia AS",
+          "colors": [
+            { "color": "Autumn Brown" },
+            { "color": "Charcoal" },
+            { "color": "Charcoal Plus" },
+            { "color": "Weathered Timber" },
+            { "color": "Weathered Wood" },
+            { "color": "Adobe Sunset" },
+            { "color": "Dusty Gray" },
+            { "color": "Forrest Brown" },
+            { "color": "Forrest Brown Plus" },
+            { "color": "Ocean Gray" },
+            { "color": "Sagewood" },
+            { "color": "Sandalwood" }
+          ]
+        },
+        {
+          "name": "Grand Sequoia RS",
+          "colors": [
+            { "color": "Autumn Brown" },
+            { "color": "Charcoal" },
+            { "color": "Charcoal Plus" },
+            { "color": "Weathered Timber" },
+            { "color": "Weathered Wood" },
+            { "color": "Adobe Sunset" },
+            { "color": "Dusty Gray" },
+            { "color": "Forrest Brown" },
+            { "color": "Forrest Brown Plus" },
+            { "color": "Ocean Gray" },
+            { "color": "Sagewood" },
+            { "color": "Sandalwood" }
+          ]
+        },
+        {
+          "name": "Grand Sequoia RS+",
+          "colors": [
+            { "color": "Autumn Brown" },
+            { "color": "Charcoal" },
+            { "color": "Charcoal Plus" },
+            { "color": "Weathered Timber" },
+            { "color": "Weathered Wood" },
+            { "color": "Adobe Sunset" },
+            { "color": "Dusty Gray" },
+            { "color": "Forrest Brown" },
+            { "color": "Forrest Brown Plus" },
+            { "color": "Ocean Gray" },
+            { "color": "Sagewood" },
+            { "color": "Sandalwood" }
+          ]
+        },
+        {
+          "name": "Slateline",
+          "colors": [
+            { "color": "Antique Slate" },
+            { "color": "English Gray" },
+            { "color": "Royal Slate" },
+            { "color": "Weathered Slate" }
+          ]
+        },
+        {
+          "name": "Woodland",
+          "colors": [
+            { "color": "Cedarwood Abbey" },
+            { "color": "Castlewood Gray" },
+            { "color": "Tuscan Sunset" },
+            { "color": "Woodberry Brown" }
+          ]
+        }
+      ],
+      "cappings": [
+        { "capping": "Seal-A-Ridge" },
+        { "capping": "Seal-A-Ridge Armorshield" },
+        { "capping": "Z-Ridge" },
+        { "capping": "Timbertex" },
+        { "capping": "Timbercrest" },
+        { "capping": "RidGlass" }
+      ]
+    },
+    {
+      "name": "IKO",
+      "shingles": [
+        {
+          "name": "Marathon Plus AR",
+          "colors": ["red", "blue", "Grey"]
+        },
+        {
+          "name": "Dynasty",
+          "colors": ["green", "yellow", "white"]
+        },
+        {
+          "name": "Nordic",
+          "colors": ["green", "yellow", "white"]
+        },
+        {
+          "name": "Crown Slate",
+          "colors": ["green", "yellow", "white"]
+        },
+        {
+          "name": "Armourshake",
+          "colors": ["green", "yellow", "white"]
+        }
+      ],
+      "cappings": [
+        { "capping": "Hip & Ridge" },
+        { "capping": "Hip & Ridge 12''" },
+        { "capping": "Hip & Ridge Plus" },
+        { "capping": "IKO UltraHP/IKO UltraHP IR" }
+      ]
+    },
+    {
+      "name": "Malarkey",
+      "shingles": [
+        {
+          "name": "Windsor",
+          "colors": [
+            { "color": "Antique Brown" },
+            { "color": "Black Oak" },
+            { "color": "Heather" },
+            { "color": "Midnight Black" },
+            { "color": "Natural Wood" },
+            { "color": "Storm Grey" },
+            { "color": "Weathered Wood" }
+          ]
+        },
+        {
+          "name": "Legacy",
+          "colors": [
+            { "color": "Antique Brown" },
+            { "color": "Black Oak" },
+            { "color": "Heather" },
+            { "color": "Midnight Black" },
+            { "color": "Natural Wood" },
+            { "color": "Sienna Blend" },
+            { "color": "Silverwood" },
+            { "color": "Storm Grey" },
+            { "color": "Weathered Wood" }
+          ]
+        },
+        {
+          "name": "Vista",
+          "colors": [
+            { "color": "Antique Brown" },
+            { "color": "Black Oak" },
+            { "color": "Heather" },
+            { "color": "Midnight Black" },
+            { "color": "Natural Wood" },
+            { "color": "Sienna Blend" },
+            { "color": "Silverwood" },
+            { "color": "Storm Grey" },
+            { "color": "Weathered Wood" }
+          ]
+        },
+        {
+          "name": "Highlander NEX",
+          "colors": [
+            { "color": "Antique Brown" },
+            { "color": "Midnight Black" },
+            { "color": "Natural Wood" },
+            { "color": "Sienna Blend" },
+            { "color": "Silverwood" },
+            { "color": "Storm Grey" },
+            { "color": "Weathered Wood" }
+          ]
+        }
+      ],
+      "cappings": [
+        { "capping": "RidgeFlex 10''" },
+        { "capping": "RidgeFlex 12''" },
+        { "capping": "EX-Ridge 8''" },
+        { "capping": "EX-Ridge XT 10''" }
+      ]
+    },
+    {
+      "name": "Owens Corning",
+      "shingles": [
+        {
+          "name": "Supreme (3-Tab)",
+          "colors": [
+            { "color": "Brownwood" },
+            { "color": "Desert Tan" },
+            { "color": "Driftwood" },
+            { "color": "Estate Gray" },
+            { "color": "Onyx Black" },
+            { "color": "Teak" }
+          ]
+        },
+        {
+          "name": "TruDefinition",
+          "colors": [
+            { "color": "Brownwood" },
+            { "color": "Desert Tan" },
+            { "color": "Driftwood" },
+            { "color": "Estate Gray" },
+            { "color": "Onyx Black" },
+            { "color": "Teak" },
+            { "color": "Harbour Blue" },
+            { "color": "Quarry Gray" },
+            { "color": "Sierra Gray" }
+          ]
+        },
+        {
+          "name": "Oakridge",
+          "colors": [
+            { "color": "Brownwood" },
+            { "color": "Desert Tan" },
+            { "color": "Driftwood" },
+            { "color": "Estate Gray" },
+            { "color": "Onyx Black" },
+            { "color": "Teak" },
+            { "color": "Sierra Gray" }
+          ]
+        },
+        {
+          "name": "Berkshire",
+          "colors": [
+            { "color": "Caterbury Black" },
+            { "color": "Colonial" },
+            { "color": "Concord" },
+            { "color": "Manchester Gray" },
+            { "color": "Sherwood Beige" }
+          ]
+        }
+      ],
+      "cappings": [
+        { "capping": "Berkshire" },
+        { "capping": "DecoRidge" },
+        { "capping": "DuraRidge" },
+        { "capping": "ProEdge" },
+        { "capping": "ProEdge Storm" },
+        { "capping": "RIZERidge" },
+        { "capping": "WeatherGuard" },
+        { "capping": "ProEdge FLEX" },
+        { "capping": "IMPACTRIDGE" }
+      ]
+    },
+    {
+      "name": "TAMKO",
+      "shingles": [
+        {
+          "name": "Elite Glass-Seal (3-Tab)",
+          "colors": [
+            { "color": "Antique Slate" },
+            { "color": "Empire Green Blend" },
+            { "color": "Grey Blend" },
+            { "color": "Oxford Grey" },
+            { "color": "Rustic Cedar" },
+            { "color": "Rustic Hickory" },
+            { "color": "Rustic Slate" },
+            { "color": "Tile red Blend" },
+            { "color": "Tweed Blend" },
+            { "color": "Weathered Wood" },
+            { "color": "White" }
+          ]
+        },
+        {
+          "name": "Heritage",
+          "colors": [
+            { "color": "Autumn Brown" },
+            { "color": "Natural Timber" },
+            { "color": "Black Walnut" },
+            { "color": "Desert Sand" },
+            { "color": "Glacier White" },
+            { "color": "Harvest Gold" },
+            { "color": "Rustic Black" },
+            { "color": "Rustic Slate" },
+            { "color": "Thunderstorm Grey" },
+            { "color": "Weathered Wood" },
+            { "color": "Mountain Slate" },
+            { "color": "Natural Timber" },
+            { "color": "Olde English Pewter" },
+            { "color": "Painted Desert" },
+            { "color": "Rustic Brown" },
+            { "color": "Rustic Cedar" },
+            { "color": "Rustic Evergreen" },
+            { "color": "Rustic Redwood" }
+          ]
+        }
+      ],
+      "cappings": [
+        { "capping": "Hertiage Vintage 12x12 Hip & Ridge" },
+        { "capping": "Hertiage Designer Ridge" },
+        { "capping": "12-1/4'' x 12'' Hip & Ridge" },
+        { "capping": "12-1/4'' x 12'' Heritage Hip & Ridge IR" }
+      ]
+    }
+  ],
+
+  "starterShingle": [
+    {
+      "name": "Atlas",
+      "shingles": [
+        {
+          "name": "Pro-Cut Starter Shingles"
+        },
+        {
+          "name": "Pro-Cut Starter Roll"
+        }
+      ]
+    },
+    {
+      "name": "BP",
+      "shingles": [
+        {
+          "name": "Starter Strip Shingles"
+        }
+      ]
+    },
+    {
+      "name": "CertainTeed",
+      "shingles": [
+        {
+          "name": "SwiftStart"
+        },
+        {
+          "name": "High-Performance Starter"
+        },
+        {
+          "name": "Presidential Starter"
+        }
+      ]
+    },
+    {
+      "name": "GAF",
+      "shingles": [
+        {
+          "name": "Weatherblocker"
+        },
+        {
+          "name": "Pro-Start"
+        },
+        {
+          "name": "QuickStart Peel and Stick"
+        },
+        {
+          "name": "Startermatch"
+        }
+      ]
+    },
+    {
+      "name": "IKO",
+      "shingles": [
+        {
+          "name": "Armour Starter"
+        },
+        {
+          "name": "Leading Edge Plus"
+        },
+        {
+          "name": "EdgeSeal"
+        }
+      ]
+    },
+    {
+      "name": "Owens Corning",
+      "shingles": [
+        {
+          "name": "Starter Shingle Roll"
+        },
+        {
+          "name": "Starter Strip Shingle"
+        },
+        {
+          "name": "Starter Strip Plus Shingle"
+        }
+      ]
+    },
+    {
+      "name": "TAMKO",
+      "shingles": [
+        {
+          "name": "Heritage Vintage Shingle Starter"
+        },
+        {
+          "name": "Shingle Starter"
+        },
+        {
+          "name": "Perforated Starter"
+        },
+        {
+          "name": "10'' Starter"
+        }
+      ]
+    }
+  ],
+
+  "hrShingle": [
+    {
+      "name": "Atlas",
+      "shingles": [
+        {
+          "name": "StormMaster Hip & Ridge"
+        },
+        {
+          "name": "Pro-Cut Hip & Ridge"
+        },
+        {
+          "name": "Pro-Cut High Profile Hip & Ridge"
+        }
+      ]
+    },
+    {
+      "name": "BP",
+      "shingles": [
+        {
+          "name": "Silhouette"
+        },
+        {
+          "name": "Ascu-Ridge"
+        },
+        {
+          "name": "Yukon SB"
+        }
+      ]
+    },
+    {
+      "name": "CertainTeed",
+      "shingles": [
+        { "name": "Mountain Ridge" },
+        { "name": "Ceadarcrest" },
+        { "name": "Shadow Ridge Climateflex" },
+        { "name": "Shangle Ridge" },
+        { "name": "Shadow Ridge" }
+      ]
+    },
+    {
+      "name": "GAF",
+      "shingles": [
+        { "name": "Seal-A-Ridge" },
+        { "name": "Seal-A-Ridge Armorshield" },
+        { "name": "Z-Ridge" },
+        { "name": "Timbertex" },
+        { "name": "Timbercrest" },
+        { "name": "RidGlass" }
+      ]
+    },
+    {
+      "name": "IKO",
+      "shingles": [
+        { "name": "Hip & Ridge" },
+        { "name": "Hip & Ridge 12''" },
+        { "name": "Hip & Ridge Plus" },
+        { "name": "IKO UltraHP/IKO UltraHP IR" }
+      ]
+    },
+    {
+      "name": "Owens Corning",
+      "shingles": [
+        { "name": "Berkshire" },
+        { "name": "DecoRidge" },
+        { "name": "DuraRidge" },
+        { "name": "ProEdge" },
+        { "name": "ProEdge Storm" },
+        { "name": "RIZERidge" },
+        { "name": "WeatherGuard" },
+        { "name": "ProEdge FLEX" },
+        { "name": "IMPACTRIDGE" }
+      ]
+    },
+    {
+      "name": "TAMKO",
+      "shingles": [
+        { "name": "Hertiage Vintage 12x12 Hip & Ridge" },
+        { "name": "Hertiage Designer Ridge" },
+        { "name": "12-1/4'' x 12'' Hip & Ridge" },
+        { "name": "12-1/4'' x 12'' Heritage Hip & Ridge IR" }
+      ]
+    }
+  ],
+
+  "deckProtection": [
+    {
+      "name": "Atlas",
+      "underlay": [
+        {
+          "name": "Summit 60 Synthetic"
+        },
+        {
+          "name": "Summit 180 Synthetic"
+        },
+        {
+          "name": "#15 Asphalt Saturated"
+        },
+        {
+          "name": "#30 Asphalt Saturated"
+        },
+        {
+          "name": "Gorilla Guard 30 Eng Felt"
+        },
+        {
+          "name": "Gorilla Guard Spec 30 Eng Felt"
+        }
+      ]
+    },
+    {
+      "name": "CertainTeed",
+      "underlay": [
+        { "name": "Diamonddeck (Synthetic)" },
+        { "name": "Roofrunner (Synthetic)" },
+        { "name": "Roofers' Select (Felt)" }
+      ]
+    },
+    {
+      "name": "GAF",
+      "underlay": [
+        { "name": "Deck-Armor (Synthentic)" },
+        { "name": "Tiger Paw (Synthentic)" },
+        { "name": "Feltbuster (Synthentic)" },
+        { "name": "Shingle-Mate (Fiberglas-Reinforced)" },
+        { "name": "Versashield (Fireshield)" }
+      ]
+    },
+    {
+      "name": "IKO",
+      "underlay": [
+        { "name": "RoofGard-Cool Grey (Synthetic)" },
+        { "name": "Stormtite (Synthetic)" }
+      ]
+    },
+    {
+      "name": "Owens Corning",
+      "underlay": [
+        { "name": "Deck Defense" },
+        { "name": "ProArmor" },
+        { "name": "Fiberglass Reinforced Felt" },
+        { "name": "RhinoRoof U20" },
+        { "name": "Titanium UDL 25" },
+        { "name": "Titanium UDL 30" },
+        { "name": "Titanium UDL 50" },
+        { "name": "Titanium X30" }
+      ]
+    },
+    {
+      "name": "TAMKO",
+      "underlay": [
+        { "name": "Synthetic Guard Plus" },
+        { "name": "Synthetic Guard Underlayment" },
+        { "name": "NO. 15 Organic Felt" },
+        { "name": "NO. 30 Organic Felt" }
+      ]
+    }
+  ]
+}

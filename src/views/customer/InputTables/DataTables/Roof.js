@@ -7,8 +7,9 @@ import "../style.scss";
 export default function Roof(props) {
   const items = props.items;
   const load = props.load;
-  const form = props.form;
-  const setForm = props.setForm;
+  //const form = props.form;
+  //const setForm = props.setForm;
+  const [form, setForm] = useState([]);
   const [formErr, setFormErr] = useState({
     lengthGrnd: false,
     width: false,
@@ -30,7 +31,7 @@ export default function Roof(props) {
     wallInc: false,
     chimneyInc: false,
   });
-  const [accordion, setAccordion] = useState(0);
+  const [accordion, setAccordion] = useState(null);
   const topRef = useRef(null);
   const removeRoofFace = props.removeRoofFace;
   const [error, setError] = useState(false);
@@ -38,7 +39,9 @@ export default function Roof(props) {
 
   const ftFormFields = (field) => {
     let isValid = true;
-    if (field !== "") {
+    if (field === "" || field === undefined) {
+      return isValid;
+    } else if (field !== "" || field != undefined) {
       if (!expression.test(field) || field > 999 || field < 0) {
         isValid = false;
       }
@@ -47,7 +50,9 @@ export default function Roof(props) {
   };
   const incFormFields = (field) => {
     let isValid = true;
-    if (field !== "") {
+    if (field === "" || field === undefined) {
+      return isValid;
+    } else if (field !== "" || field != undefined) {
       if (!expression.test(field) || field > 11 || field < 0) {
         isValid = false;
       }
@@ -55,27 +60,18 @@ export default function Roof(props) {
     return isValid;
   };
 
+  function handleEnter(event) {
+    if (event.keyCode === 13) {
+      const inputs = event.target.form;
+      const index = Array.prototype.indexOf.call(inputs, event.target);
+      inputs.elements[index + 1].focus();
+      event.preventDefault();
+    }
+  }
+
   //add new row
   const AddArray = (e) => {
     e.preventDefault();
-    let islengthGrndValid = ftFormFields(form.lengthGrnd);
-    let islengthGrndIncValid = incFormFields(form.lengthGrndInc);
-    let iswidthValid = ftFormFields(form.width);
-    let iswidthIncValid = incFormFields(form.widthInc);
-    let iseaveValid = ftFormFields(form.eave);
-    let iseaveIncValid = incFormFields(form.eaveInc);
-    let isgableGrndValid = ftFormFields(form.gableGrnd);
-    let isgableGrndIncValid = incFormFields(form.gableGrndInc);
-    let isvalleyRMValid = ftFormFields(form.valleyRM);
-    let isvalleyRMIncValid = incFormFields(form.valleyRMInc);
-    let ishipRMValid = ftFormFields(form.hipRM);
-    let ishipRMIncValid = incFormFields(form.hipRMInc);
-    let isridgeValid = ftFormFields(form.ridge);
-    let isridgeIncValid = incFormFields(form.ridgeInc);
-    let iswallValid = ftFormFields(form.wall);
-    let iswallIncValid = incFormFields(form.wallInc);
-    let ischimneyValid = ftFormFields(form.chimney);
-    let ischimneyIncValid = incFormFields(form.chimneyInc);
 
     if (
       form.pitch === 0 &&
@@ -102,41 +98,41 @@ export default function Roof(props) {
       setTimeout(() => {
         setError(false);
       }, 4000);
-    } else if (!islengthGrndValid) {
+    } else if (!ftFormFields(form.lengthGrnd)) {
       setFormErr({ lengthGrnd: true });
-    } else if (!islengthGrndIncValid) {
+    } else if (!incFormFields(form.lengthGrndInc)) {
       setFormErr({ lengthGrndInc: true });
-    } else if (!iswidthValid) {
+    } else if (!ftFormFields(form.width)) {
       setFormErr({ width: true });
-    } else if (!iswidthIncValid) {
+    } else if (!incFormFields(form.widthInc)) {
       setFormErr({ widthInc: true });
-    } else if (!iseaveValid) {
+    } else if (!ftFormFields(form.eave)) {
       setFormErr({ eave: true });
-    } else if (!iseaveIncValid) {
+    } else if (!incFormFields(form.eaveInc)) {
       setFormErr({ eaveInc: true });
-    } else if (!isgableGrndValid) {
+    } else if (!ftFormFields(form.gableGrnd)) {
       setFormErr({ gableGrnd: true });
-    } else if (!isgableGrndIncValid) {
+    } else if (!incFormFields(form.gableGrndInc)) {
       setFormErr({ gableGrndInc: true });
-    } else if (!isvalleyRMValid) {
+    } else if (!ftFormFields(form.valleyRM)) {
       setFormErr({ valleyRM: true });
-    } else if (!isvalleyRMIncValid) {
+    } else if (!incFormFields(form.valleyRMInc)) {
       setFormErr({ valleyRMInc: true });
-    } else if (!ishipRMValid) {
+    } else if (!ftFormFields(form.hipRM)) {
       setFormErr({ hipRM: true });
-    } else if (!ishipRMIncValid) {
+    } else if (!incFormFields(form.hipRMInc)) {
       setFormErr({ hipRMInc: true });
-    } else if (!isridgeValid) {
+    } else if (!ftFormFields(form.ridge)) {
       setFormErr({ ridge: true });
-    } else if (!isridgeIncValid) {
+    } else if (!incFormFields(form.ridgeInc)) {
       setFormErr({ ridgeInc: true });
-    } else if (!iswallValid) {
+    } else if (!ftFormFields(form.wall)) {
       setFormErr({ wall: true });
-    } else if (!iswallIncValid) {
+    } else if (!incFormFields(form.wallInc)) {
       setFormErr({ wallInc: true });
-    } else if (!ischimneyValid) {
+    } else if (!ftFormFields(form.chimney)) {
       setFormErr({ chimney: true });
-    } else if (!ischimneyIncValid) {
+    } else if (!incFormFields(form.chimneyInc)) {
       setFormErr({ chimneyInc: true });
     } else {
       setFormErr(false);
@@ -256,6 +252,8 @@ export default function Roof(props) {
                   className="customersTable_sliderBtn border w-100 text-center p-1"
                   onClick={() => {
                     setAccordion(accordion === index ? null : index);
+                    console.log("MYINDEX", index);
+                    console.log("MYACCORDIAN", accordion);
                   }}
                 >
                   Roof Face {index + 1}
@@ -387,7 +385,9 @@ export default function Roof(props) {
             error={formErr.lengthGrnd}
             errorInc={formErr.lengthGrndInc}
             value={form.lengthGrnd}
-            onChange={(e) => setForm({ ...form, lengthGrnd: e.target.value })}
+            onChange={(e) => {
+              setForm({ ...form, lengthGrnd: e.target.value });
+            }}
             idInc="lengthGrndInc"
             valueInc={form.lengthGrndInc}
             onChangeInc={(e) => {
@@ -541,7 +541,7 @@ export default function Roof(props) {
           <CustomInput
             type="number"
             id="wall"
-            label="Roof"
+            label="Wall to Roof Flashing"
             error={formErr.wall}
             errorInc={formErr.wallInc}
             value={form.wall}
@@ -560,7 +560,7 @@ export default function Roof(props) {
           <CustomInput
             type="number"
             id="chimney"
-            label="Chimney"
+            label="Chimney Flashing"
             error={formErr.chimney}
             errorInc={formErr.chimneyInc}
             value={form.chimney}
@@ -583,7 +583,7 @@ export default function Roof(props) {
         <div className="col-12 mt-4">
           {error ? (
             <p className="text-center small text-danger">
-              Please enter in at least 1 field
+              Please enter in at least length & width field
             </p>
           ) : null}
           <CButton className="btn w-100" style={btnStyle} onClick={AddArray}>
