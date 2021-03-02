@@ -36,44 +36,6 @@ export default function Photos() {
       });
   }, [id, email, passToken, history]);
 
-  /*const handleAlbum = (e) => {
-    e.preventDefault();
-    if (title) {
-      Axios.post("/api/album/addalbum", { id, title, email, passToken })
-        .then(() => {
-          Axios.post("/api/album/getalbum", { id, email, passToken })
-            .then((res) => {
-              setAlbums(res.data.data);
-            })
-            .catch((err) => {
-              setErrs({ ...errs, failed: true });
-            });
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else {
-      setTitleErr(true);
-    }
-  };
-
-  
-  const handleDeleteAlbum = (album_id) => {
-    Axios.post("/api/album/deletealbum", { album_id, email, passToken })
-      .then(() => {
-        Axios.post("/api/album/getalbum", { id, email, passToken })
-          .then((res) => {
-            setAlbums(res.data.data);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };*/
-
   return (
     <div className="photos_page">
       <div className="float-left">
@@ -133,69 +95,14 @@ export default function Photos() {
                     : i === 3
                     ? "Completion"
                     : i === 4
-                    ? "Estimatees"
+                    ? "Estimates"
                     : null}
                 </h5>
               </div>
             </Link>
           );
         })}
-
-        {/*<form className="form-group" onSubmit={handleAlbum}>
-          <div
-            className="modal fade"
-            id="exampleModal"
-            tabIndex="-1"
-            role="dialog"
-            aria-labelledby="exampleModalLabel"
-            aria-hidden="true"
-          >
-            <div className="modal-dialog" role="document">
-              <div className="modal-content">
-                <div className="modal-body">
-                  <h5 className="float-left">Create Album</h5>
-                  <button
-                    type="button"
-                    className="close mb-4"
-                    data-dismiss="modal"
-                    aria-label="Close"
-                  >
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                  <input
-                    type="text"
-                    id="albumTitle"
-                    name="albumTitle"
-                    placeholder="Album Title*"
-                    className={
-                      titleErr ? "form-control border-danger" : "form-control"
-                    }
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                  />
-                  <div className="confirm_btns mt-3">
-                    <button
-                      type="submit"
-                      style={{ backgroundColor: "#e60029" }}
-                      className="btn btn-primary w-100 shadow"
-                    >
-                      Create
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-                  </form>*/}
       </div>
     </div>
   );
 }
-
-const fileNames = [
-  { name: "Pre Construction" },
-  { name: "Construction" },
-  { name: "Details" },
-  { name: "Completion" },
-  { name: "Estimatees" },
-];

@@ -17,6 +17,9 @@ export default function Estimates() {
   const email = localStorage.getItem("email");
   const passToken = localStorage.getItem("passToken");
   const [uploads, setUploads] = useState([]);
+  const [roof, setRoof] = useState([]);
+  const [eave, setEave] = useState([]);
+  const [selection, setSelection] = useState([]);
 
   useEffect(() => {
     if (!localStorage.getItem("authToken")) {
@@ -24,7 +27,7 @@ export default function Estimates() {
     }
     Axios.post("/api/album/getalbum", { id, email, passToken })
       .then((res) => {
-        let id = res.data.data[0]._id;
+        let id = res.data.data[4]._id;
 
         Axios.post("/api/album/getalbumphotos", {
           id,
@@ -37,6 +40,16 @@ export default function Estimates() {
           .catch((error) => {
             console.log(error);
           });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    Axios.post("/api/measure/addallmeasure", { id, email, passToken })
+      .then((res) => {
+        setRoof(res.data.roof);
+        setEave(res.data.eave);
+        setSelection(res.data.selection);
       })
       .catch((err) => {
         console.log(err);
@@ -61,7 +74,9 @@ export default function Estimates() {
           <h3>Estimates</h3>
         </div>
       </div>
-      <CustomCarousel uploads={uploads} />
+      <div style={{ marginBottom: "25px" }}>
+        <CustomCarousel uploads={uploads} />
+      </div>
       <div style={{ marginTop: "-15px" }}>
         <CustomerCard />
       </div>
@@ -72,7 +87,7 @@ export default function Estimates() {
         <DescriptionCard />
       </div>
       <div style={{ marginTop: "-15px" }}>
-        <DetailsCard />
+        <DetailsCard selection={selection} />
       </div>
       <div style={{ marginTop: "-15px" }}>
         <InfoCard />

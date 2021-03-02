@@ -22,7 +22,7 @@ export default function CustomCarousel(props) {
         >
           {uploads.map((item, index) => {
             return (
-              <div className="m-2">
+              <div className="m-2" key={index}>
                 <div
                   className="card shadow"
                   key={index}
