@@ -6,7 +6,7 @@ const TheFooter = () => {
     <>
       <CFooter fixed={false}>
         <h6 className="text-white">Roofbundle</h6>
-        <h6
+        {/*<h6
           className="text-white"
           style={{
             position: "absolute",
@@ -18,7 +18,7 @@ const TheFooter = () => {
           }}
         >
           Beta
-        </h6>
+        </h6>*/}
       </CFooter>
     </>
   );

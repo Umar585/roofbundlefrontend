@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from "react";
+import Axios from "axios";
+import { useParams } from "react-router-dom";
 import { CCard, CCollapse } from "@coreui/react";
 import jsonData from "./data.json";
 
 export default function Selections() {
+  const { id } = useParams();
   const [collapse, setCollapse] = useState(false);
   const [form, setForm] = useState({
-    oneLayer_remove: false,
+    oneLayer_remove: true,
     twoLayer_remove: false,
 
-    ground_delivery: false,
+    ground_delivery: true,
     rooftop_delivery: false,
 
-    roof_bin: false,
+    roof_bin: true,
     away_bin: false,
 
-    osb_decking: false,
+    osb_decking: true,
     plywood_decking: false,
     fir_decking: false,
 
@@ -37,7 +40,7 @@ export default function Selections() {
     valley_flashing: "",
     chimney_flashing: "",
 
-    metal_chimney: false,
+    metal_chimney: true,
     concrete_chimney: false,
     brick_chimney: false,
 
@@ -53,19 +56,168 @@ export default function Selections() {
     fourmat_BPS: "",
     convert_BPS: "",
 
-    satellite_reinstall: false,
+    satellite_reinstall: true,
     solar_reinstall: false,
 
-    work_warranty: false,
+    work_warranty: true,
     registered_warranty: false,
   });
-
   const [brandShingles, setBrandShingles] = useState([]);
   const [colorShingles, setColorShingles] = useState([]);
   const [cappingShingles, setCappingShingles] = useState([]);
   const [starterShingles, setStarterShingles] = useState([]);
   const [hrShingles, setHrShingles] = useState([]);
   const [underlayProtection, setUnderlayProtection] = useState([]);
+  const [errs, setErrs] = useState([]);
+
+  const handleForm = () => {
+    let isValid = true;
+    if (
+      form.brand_roof === "" &&
+      form.shingle_roof === "" &&
+      form.color_roof === "" &&
+      form.capping_roof === "" &&
+      form.starter_brand === "" &&
+      form.starter_shingle === "" &&
+      form.hr_brand === "" &&
+      form.hr_shingle === "" &&
+      form.ice_water_brand === "" &&
+      form.ice_water_protection === "" &&
+      form.underlay_brand === "" &&
+      form.underlay_protection === "" &&
+      form.drip_edge_flashing === "" &&
+      form.wall_roof_flashing === "" &&
+      form.valley_flashing === "" &&
+      form.chimney_flashing === "" &&
+      form.Replace_ventilation === "" &&
+      form.remove_ventilation === "" &&
+      form.new_ventilation === "" &&
+      form.ridge_ventilation === "" &&
+      form.reSeal_BPS === "" &&
+      form.onemat_BPS === "" &&
+      form.twomat_BPS === "" &&
+      form.threemat_BPS === "" &&
+      form.fourmat_BPS === "" &&
+      form.convert_BPS === ""
+    ) {
+      isValid = false;
+      setErrs({ ...errs, formErr: true });
+      setTimeout(() => {
+        setErrs({ ...errs, formErr: false });
+      }, 4000);
+    } else if (form.brand_roof === "") {
+      setErrs({ errs, brand_roof: true });
+      isValid = false;
+    } else if (form.shingle_roof === "") {
+      setErrs({ errs, shingle_roof: true });
+      isValid = false;
+    } else if (form.color_roof === "") {
+      setErrs({ errs, color_roof: true });
+      isValid = false;
+    } else if (form.capping_roof === "") {
+      setErrs({ errs, capping_roof: true });
+      isValid = false;
+    } else if (form.starter_brand === "") {
+      setErrs({ errs, starter_brand: true });
+      isValid = false;
+    } else if (form.starter_shingle === "") {
+      setErrs({ errs, starter_shingle: true });
+      isValid = false;
+    } else if (form.hr_brand === "") {
+      setErrs({ errs, hr_brand: true });
+      isValid = false;
+    } else if (form.hr_shingle === "") {
+      setErrs({ errs, hr_shingle: true });
+      isValid = false;
+    } else if (form.ice_water_brand === "") {
+      setErrs({ errs, ice_water_brand: true });
+      isValid = false;
+    } else if (form.ice_water_protection === "") {
+      setErrs({ errs, ice_water_protection: true });
+      isValid = false;
+    } else if (form.underlay_brand === "") {
+      setErrs({ errs, underlay_brand: true });
+      isValid = false;
+    } else if (form.underlay_protection === "") {
+      setErrs({ errs, underlay_protection: true });
+      isValid = false;
+    } else if (form.drip_edge_flashing === "") {
+      setErrs({ errs, drip_edge_flashing: true });
+      isValid = false;
+    } else if (form.wall_roof_flashing === "") {
+      setErrs({ errs, wall_roof_flashing: true });
+      isValid = false;
+    } else if (form.valley_flashing === "") {
+      setErrs({ errs, valley_flashing: true });
+      isValid = false;
+    } else if (form.chimney_flashing === "") {
+      setErrs({ errs, chimney_flashing: true });
+      isValid = false;
+    } else if (form.Replace_ventilation === "") {
+      setErrs({ errs, Replace_ventilation: true });
+      isValid = false;
+    } else if (form.remove_ventilation === "") {
+      setErrs({ errs, remove_ventilation: true });
+      isValid = false;
+    } else if (form.new_ventilation === "") {
+      setErrs({ errs, new_ventilation: true });
+      isValid = false;
+    } else if (form.ridge_ventilation === "") {
+      setErrs({ errs, ridge_ventilation: true });
+      isValid = false;
+    } else if (form.reSeal_BPS === "") {
+      setErrs({ errs, reSeal_BPS: true });
+      isValid = false;
+    } else if (form.onemat_BPS === "") {
+      setErrs({ errs, onemat_BPS: true });
+      isValid = false;
+    } else if (form.twomat_BPS === "") {
+      setErrs({ errs, twomat_BPS: true });
+      isValid = false;
+    } else if (form.threemat_BPS === "") {
+      setErrs({ errs, threemat_BPS: true });
+      isValid = false;
+    } else if (form.fourmat_BPS === "") {
+      setErrs({ errs, fourmat_BPS: true });
+      isValid = false;
+    } else if (form.convert_BPS === "") {
+      setErrs({ errs, convert_BPS: true });
+      isValid = false;
+    } else {
+      setErrs(false);
+      isValid = true;
+    }
+    return isValid;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const isValid = handleForm();
+    if (isValid) {
+      let email = localStorage.getItem("email");
+      let passToken = localStorage.getItem("passToken");
+      Axios.post("/api/measure/addselectionsmeasure", {
+        id,
+        email,
+        passToken,
+        form,
+      })
+        .then((res) => {
+          console.log(form);
+          setErrs({ errs, success: true });
+          setTimeout(() => {
+            setErrs({ errs, success: false });
+          }, 4000);
+        })
+        .catch((err) => {
+          setErrs({ errs, failed: true });
+          setTimeout(() => {
+            setErrs({ errs, failed: false });
+          }, 4000);
+        });
+    }
+  };
 
   useEffect(() => {
     let brands;
@@ -124,7 +276,7 @@ export default function Selections() {
 
   return (
     <div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <h6
           className="customersTable_sliderBtn border w-100 text-center p-1"
           onClick={(e) => {
@@ -301,7 +453,7 @@ export default function Selections() {
                   className="form-control"
                   id="brand"
                   name="brand"
-                  style={inputStyle}
+                  style={errs.brand_roof ? inputErrorStyle : inputStyle}
                   value={form.brand_roof}
                   onChange={(e) => {
                     setColorShingles([]);
@@ -329,8 +481,8 @@ export default function Selections() {
                   className="form-control"
                   id="shingle_roof"
                   name="shingle_roof"
-                  style={inputStyle}
                   value={form.shingle_roof}
+                  style={errs.shingle_roof ? inputErrorStyle : inputStyle}
                   onChange={(e) => {
                     setForm({
                       ...form,
@@ -356,7 +508,7 @@ export default function Selections() {
                   className="form-control"
                   id="color_roof"
                   name="color_roof"
-                  style={inputStyle}
+                  style={errs.color_roof ? inputErrorStyle : inputStyle}
                   value={form.color_roof}
                   onChange={(e) =>
                     setForm({
@@ -382,7 +534,7 @@ export default function Selections() {
                   className="form-control"
                   id="capping_roof"
                   name="capping_roof"
-                  style={inputStyle}
+                  style={errs.capping_roof ? inputErrorStyle : inputStyle}
                   value={form.capping_roof}
                   onChange={(e) =>
                     setForm({
@@ -407,7 +559,7 @@ export default function Selections() {
                   className="form-control"
                   id="starter_brand"
                   name="starter_brand"
-                  style={inputStyle}
+                  style={errs.starter_brand ? inputErrorStyle : inputStyle}
                   value={form.starter_brand}
                   onChange={(e) =>
                     setForm({
@@ -431,7 +583,7 @@ export default function Selections() {
                   className="form-control"
                   id="starter_shingle"
                   name="starter_shingle"
-                  style={inputStyle}
+                  style={errs.starter_shingle ? inputErrorStyle : inputStyle}
                   value={form.starter_shingle}
                   onChange={(e) =>
                     setForm({
@@ -460,7 +612,7 @@ export default function Selections() {
                   className="form-control"
                   id="hr_brand"
                   name="hr_brand"
-                  style={inputStyle}
+                  style={errs.hr_brand ? inputErrorStyle : inputStyle}
                   value={form.hr_brand}
                   onChange={(e) =>
                     setForm({
@@ -484,7 +636,7 @@ export default function Selections() {
                   className="form-control"
                   id="hr_shingle"
                   name="hr_shingle"
-                  style={inputStyle}
+                  style={errs.hr_shingle ? inputErrorStyle : inputStyle}
                   value={form.hr_shingle}
                   onChange={(e) =>
                     setForm({
@@ -514,14 +666,14 @@ export default function Selections() {
               <div className="col-6 gb-pr">
                 <select
                   className="form-control"
-                  id="underlay_brand"
-                  name="underlay_brand"
-                  style={inputStyle}
-                  value={form.underlay_brand}
+                  id="ice_water_brand"
+                  name="ice_water_brand"
+                  style={errs.ice_water_brand ? inputErrorStyle : inputStyle}
+                  value={form.ice_water_brand}
                   onChange={(e) =>
                     setForm({
                       ...form,
-                      underlay_brand: e.target.value,
+                      ice_water_brand: e.target.value,
                     })
                   }
                 >
@@ -538,19 +690,22 @@ export default function Selections() {
               <div className="col-6 gb-pr">
                 <select
                   className="form-control"
-                  id="underlay_protection"
-                  name="underlay_protection"
-                  style={inputStyle}
-                  value={form.underlay_protection}
+                  id="ice_water_protection"
+                  name="ice_water_protection"
+                  style={
+                    errs.ice_water_protection ? inputErrorStyle : inputStyle
+                  }
+                  value={form.ice_water_protection}
                   onChange={(e) =>
                     setForm({
                       ...form,
-                      underlay_protection: e.target.value,
+                      ice_water_protection: e.target.value,
                     })
                   }
                 >
                   <option value="">Underlay</option>
-                  {form.underlay_brand
+                  <option value="1">1</option>
+                  {/*form.underlay_brand
                     ? underlayProtection.map((n, i) => {
                         return (
                           <option key={i} value={n.name}>
@@ -558,7 +713,7 @@ export default function Selections() {
                           </option>
                         );
                       })
-                    : null}
+                    : null*/}
                 </select>
               </div>
               <div className="col-12" style={subHeader}>
@@ -569,7 +724,7 @@ export default function Selections() {
                   className="form-control"
                   id="underlay_brand"
                   name="underlay_brand"
-                  style={inputStyle}
+                  style={errs.underlay_brand ? inputErrorStyle : inputStyle}
                   value={form.underlay_brand}
                   onChange={(e) =>
                     setForm({
@@ -593,7 +748,9 @@ export default function Selections() {
                   className="form-control"
                   id="underlay_protection"
                   name="underlay_protection"
-                  style={inputStyle}
+                  style={
+                    errs.underlay_protection ? inputErrorStyle : inputStyle
+                  }
                   value={form.underlay_protection}
                   onChange={(e) =>
                     setForm({
@@ -622,7 +779,7 @@ export default function Selections() {
                   className="form-control"
                   id="drip_edge_flashing"
                   name="drip_edge_flashing"
-                  style={inputStyle}
+                  style={errs.drip_edge_flashing ? inputErrorStyle : inputStyle}
                   value={form.drip_edge_flashing}
                   onChange={(e) =>
                     setForm({
@@ -641,7 +798,7 @@ export default function Selections() {
                   className="form-control"
                   id="wall_roof_flashing"
                   name="wall_roof_flashing"
-                  style={inputStyle}
+                  style={errs.wall_roof_flashing ? inputErrorStyle : inputStyle}
                   value={form.wall_roof_flashing}
                   onChange={(e) =>
                     setForm({
@@ -660,7 +817,7 @@ export default function Selections() {
                   className="form-control"
                   id="valley_flashing"
                   name="valley_flashing"
-                  style={inputStyle}
+                  style={errs.valley_flashing ? inputErrorStyle : inputStyle}
                   value={form.valley_flashing}
                   onChange={(e) =>
                     setForm({
@@ -679,7 +836,7 @@ export default function Selections() {
                   className="form-control"
                   id="chimney_flashing"
                   name="chimney_flashing"
-                  style={inputStyle}
+                  style={errs.chimney_flashing ? inputErrorStyle : inputStyle}
                   value={form.chimney_flashing}
                   onChange={(e) =>
                     setForm({
@@ -749,7 +906,9 @@ export default function Selections() {
                   className="form-control"
                   id="Replace_ventilation"
                   name="Replace_ventilation"
-                  style={inputStyle}
+                  style={
+                    errs.Replace_ventilation ? inputErrorStyle : inputStyle
+                  }
                   value={form.Replace_ventilation}
                   onChange={(e) =>
                     setForm({
@@ -768,7 +927,7 @@ export default function Selections() {
                   className="form-control"
                   id="remove_ventilation"
                   name="remove_ventilation"
-                  style={inputStyle}
+                  style={errs.remove_ventilation ? inputErrorStyle : inputStyle}
                   value={form.remove_ventilation}
                   onChange={(e) =>
                     setForm({
@@ -787,7 +946,7 @@ export default function Selections() {
                   className="form-control"
                   id="new_ventilation"
                   name="new_ventilation"
-                  style={inputStyle}
+                  style={errs.new_ventilation ? inputErrorStyle : inputStyle}
                   value={form.new_ventilation}
                   onChange={(e) =>
                     setForm({
@@ -809,7 +968,7 @@ export default function Selections() {
                   className="form-control"
                   id="ridge_ventilation"
                   name="ridge_ventilation"
-                  style={inputStyle}
+                  style={errs.ridge_ventilation ? inputErrorStyle : inputStyle}
                   value={form.ridge_ventilation}
                   onChange={(e) =>
                     setForm({
@@ -834,7 +993,7 @@ export default function Selections() {
                   className="form-control"
                   id="reSeal_BPS"
                   name="reSeal_BPS"
-                  style={inputStyle}
+                  style={errs.reSeal_BPS ? inputErrorStyle : inputStyle}
                   value={form.reSeal_BPS}
                   onChange={(e) =>
                     setForm({
@@ -853,7 +1012,7 @@ export default function Selections() {
                   className="form-control"
                   id="onemat_BPS"
                   name="onemat_BPS"
-                  style={inputStyle}
+                  style={errs.onemat_BPS ? inputErrorStyle : inputStyle}
                   value={form.onemat_BPS}
                   onChange={(e) =>
                     setForm({
@@ -872,7 +1031,7 @@ export default function Selections() {
                   className="form-control"
                   id="twomat_BPS"
                   name="twomat_BPS"
-                  style={inputStyle}
+                  style={errs.twomat_BPS ? inputErrorStyle : inputStyle}
                   value={form.twomat_BPS}
                   onChange={(e) =>
                     setForm({
@@ -891,7 +1050,7 @@ export default function Selections() {
                   className="form-control"
                   id="threemat_BPS"
                   name="threemat_BPS"
-                  style={inputStyle}
+                  style={errs.threemat_BPS ? inputErrorStyle : inputStyle}
                   value={form.threemat_BPS}
                   onChange={(e) =>
                     setForm({
@@ -910,7 +1069,7 @@ export default function Selections() {
                   className="form-control"
                   id="fourmat_BPS"
                   name="fourmat_BPS"
-                  style={inputStyle}
+                  style={errs.fourmat_BPS ? inputErrorStyle : inputStyle}
                   value={form.fourmat_BPS}
                   onChange={(e) =>
                     setForm({
@@ -932,7 +1091,7 @@ export default function Selections() {
                   className="form-control"
                   id="convert_BPS"
                   name="convert_BPS"
-                  style={inputStyle}
+                  style={errs.convert_BPS ? inputErrorStyle : inputStyle}
                   value={form.convert_BPS}
                   onChange={(e) =>
                     setForm({
@@ -1007,11 +1166,26 @@ export default function Selections() {
                   }
                 />
               </div>
-              <div className="col-12">
+              <div className="col-12 mt-3">
+                {errs.formErr ? (
+                  <p className="text-danger text-center">
+                    Please fill in the form
+                  </p>
+                ) : null}
+                {errs.success ? (
+                  <p className="text-success text-center">
+                    Selections added to estimate
+                  </p>
+                ) : null}
+                {errs.failed ? (
+                  <p className="text-danger text-center">
+                    There was an error. Try again later!
+                  </p>
+                ) : null}
                 <input
                   type="submit"
                   value="Complete Selections"
-                  className="btn w-100 mt-3"
+                  className="btn w-100"
                   style={btnStyle}
                 />
               </div>
@@ -1052,6 +1226,12 @@ const inputStyle = {
   outline: "none",
   boxShadow: "none",
   border: "1px solid lightgray",
+};
+
+const inputErrorStyle = {
+  outline: "none",
+  boxShadow: "none",
+  border: "1px solid red",
 };
 
 const headerStyle = {

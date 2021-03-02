@@ -16,11 +16,12 @@ import img6 from "../../assets/img/album/img6.jpg";
 export default function Photos() {
   const history = useHistory();
   const [albums, setAlbums] = useState([]);
-  const [title, setTitle] = useState();
-  const [titleErr, setTitleErr] = useState(false);
+  //const [title, setTitle] = useState();
+  // const [titleErr, setTitleErr] = useState(false);
   const email = localStorage.getItem("email");
   const passToken = localStorage.getItem("passToken");
   const { id } = useParams();
+  const [errs, setErrs] = useState([]);
 
   useEffect(() => {
     if (!localStorage.getItem("authToken")) {
@@ -31,11 +32,11 @@ export default function Photos() {
         setAlbums(res.data.data);
       })
       .catch((err) => {
-        console.log(err);
+        setErrs({ ...errs, failed: true });
       });
   }, [id, email, passToken, history]);
 
-  const handleAlbum = (e) => {
+  /*const handleAlbum = (e) => {
     e.preventDefault();
     if (title) {
       Axios.post("/api/album/addalbum", { id, title, email, passToken })
@@ -45,7 +46,7 @@ export default function Photos() {
               setAlbums(res.data.data);
             })
             .catch((err) => {
-              console.log(err);
+              setErrs({ ...errs, failed: true });
             });
         })
         .catch((err) => {
@@ -56,6 +57,7 @@ export default function Photos() {
     }
   };
 
+  
   const handleDeleteAlbum = (album_id) => {
     Axios.post("/api/album/deletealbum", { album_id, email, passToken })
       .then(() => {
@@ -70,7 +72,7 @@ export default function Photos() {
       .catch((err) => {
         console.log(err);
       });
-  };
+  };*/
 
   return (
     <div className="photos_page">
@@ -80,59 +82,36 @@ export default function Photos() {
           onClick={() => history.goBack()}
         />
       </div>
-      <div
-        className="float-right"
-        data-toggle="modal"
-        data-target="#exampleModal"
-      >
-        <AiIcon.AiOutlinePlus className="h3" />
-      </div>
-      <div className="text-center">
+      <div className="text-right">
         <h5>Album</h5>
       </div>
       <div className="mt-4">
         {albums.length === 0 ? <p className="text-center">No Album</p> : null}
-        {albums.map((item) => {
+        {errs.failed ? (
+          <p className="text-center text-danger mt-2">
+            There was an error. Try again later!
+          </p>
+        ) : null}
+
+        {albums.map((n, i) => {
           return (
-            <Link
-              to={`/album/photos/${item._id}`}
-              className="card"
-              key={item._id}
-            >
-              <div
-                style={{
-                  position: "absolute",
-                  zIndex: "3",
-                  right: "10px",
-                  top: "10px",
-                }}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleDeleteAlbum(item._id);
-                }}
-              >
-                <p>
-                  <FiIcon.FiTrash style={{ color: "#fff" }} />
-                </p>
-              </div>
+            <Link to={`/album/photos/${n._id}`} className="card" key={i}>
               <div className="overlay"></div>
               <img
                 src={
-                  item.img === "1"
+                  i === 0
                     ? img1
-                    : item.img === "2"
+                    : i === 1
                     ? img2
-                    : item.img === "3"
+                    : i === 2
                     ? img3
-                    : item.img === "4"
+                    : i === 3
                     ? img4
-                    : item.img === "5"
+                    : i === 4
                     ? img5
-                    : item.img === "6"
-                    ? img6
                     : null
                 }
-                alt="Img"
+                alt="Img 1"
               />
               <div className="sub_title pb-2">
                 <h5
@@ -145,15 +124,24 @@ export default function Photos() {
                     color: "#fff",
                   }}
                 >
-                  {item.title}
+                  {i === 0
+                    ? "Pre Construction"
+                    : i === 1
+                    ? "Construction"
+                    : i === 2
+                    ? "Details"
+                    : i === 3
+                    ? "Completion"
+                    : i === 4
+                    ? "Estimatees"
+                    : null}
                 </h5>
-                {/*<p className="small">0 Photos 0 Videos</p>*/}
               </div>
             </Link>
           );
         })}
 
-        <form className="form-group" onSubmit={handleAlbum}>
+        {/*<form className="form-group" onSubmit={handleAlbum}>
           <div
             className="modal fade"
             id="exampleModal"
@@ -198,8 +186,16 @@ export default function Photos() {
               </div>
             </div>
           </div>
-        </form>
+                  </form>*/}
       </div>
     </div>
   );
 }
+
+const fileNames = [
+  { name: "Pre Construction" },
+  { name: "Construction" },
+  { name: "Details" },
+  { name: "Completion" },
+  { name: "Estimatees" },
+];
