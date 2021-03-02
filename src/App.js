@@ -22,6 +22,7 @@ import Customer from "./views/customer/customer";
 import NewCustomer from "./views/customer/NewCustomer/NewCustomer";
 import CustomerFile from "./views/customer/CustomerFile/CustomerFile";
 import CustomerDocument from "./views/customer/Documents/Documents";
+import Estimates from "./views/customer/Documents/Docs/Estimates";
 import UpdateCustomer from "./views/customer/UpdateCustomer/UpdatedCustomer";
 import InputTables from "./views/customer/InputTables/InputTable";
 import Tools from "./views/Tools/Tools";
@@ -44,6 +45,11 @@ function App() {
             exact
             path="/file/documents/:id"
             component={CustomerDocument}
+          />
+          <PrivateRouting
+            exact
+            path="/file/documents/estimates/:id"
+            component={Estimates}
           />
           <PrivateRouting
             exact

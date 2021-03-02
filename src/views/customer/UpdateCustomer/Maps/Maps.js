@@ -30,7 +30,7 @@ export default function Maps(props) {
                       <BiIcon.BiMap
                         style={{
                           color: "#fff",
-                          backgroundColor: "#e60029",
+                          backgroundColor: "#414141",
                           padding: "3px",
                           borderRadius: "25px",
                         }}

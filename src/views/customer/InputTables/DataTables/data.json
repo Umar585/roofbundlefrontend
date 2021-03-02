@@ -1323,7 +1323,7 @@
     }
   ],
 
-  "deckProtection": [
+  "underlayments": [
     {
       "name": "Atlas",
       "underlay": [

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
 import Axios from "axios";
-import * as FaIcon from "react-icons/fa";
+import * as HiIcon from "react-icons/hi";
 import * as AiIcon from "react-icons/ai";
 import * as BsIcon from "react-icons/bs";
 //assets
@@ -41,6 +41,7 @@ export default function Document() {
         alert(err);
       });
   };
+
   return (
     <div className="pages mb-4">
       <div>
@@ -169,6 +170,17 @@ export default function Document() {
         )}
       </div>
 
+      <Link to={`/file/documents/estimates/${id}`} style={{ color: "#3c4b64" }}>
+        <div className="pages-list">
+          <div className="list-inline">
+            <div className="list-inline-item">
+              <HiIcon.HiOutlineDocumentDuplicate className="customer_file_icon" />
+            </div>
+            <h5 className="list-inline-item">Estimates</h5>
+          </div>
+        </div>
+      </Link>
+      {/*
       <div className="pages-list">
         <div className="list-inline">
           <div className="list-inline-item">
@@ -208,7 +220,7 @@ export default function Document() {
           </div>
           <div className="list-inline-item h4">Change Order</div>
         </div>
-      </div>
+      </div>*/}
     </div>
   );
 }

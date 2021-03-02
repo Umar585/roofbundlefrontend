@@ -79,8 +79,8 @@ export default function Roof(props) {
       form.roofTop === false &&
       form.bin === false &&
       form.newConst === false &&
-      form.lengthGrnd === "" &&
-      form.width === "" &&
+      form.measureType === "" &&
+      form.totalSqFt === "" &&
       form.eave === "" &&
       form.gableGrnd === "" &&
       form.valleyRM === "" &&
@@ -93,19 +93,11 @@ export default function Roof(props) {
       setTimeout(() => {
         setError(false);
       }, 4000);
-    } else if (form.lengthGrnd === "" || form.width === "") {
+    } else if (form.totalSqFt === "") {
       setError(true);
       setTimeout(() => {
         setError(false);
       }, 4000);
-    } else if (!ftFormFields(form.lengthGrnd)) {
-      setFormErr({ lengthGrnd: true });
-    } else if (!incFormFields(form.lengthGrndInc)) {
-      setFormErr({ lengthGrndInc: true });
-    } else if (!ftFormFields(form.width)) {
-      setFormErr({ width: true });
-    } else if (!incFormFields(form.widthInc)) {
-      setFormErr({ widthInc: true });
     } else if (!ftFormFields(form.eave)) {
       setFormErr({ eave: true });
     } else if (!incFormFields(form.eaveInc)) {
@@ -160,8 +152,8 @@ export default function Roof(props) {
         nC = "false";
       }
 
-      const lengthGrnd = setToZero(form.lengthGrnd);
-      const width = setToZero(form.width);
+      const totalSqFt = setToZero(form.totalSqFt);
+      const measureType = setToZero(form.measureType);
       const eave = setToZero(form.eave);
       const gableGrnd = setToZero(form.gableGrnd);
       const valleyRM = setToZero(form.valleyRM);
@@ -170,8 +162,6 @@ export default function Roof(props) {
       const wall = setToZero(form.wall);
       const chimney = setToZero(form.chimney);
 
-      const lengthGrndInc = setToZero(form.lengthGrndInc);
-      const widthInc = setToZero(form.widthInc);
       const eaveInc = setToZero(form.eaveInc);
       const gableGrndInc = setToZero(form.gableGrndInc);
       const valleyRMInc = setToZero(form.valleyRMInc);
@@ -186,8 +176,8 @@ export default function Roof(props) {
         roofTop: rT,
         bin: b,
         newConst: nC,
-        lengthGrnd: lengthGrnd,
-        width: width,
+        measureType: measureType,
+        totalSqFt: totalSqFt,
         eave: eave,
         gableGrnd: gableGrnd,
         valleyRM: valleyRM,
@@ -196,8 +186,6 @@ export default function Roof(props) {
         wall: wall,
         chimney: chimney,
 
-        lengthGrndInc: lengthGrndInc,
-        widthInc: widthInc,
         eaveInc: eaveInc,
         gableGrndInc: gableGrndInc,
         valleyRMInc: valleyRMInc,
@@ -213,8 +201,8 @@ export default function Roof(props) {
         roofTop: false,
         bin: false,
         newConst: false,
-        lengthGrnd: "",
-        width: "",
+        measureType: "",
+        totalSqFt: "",
         eave: "",
         gableGrnd: "",
         valleyRM: "",
@@ -364,7 +352,7 @@ export default function Roof(props) {
             }
           />
         </div>
-        <div className="col-12">
+        <div className="col-6 gb-pr mt-2">
           <CustomCheckBox
             id="newConst"
             label="New Construction"
@@ -377,49 +365,38 @@ export default function Roof(props) {
             }
           />
         </div>
-        <div className="col-12">
-          <CustomInput
-            type="number"
-            id="lengthGrnd"
-            label="Length"
-            error={formErr.lengthGrnd}
-            errorInc={formErr.lengthGrndInc}
-            value={form.lengthGrnd}
-            onChange={(e) => {
-              setForm({ ...form, lengthGrnd: e.target.value });
-            }}
-            idInc="lengthGrndInc"
-            valueInc={form.lengthGrndInc}
-            onChangeInc={(e) => {
-              setForm({
-                ...form,
-                lengthGrndInc: e.target.value,
-              });
-            }}
-          />
+        <div className="col-6 gb-pl">
+          <div className="mt-2">
+            <select
+              className="form-control"
+              id="measureType"
+              name="measureType"
+              style={selectStyle}
+              value={form.measureType}
+              onChange={(e) =>
+                setForm({
+                  ...form,
+                  measureType: e.target.value,
+                })
+              }
+            >
+              <option value="">Measure Type</option>
+              <option value="Ground Measure">Ground Measure</option>
+              <option value="Roof Measure">Roof Measure</option>
+            </select>
+          </div>
         </div>
         <div className="col-12">
           <CustomInput
             type="number"
-            id="width"
-            label="Width"
-            error={formErr.width}
-            value={form.width}
-            onChange={(e) =>
-              setForm({
-                ...form,
-                width: e.target.value,
-              })
-            }
-            idInc="widthInc"
-            errorInc={formErr.widthInc}
-            valueInc={form.widthInc}
-            onChangeInc={(e) => {
-              setForm({
-                ...form,
-                widthInc: e.target.value,
-              });
+            id="totalsquare"
+            label={`Total Square Footage of Roof Face ${items.length + 1}`}
+            error={formErr.totalSqFt}
+            value={form.totalSqFt}
+            onChange={(e) => {
+              setForm({ ...form, totalSqFt: e.target.value });
             }}
+            single={true}
           />
         </div>
         <div className="col-12">
@@ -583,7 +560,7 @@ export default function Roof(props) {
         <div className="col-12 mt-4">
           {error ? (
             <p className="text-center small text-danger">
-              Please enter in at least length & width field
+              Please enter in at least Total Square Footage field
             </p>
           ) : null}
           <CButton className="btn w-100" style={btnStyle} onClick={AddArray}>
@@ -612,36 +589,46 @@ const CustomInput = (props) => {
         <div className="col-12 mt-2">
           <span className="p2">{props.label}</span>
         </div>
-        <div className="col-6">
+        <div className={!props.single ? "col-6" : "col-12"}>
           <input
             type={props.type}
             className="form-control"
             id={props.id}
             name={props.id}
             maxLength="4"
-            placeholder="Ft"
+            placeholder={!props.single ? "Ft" : "Sq. Ft."}
             autoComplete="off"
-            style={props.error ? leftInputErrorStyle : leftInputStyle}
+            style={
+              !props.single
+                ? props.error
+                  ? leftInputErrorStyle
+                  : leftInputStyle
+                : props.error
+                ? singleInputErrorStyle
+                : singleInputStyle
+            }
             value={props.value}
             onChange={props.onChange}
           />
         </div>
-        <div className="col-6">
-          <input
-            type={props.type}
-            className="form-control"
-            id={props.idInc}
-            maxLength="2"
-            max="11"
-            min="1"
-            name={props.idInc}
-            placeholder="In"
-            autoComplete="off"
-            style={props.errorInc ? rightInputErrorStyle : rightInputStyle}
-            value={props.valueInc}
-            onChange={props.onChangeInc}
-          />
-        </div>
+        {!props.single ? (
+          <div className="col-6">
+            <input
+              type={props.type}
+              className="form-control"
+              id={props.idInc}
+              maxLength="2"
+              max="11"
+              min="1"
+              name={props.idInc}
+              placeholder="In"
+              autoComplete="off"
+              style={props.errorInc ? rightInputErrorStyle : rightInputStyle}
+              value={props.valueInc}
+              onChange={props.onChangeInc}
+            />
+          </div>
+        ) : null}
       </div>
     </div>
   );
@@ -655,8 +642,8 @@ const CustomCheckBox = (props) => {
       }
       style={
         props.checked
-          ? { backgroundColor: "#414141" }
-          : { backgroundColor: "darkgray" }
+          ? { backgroundColor: "#414141", fontSize: "13px" }
+          : { backgroundColor: "darkgray", fontSize: "13px" }
       }
     >
       {props.label}
@@ -671,7 +658,18 @@ const CustomCheckBox = (props) => {
     </label>
   );
 };
-
+const singleInputStyle = {
+  outline: "none",
+  boxShadow: "none",
+  border: "1px solid lightgray",
+  borderRadius: "0px 0.25rem 0.25rem 0px",
+};
+const singleInputErrorStyle = {
+  outline: "none",
+  boxShadow: "none",
+  border: "1px solid #e60029",
+  borderRadius: "0px 0.25rem 0.25rem 0px",
+};
 const leftInputStyle = {
   outline: "none",
   boxShadow: "none",
@@ -703,6 +701,13 @@ const inputStyle = {
   outline: "none",
   boxShadow: "none",
   border: "1px solid lightgray",
+};
+const selectStyle = {
+  outline: "none",
+  boxShadow: "none",
+  border: "1px solid lightgray",
+  height: "32px",
+  fontSize: "13px",
 };
 const btnStyle = {
   outline: "none",

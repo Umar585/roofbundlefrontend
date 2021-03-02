@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { CCard, CCardBody, CCollapse } from "@coreui/react";
+import Axios from "axios";
+import { useParams } from "react-router-dom";
 //Components
 import RoofInputTable from "./DataTables/Roof";
 import EavesInputTable from "./DataTables/Eaves";
@@ -13,10 +15,11 @@ export default function Form() {
   const [load, setLoad] = useState(false);
   const [items, setItems] = useState([]);
   const [eaveItems, setEaveItems] = useState([]);
-  //  const [eaveArray, setEaveArray] = useState([]);
   const [formLoading, setFormLoading] = useState(false);
   const [accordion, setAccordion] = useState(0);
   const [removeMsg, setRemoveMsg] = useState(false);
+  const [msg, setMsg] = useState([]);
+  const { id } = useParams();
 
   const removeRoofFace = (i) => {
     items.splice(i, 1);
@@ -38,11 +41,52 @@ export default function Form() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setFormLoading(true);
-    setTimeout(() => {
-      setFormLoading(false);
-      console.log(form);
-    }, 1000);
+    if (
+      form.tableArray.length === 0 ||
+      (form.tableArray.length === 0 && form.eaveArray.length === 0)
+    ) {
+      setMsg({ ...msg, err: true });
+
+      setTimeout(() => {
+        setMsg({ ...msg, err: false });
+      }, 4000);
+    } else {
+      setFormLoading(true);
+      setTimeout(() => {
+        setFormLoading(false);
+        /* if (
+        form.tableArray.length === 0 ||
+        (form.tableArray.length === 0 && form.eaveArray.length === 0)
+      ) {
+        setMsg({ ...msg, err: true });
+
+        setTimeout(() => {
+          setMsg({ ...msg, err: false });
+        }, 4000);
+      } else {*/
+        let email = localStorage.getItem("email");
+        let passToken = localStorage.getItem("passToken");
+        Axios.post("/api/measure/addroofmeasure", {
+          id,
+          email,
+          passToken,
+          items,
+          eaveItems,
+        })
+          .then((res) => {
+            setItems([]);
+            setEaveItems([]);
+            setMsg({ ...msg, success: true });
+            setTimeout(() => {
+              setMsg({ ...msg, success: false });
+            }, 4000);
+          })
+          .catch((err) => {
+            console.log(err.response.data.success);
+          });
+        //}
+      }, 1000);
+    }
   };
 
   useEffect(() => {
@@ -51,7 +95,9 @@ export default function Form() {
 
   return (
     <div>
-      {formLoading ? null : (
+      {formLoading ? (
+        <p>Submiting</p>
+      ) : (
         <>
           <form onSubmit={handleSubmit}>
             {/*Roof Data Table */}
@@ -130,12 +176,24 @@ export default function Form() {
                 </CCardBody>
               </CCard>
             </CCollapse>*/}
+            {msg.err ? (
+              <div>
+                <p className="text-danger text-center">
+                  Please fill in the form!
+                </p>
+              </div>
+            ) : null}
+            {msg.success ? (
+              <div>
+                <p className="text-success text-center">Form Submitted</p>
+              </div>
+            ) : null}
             <div className="mt-1">
               <input
                 type="submit"
                 style={btnStyle}
                 className="btn w-100 rounded-0"
-                value="Save"
+                value="DONE"
               />
             </div>
             {/*</CCard>*/}

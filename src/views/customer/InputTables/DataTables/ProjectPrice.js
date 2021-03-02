@@ -3,6 +3,7 @@ import { CCard, CCollapse } from "@coreui/react";
 
 export default function ProjectPrice() {
   const [collapse, setCollapse] = useState(false);
+  const [form, setForm] = useState([]);
   return (
     <div>
       <form>
@@ -31,6 +32,7 @@ export default function ProjectPrice() {
                   bottomLabel="Material Costs including delivery"
                   value="11,140.22"
                   disabled={true}
+                  readOnly={true}
                 />
               </div>
               <div className="col-12">
@@ -43,6 +45,7 @@ export default function ProjectPrice() {
                   bottomLabel="Labour Costs"
                   value="9,140.22"
                   disabled={true}
+                  readOnly={true}
                 />
               </div>
               <div className="col-12">
@@ -55,6 +58,7 @@ export default function ProjectPrice() {
                   bottomLabel="Gross Profit"
                   value="5,140.22"
                   disabled={true}
+                  readOnly={true}
                 />
               </div>
               <div className="col-12">
@@ -65,7 +69,10 @@ export default function ProjectPrice() {
                   placeholder="$/Square"
                   label="$/Square"
                   bottomLabel="Price per square (100 sq.ft)"
-                  value="181.22"
+                  value={form.squarePrice}
+                  onChange={(e) =>
+                    setForm({ ...form, squarePrice: e.target.value })
+                  }
                 />
               </div>
               <div className="col-12">
@@ -76,7 +83,10 @@ export default function ProjectPrice() {
                   placeholder="Profit in %"
                   label="Profit in %"
                   bottomLabel="Gross profit in percentage"
-                  value="25.22%"
+                  value={form.grossProfit}
+                  onChange={(e) =>
+                    setForm({ ...form, grossProfit: e.target.value })
+                  }
                 />
               </div>
               <div className="col-12">
@@ -87,7 +97,8 @@ export default function ProjectPrice() {
                   placeholder="Margin %"
                   label="Margin %"
                   bottomLabel="Gross margin in percentage"
-                  value="74.78%"
+                  value={form.margin}
+                  onChange={(e) => setForm({ ...form, margin: e.target.value })}
                 />
               </div>
               <div className="col-12 mt-2">
@@ -146,6 +157,7 @@ const CustomInput = (props) => {
           value={props.value}
           onChange={props.onChange}
           disabled={props.disabled}
+          readOnly={props.readOnly}
         />
         {props.rightSideLabel ? (
           <div className="input-group-prepend">

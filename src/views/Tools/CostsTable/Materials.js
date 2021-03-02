@@ -7,6 +7,7 @@ export default function Materials() {
   const [err, setErr] = useState(false);
   const email = localStorage.getItem("email");
   const passToken = localStorage.getItem("passToken");
+  const [msg, setMsg] = useState([]);
 
   const checkFields = (field) => {
     let isValid = true;
@@ -22,7 +23,7 @@ export default function Materials() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (pricesData.length === 0) {
+    if (pricesData === "") {
       setErr(true);
       setTimeout(() => {
         setErr(false);
@@ -35,9 +36,17 @@ export default function Materials() {
           passToken,
         })
           .then((res) => {
+            setMsg({ ...msg, success: true });
+            setTimeout(() => {
+              setMsg({ ...msg, success: false });
+            }, 4000);
             console.log(res);
           })
           .catch((error) => {
+            setMsg({ ...msg, failed: true });
+            setTimeout(() => {
+              setMsg({ ...msg, failed: false });
+            }, 4000);
             console.log(error);
           });
       }
@@ -47,7 +56,13 @@ export default function Materials() {
   const checkForm = () => {
     let isValid = true;
 
-    if (!checkFields(pricesData.bundle)) {
+    if (!checkFields(pricesData.groundDropCost)) {
+      setDataErr({ groundDropCost: true });
+      isValid = false;
+    } else if (!checkFields(pricesData.roofTopCost)) {
+      setDataErr({ roofTopCost: true });
+      isValid = false;
+    } else if (!checkFields(pricesData.bundle)) {
       setDataErr({ bundle: true });
       isValid = false;
     } else if (!checkFields(pricesData.starterBundle)) {
@@ -55,9 +70,6 @@ export default function Materials() {
       isValid = false;
     } else if (!checkFields(pricesData.cappingBundle)) {
       setDataErr({ cappingBundle: true });
-      isValid = false;
-    } else if (!checkFields(pricesData.roofTopCost)) {
-      setDataErr({ roofTopCost: true });
       isValid = false;
     } else if (!checkFields(pricesData.iceWater)) {
       setDataErr({ iceWater: true });
@@ -107,51 +119,16 @@ export default function Materials() {
           <div className="col-12">
             <CustomInput
               type="number"
-              step="any"
-              id="bundlePrice"
-              label="Bundle"
-              error={dataErr.bundle}
-              sideLabel="$"
-              rightSideLabel="Bundles"
-              value={pricesData.bundle}
-              onChange={(e) =>
-                setPricesData({
-                  ...pricesData,
-                  bundle: e.target.value,
-                })
-              }
-            />
-          </div>
-          <div className="col-12">
-            <CustomInput
-              type="number"
-              id="starterBundlePrice"
-              label="Starter Bundle"
-              error={dataErr.starterBundle}
+              id="groundDropDeliveryCost"
+              label="Ground Drop Delivery"
+              error={dataErr.groundDropCost}
               sideLabel="$"
               rightSideLabel="Bundle"
-              value={pricesData.starterBundle}
+              value={pricesData.groundDropCost}
               onChange={(e) =>
                 setPricesData({
                   ...pricesData,
-                  starterBundle: e.target.value,
-                })
-              }
-            />
-          </div>
-          <div className="col-12">
-            <CustomInput
-              type="number"
-              id="cappingBundlePrice"
-              label="Capping Bundle"
-              sideLabel="$"
-              error={dataErr.cappingBundle}
-              rightSideLabel="Bundle"
-              value={pricesData.cappingBundle}
-              onChange={(e) =>
-                setPricesData({
-                  ...pricesData,
-                  cappingBundle: e.target.value,
+                  groundDropCost: e.target.value,
                 })
               }
             />
@@ -169,6 +146,59 @@ export default function Materials() {
                 setPricesData({
                   ...pricesData,
                   roofTopCost: e.target.value,
+                })
+              }
+            />
+          </div>
+
+          <div className="col-12">
+            <CustomInput
+              type="number"
+              step="any"
+              id="bundlePrice"
+              label="Laminated Shingle"
+              error={dataErr.bundle}
+              sideLabel="$"
+              rightSideLabel="Bundles"
+              value={pricesData.bundle}
+              onChange={(e) =>
+                setPricesData({
+                  ...pricesData,
+                  bundle: e.target.value,
+                })
+              }
+            />
+          </div>
+          <div className="col-12">
+            <CustomInput
+              type="number"
+              id="starterBundlePrice"
+              label="Starter Shingle"
+              error={dataErr.starterBundle}
+              sideLabel="$"
+              rightSideLabel="Bundle"
+              value={pricesData.starterBundle}
+              onChange={(e) =>
+                setPricesData({
+                  ...pricesData,
+                  starterBundle: e.target.value,
+                })
+              }
+            />
+          </div>
+          <div className="col-12">
+            <CustomInput
+              type="number"
+              id="cappingBundlePrice"
+              label="Hip & Ridge Shingle"
+              sideLabel="$"
+              error={dataErr.cappingBundle}
+              rightSideLabel="Bundle"
+              value={pricesData.cappingBundle}
+              onChange={(e) =>
+                setPricesData({
+                  ...pricesData,
+                  cappingBundle: e.target.value,
                 })
               }
             />
@@ -295,6 +325,14 @@ export default function Materials() {
           <div className="col-12 mt-3">
             {err ? (
               <p className="text-center text-danger">Enter at least 1 field</p>
+            ) : null}
+            {msg.success ? (
+              <p className="text-center text-success">Material costs updated</p>
+            ) : null}
+            {msg.failed ? (
+              <p className="text-center text-danger">
+                Material costs failed to update
+              </p>
             ) : null}
             <input
               type="submit"

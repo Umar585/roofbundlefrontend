@@ -27,7 +27,9 @@ export default function Selections() {
     hr_brand: "",
     hr_shingle: "",
 
+    ice_water_brand: "",
     ice_water_protection: "",
+    underlay_brand: "",
     underlay_protection: "",
 
     drip_edge_flashing: "",
@@ -103,10 +105,10 @@ export default function Selections() {
     }
 
     //set Hip & Ridge Shingle
-    if (form.ice_water_protection !== "") {
+    if (form.underlay_brand !== "") {
       //set Hip & Ridge Shingle
-      brands = jsonData.deckProtection.filter((x) =>
-        x.name.includes(form.ice_water_protection)
+      brands = jsonData.underlayments.filter((x) =>
+        x.name.includes(form.underlay_brand)
       );
       setUnderlayProtection(brands[0].underlay);
     }
@@ -507,24 +509,24 @@ export default function Selections() {
                 <h5>Protection</h5>
               </div>
               <div className="col-12" style={subHeader}>
-                <h6>Deck Protection</h6>
+                <h6>Ice & Water Protection</h6>
               </div>
               <div className="col-6 gb-pr">
                 <select
                   className="form-control"
-                  id="ice_water_protection"
-                  name="ice_water_protection"
+                  id="underlay_brand"
+                  name="underlay_brand"
                   style={inputStyle}
-                  value={form.ice_water_protection}
+                  value={form.underlay_brand}
                   onChange={(e) =>
                     setForm({
                       ...form,
-                      ice_water_protection: e.target.value,
+                      underlay_brand: e.target.value,
                     })
                   }
                 >
-                  <option value="">Ice & Water</option>
-                  {jsonData.deckProtection.map((n, i) => {
+                  <option value="">Brand</option>
+                  {jsonData.underlayments.map((n, i) => {
                     return (
                       <option key={i} value={n.name}>
                         {n.name}
@@ -548,7 +550,60 @@ export default function Selections() {
                   }
                 >
                   <option value="">Underlay</option>
-                  {form.ice_water_protection
+                  {form.underlay_brand
+                    ? underlayProtection.map((n, i) => {
+                        return (
+                          <option key={i} value={n.name}>
+                            {n.name}
+                          </option>
+                        );
+                      })
+                    : null}
+                </select>
+              </div>
+              <div className="col-12" style={subHeader}>
+                <h6>Underlayment</h6>
+              </div>
+              <div className="col-6 gb-pr">
+                <select
+                  className="form-control"
+                  id="underlay_brand"
+                  name="underlay_brand"
+                  style={inputStyle}
+                  value={form.underlay_brand}
+                  onChange={(e) =>
+                    setForm({
+                      ...form,
+                      underlay_brand: e.target.value,
+                    })
+                  }
+                >
+                  <option value="">Brand</option>
+                  {jsonData.underlayments.map((n, i) => {
+                    return (
+                      <option key={i} value={n.name}>
+                        {n.name}
+                      </option>
+                    );
+                  })}
+                </select>
+              </div>
+              <div className="col-6 gb-pr">
+                <select
+                  className="form-control"
+                  id="underlay_protection"
+                  name="underlay_protection"
+                  style={inputStyle}
+                  value={form.underlay_protection}
+                  onChange={(e) =>
+                    setForm({
+                      ...form,
+                      underlay_protection: e.target.value,
+                    })
+                  }
+                >
+                  <option value="">Underlay</option>
+                  {form.underlay_brand
                     ? underlayProtection.map((n, i) => {
                         return (
                           <option key={i} value={n.name}>

@@ -32,24 +32,37 @@ export default function UpdatedCustomer() {
 
   return (
     <div>
-      <CCard className="shadow">
-        <CCardBody>
-          <div className="mb-2 float-left">
-            <AiIcon.AiOutlineArrowLeft
-              className="h3"
-              onClick={() => history.goBack()}
-            />
-          </div>
-          <div style={{ maxWidth: "1000px" }} className="text-right">
-            <h5>Update Customer</h5>
-          </div>
-          {load ? (
-            <h6 className="text-center mt-4">Loading</h6>
-          ) : (
-            <Form customer={customer} />
-          )}
-        </CCardBody>
+      {/*} <CCard className="shadow">
+        <CCardBody>*/}
+      {/*<div className="mb-2 float-left">
+        <AiIcon.AiOutlineArrowLeft
+          className="h3"
+          onClick={() => history.goBack()}
+        />
+      </div>
+      <div style={{ maxWidth: "1000px" }} className="text-right">
+        <h5>Update Customer</h5>
+      </div>*/}
+
+      <div className="float-left">
+        <AiIcon.AiOutlineArrowLeft
+          className="h3"
+          onClick={() => history.goBack()}
+        />
+      </div>
+      <div className="text-right">
+        <h5 style={{ marginTop: "3px" }}>Update Customer</h5>
+      </div>
+
+      <CCard className="border-0 mt-3">
+        {load ? (
+          <h6 className="text-center mt-4">Loading</h6>
+        ) : (
+          <Form customer={customer} />
+        )}
       </CCard>
+      {/*</CCardBody>
+      </CCard>*/}
     </div>
   );
 }

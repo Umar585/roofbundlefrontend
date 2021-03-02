@@ -47,31 +47,34 @@ export default function RoofFaces(props) {
       <div className="col-6 gb-pl">
         <CustomCheckBox id="itemBin" label="Bin" checked={bin} />
       </div>
-      <div className="col-12">
+      <div className="col-6 gb-pr">
         <CustomCheckBox
           id="itemNewConst"
           label="New Construction"
           checked={newConst}
         />
       </div>
-      <div className="col-12">
-        <CustomInput
+      <div className="col-6 gb-pl">
+        <input
           type="text"
-          id="itemLength"
-          rightSideLabel="Ft.In"
-          placeholder="Length (Ground)"
-          label="Length (Ground)"
-          value={`${item.lengthGrnd}' - ${item.lengthGrndInc}"`}
+          disabled={true}
+          className="form-control"
+          id="measureType"
+          name="measureType"
+          placeholder="Measure Type"
+          value={item.measureType}
+          style={{ height: "32px", fontSize: "13px" }}
+          readOnly={true}
         />
       </div>
       <div className="col-12">
         <CustomInput
           type="text"
-          id="itemWidth"
-          placeholder="Width"
-          label="Width"
+          id="totalSqFt"
+          placeholder="Total Square Footage"
+          label="Total Square Footage"
           rightSideLabel="Ft.In"
-          value={`${item.width}' - ${item.widthInc}"`}
+          value={item.totalSqFt}
         />
       </div>
       <div className="col-12">
@@ -183,6 +186,7 @@ const CustomInput = (props) => {
           style={props.sideLabel ? moneyInputStyle : inputStyle}
           value={props.value}
           disabled={true}
+          readOnly={true}
         />
         {props.rightSideLabel ? (
           <div className="input-group-prepend">
@@ -210,8 +214,9 @@ const CustomCheckBox = (props) => {
         props.checked
           ? {
               backgroundColor: "#414141",
+              fontSize: "13px",
             }
-          : { backgroundColor: "#8d8d8d" }
+          : { backgroundColor: "#8d8d8d", fontSize: "13px" }
       }
     >
       {props.label}

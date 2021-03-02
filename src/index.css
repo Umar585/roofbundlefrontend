@@ -38,6 +38,18 @@ body .p4 {
   font-size: 13px;
   color: #8d8d8d;
 }
+body .p5 {
+  font-size: 14px;
+  font-family: PoppinsSemiBold !important;
+}
+body .p6 {
+  font-size: 11px;
+  font-family: PoppinsSemiBold !important;
+}
+body .p7 {
+  font-size: 11px;
+  color: #8d8d8d;
+}
 body span {
   font-size: 13px;
 }
