@@ -54,16 +54,6 @@ export default function Form() {
       setFormLoading(true);
       setTimeout(() => {
         setFormLoading(false);
-        /* if (
-        form.tableArray.length === 0 ||
-        (form.tableArray.length === 0 && form.eaveArray.length === 0)
-      ) {
-        setMsg({ ...msg, err: true });
-
-        setTimeout(() => {
-          setMsg({ ...msg, err: false });
-        }, 4000);
-      } else {*/
         let email = localStorage.getItem("email");
         let passToken = localStorage.getItem("passToken");
         Axios.post("/api/measure/addroofmeasure", {
@@ -84,7 +74,6 @@ export default function Form() {
           .catch((err) => {
             console.log(err.response.data.success);
           });
-        //}
       }, 1000);
     }
   };
@@ -110,8 +99,6 @@ export default function Form() {
             <CCollapse show={accordion === 1}>
               <CCard className="p-2">
                 <RoofInputTable
-                  /*form={form}
-                  setForm={setForm}*/
                   items={items}
                   load={load}
                   removeRoofFace={removeRoofFace}
@@ -196,7 +183,6 @@ export default function Form() {
                 value="DONE"
               />
             </div>
-            {/*</CCard>*/}
           </form>
         </>
       )}

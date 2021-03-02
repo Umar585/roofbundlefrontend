@@ -19,7 +19,7 @@ export default function Eaves(props) {
   });
   const ftFormFields = (field) => {
     let isValid = true;
-    if (field != "" && field !== undefined) {
+    if (field !== "" && field !== undefined) {
       if (!expression.test(field) || field > 999 || field < -10) {
         isValid = false;
       }
@@ -113,11 +113,7 @@ export default function Eaves(props) {
     }
     return newVal;
   };
-  const uslessFunc = (val) => {
-    let t = 0;
-    t = parseInt(val);
-    return t;
-  };
+
   //1st Sotries Eaves
   const [firstStoryEaves, setFirstStoryEaves] = useState([]);
   const [firstStoryEavesInc, setFirstStoryEavesInc] = useState("");

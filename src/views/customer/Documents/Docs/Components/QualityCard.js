@@ -103,10 +103,3 @@ export default function QualityCard() {
     </div>
   );
 }
-
-const textStyle = {
-  textOverflow: "ellipsis",
-  overFlow: "hidden",
-  maxWidth: "100px",
-  whiteSpace: "nowrap",
-};

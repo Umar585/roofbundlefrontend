@@ -68,6 +68,7 @@ export default function Selections() {
   const [starterShingles, setStarterShingles] = useState([]);
   const [hrShingles, setHrShingles] = useState([]);
   const [underlayProtection, setUnderlayProtection] = useState([]);
+  const [iceWaterProtection, setIceWaterProtection] = useState([]);
   const [errs, setErrs] = useState([]);
 
   const handleForm = () => {
@@ -264,6 +265,15 @@ export default function Selections() {
       );
       setUnderlayProtection(brands[0].underlay);
     }
+
+    //set Ice & Water Protection
+    if (form.ice_water_brand !== "") {
+      //set Hip & Ridge Shingle
+      brands = jsonData.leak_barriers.filter((x) =>
+        x.name.includes(form.ice_water_brand)
+      );
+      setIceWaterProtection(brands[0].leak_barrier);
+    }
   }, [
     form,
     brandShingles,
@@ -272,6 +282,7 @@ export default function Selections() {
     starterShingles,
     hrShingles,
     underlayProtection,
+    iceWaterProtection,
   ]);
 
   return (
@@ -678,7 +689,7 @@ export default function Selections() {
                   }
                 >
                   <option value="">Brand</option>
-                  {jsonData.underlayments.map((n, i) => {
+                  {jsonData.leak_barriers.map((n, i) => {
                     return (
                       <option key={i} value={n.name}>
                         {n.name}
@@ -703,17 +714,16 @@ export default function Selections() {
                     })
                   }
                 >
-                  <option value="">Underlay</option>
-                  <option value="1">1</option>
-                  {/*form.underlay_brand
-                    ? underlayProtection.map((n, i) => {
+                  <option value="">Protection</option>
+                  {form.ice_water_brand
+                    ? iceWaterProtection.map((n, i) => {
                         return (
                           <option key={i} value={n.name}>
                             {n.name}
                           </option>
                         );
                       })
-                    : null*/}
+                    : null}
                 </select>
               </div>
               <div className="col-12" style={subHeader}>

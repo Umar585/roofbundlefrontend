@@ -41,7 +41,7 @@ export default function Roof(props) {
     let isValid = true;
     if (field === "" || field === undefined) {
       return isValid;
-    } else if (field !== "" || field != undefined) {
+    } else if (field !== "" || field !== undefined) {
       if (!expression.test(field) || field > 999 || field < 0) {
         isValid = false;
       }
@@ -52,7 +52,7 @@ export default function Roof(props) {
     let isValid = true;
     if (field === "" || field === undefined) {
       return isValid;
-    } else if (field !== "" || field != undefined) {
+    } else if (field !== "" || field !== undefined) {
       if (!expression.test(field) || field > 11 || field < 0) {
         isValid = false;
       }
@@ -261,7 +261,7 @@ export default function Roof(props) {
           })}{" "}
         </>
       )}
-      {items.length != 0 ? <div className="mt-4"></div> : null}
+      {items.length !== 0 ? <div className="mt-4"></div> : null}
 
       <div className="row no-gutters">
         <div className="col-12 mt-2">

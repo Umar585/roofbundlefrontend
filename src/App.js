@@ -23,6 +23,9 @@ import NewCustomer from "./views/customer/NewCustomer/NewCustomer";
 import CustomerFile from "./views/customer/CustomerFile/CustomerFile";
 import CustomerDocument from "./views/customer/Documents/Documents";
 import Estimates from "./views/customer/Documents/Docs/Estimates";
+import Contract from "./views/customer/Documents/Docs/Contract";
+import WorkOrder from "./views/customer/Documents/Docs/WorkOrder";
+import ChangeOrder from "./views/customer/Documents/Docs/ChangeOrder";
 import UpdateCustomer from "./views/customer/UpdateCustomer/UpdatedCustomer";
 import InputTables from "./views/customer/InputTables/InputTable";
 import Tools from "./views/Tools/Tools";
@@ -50,6 +53,21 @@ function App() {
             exact
             path="/file/documents/estimates/:id"
             component={Estimates}
+          />
+          <PrivateRouting
+            exact
+            path="/file/documents/contract/:id"
+            component={Contract}
+          />
+          <PrivateRouting
+            exact
+            path="/file/documents/workorder/:id"
+            component={WorkOrder}
+          />
+          <PrivateRouting
+            exact
+            path="/file/documents/changeorder/:id"
+            component={ChangeOrder}
           />
           <PrivateRouting
             exact

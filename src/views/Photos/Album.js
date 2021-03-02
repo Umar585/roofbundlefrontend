@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useHistory, Link, useParams } from "react-router-dom";
 import Axios from "axios";
 import * as AiIcon from "react-icons/ai";
-import * as FiIcon from "react-icons/fi";
 //style sheet
 import "./Photos.css";
 //test images
@@ -11,13 +10,10 @@ import img2 from "../../assets/img/album/img2.jpg";
 import img3 from "../../assets/img/album/img3.jpg";
 import img4 from "../../assets/img/album/img4.jpg";
 import img5 from "../../assets/img/album/img5.jpg";
-import img6 from "../../assets/img/album/img6.jpg";
 
 export default function Photos() {
   const history = useHistory();
   const [albums, setAlbums] = useState([]);
-  //const [title, setTitle] = useState();
-  // const [titleErr, setTitleErr] = useState(false);
   const email = localStorage.getItem("email");
   const passToken = localStorage.getItem("passToken");
   const { id } = useParams();
@@ -34,7 +30,7 @@ export default function Photos() {
       .catch((err) => {
         setErrs({ ...errs, failed: true });
       });
-  }, [id, email, passToken, history]);
+  }, [id, email, passToken, history, errs]);
 
   return (
     <div className="photos_page">

@@ -11,7 +11,7 @@ import DescriptionCard from "./Components/DescriptionCard";
 import DetailsCard from "./Components/DetailsCard";
 import InfoCard from "./Components/InfoCard";
 
-export default function Estimates() {
+export default function Contract() {
   const history = useHistory();
   const { id } = useParams();
   const email = localStorage.getItem("email");
@@ -68,7 +68,7 @@ export default function Estimates() {
           </div>
         </div>
         <div className="text-right">
-          <h3>Estimates</h3>
+          <h3>Contract</h3>
         </div>
       </div>
       <div style={{ marginBottom: "25px" }}>

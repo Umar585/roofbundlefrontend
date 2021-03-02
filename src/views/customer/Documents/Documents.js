@@ -180,37 +180,49 @@ export default function Document() {
           </div>
         </div>
       </Link>
+
+      <Link to={`/file/documents/contract/${id}`} style={{ color: "#3c4b64" }}>
+        <div className="pages-list">
+          <div className="list-inline">
+            <div className="list-inline-item">
+              <HiIcon.HiOutlineDocumentDuplicate className="customer_file_icon" />
+            </div>
+            <h5 className="list-inline-item">Contract</h5>
+          </div>
+        </div>
+      </Link>
+
+      <Link to={`/file/documents/workorder/${id}`} style={{ color: "#3c4b64" }}>
+        <div className="pages-list">
+          <div className="list-inline">
+            <div className="list-inline-item">
+              <HiIcon.HiOutlineDocumentDuplicate className="customer_file_icon" />
+            </div>
+            <h5 className="list-inline-item">Work Order</h5>
+          </div>
+        </div>
+      </Link>
+
+      <Link
+        to={`/file/documents/changeorder/${id}`}
+        style={{ color: "#3c4b64" }}
+      >
+        <div className="pages-list">
+          <div className="list-inline">
+            <div className="list-inline-item">
+              <HiIcon.HiOutlineDocumentDuplicate className="customer_file_icon" />
+            </div>
+            <h5 className="list-inline-item">Change Order</h5>
+          </div>
+        </div>
+      </Link>
       {/*
       <div className="pages-list">
         <div className="list-inline">
           <div className="list-inline-item">
             <FaIcon.FaFileContract style={{ fontSize: "60px" }} />
           </div>
-          <div className="list-inline-item h4">Estimates</div>
-        </div>
-      </div>
-      <div className="pages-list">
-        <div className="list-inline">
-          <div className="list-inline-item">
-            <FaIcon.FaFileContract style={{ fontSize: "60px" }} />
-          </div>
-          <div className="list-inline-item h4">Contract</div>
-        </div>
-      </div>
-      <div className="pages-list">
-        <div className="list-inline">
-          <div className="list-inline-item">
-            <FaIcon.FaFileContract style={{ fontSize: "60px" }} />
-          </div>
           <div className="list-inline-item h4">Materials List</div>
-        </div>
-      </div>
-      <div className="pages-list">
-        <div className="list-inline">
-          <div className="list-inline-item">
-            <FaIcon.FaFileContract style={{ fontSize: "60px" }} />
-          </div>
-          <div className="list-inline-item h4">Work Order</div>
         </div>
       </div>
       <div className="pages-list">

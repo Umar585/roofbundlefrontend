@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import { CCard, CCardBody } from "@coreui/react";
+import { CCard } from "@coreui/react";
 import Axios from "axios";
 import Form from "./Form";
 import * as AiIcon from "react-icons/ai";
@@ -32,18 +32,6 @@ export default function UpdatedCustomer() {
 
   return (
     <div>
-      {/*} <CCard className="shadow">
-        <CCardBody>*/}
-      {/*<div className="mb-2 float-left">
-        <AiIcon.AiOutlineArrowLeft
-          className="h3"
-          onClick={() => history.goBack()}
-        />
-      </div>
-      <div style={{ maxWidth: "1000px" }} className="text-right">
-        <h5>Update Customer</h5>
-      </div>*/}
-
       <div className="float-left">
         <AiIcon.AiOutlineArrowLeft
           className="h3"
@@ -61,8 +49,6 @@ export default function UpdatedCustomer() {
           <Form customer={customer} />
         )}
       </CCard>
-      {/*</CCardBody>
-      </CCard>*/}
     </div>
   );
 }

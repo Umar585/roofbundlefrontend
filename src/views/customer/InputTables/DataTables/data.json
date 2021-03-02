@@ -1394,5 +1394,98 @@
         { "name": "NO. 30 Organic Felt" }
       ]
     }
+  ],
+
+  "leak_barriers": [
+    {
+      "name": "Atlas",
+      "leak_barrier": [
+        {
+          "name": "WeatherMaster Ice & Water 216"
+        },
+        {
+          "name": "WeatherMaster Ice & Water 200"
+        },
+        {
+          "name": "WeatherMaster Ice & Water 100"
+        },
+        {
+          "name": "WeatherMaster Pro-Grade Ice & Water"
+        },
+        {
+          "name": "WeatherMaster Flexible Ice & Water"
+        }
+      ]
+    },
+    {
+      "name": "CertainTeed",
+      "leak_barrier": [
+        {
+          "name": "WinterGuard Sand"
+        },
+        {
+          "name": "WinterGuard Granular"
+        },
+        {
+          "name": "WinterGuard HT (Film)"
+        }
+      ]
+    },
+    {
+      "name": "GAF",
+      "leak_barrier": [
+        {
+          "name": "Stormguard"
+        },
+        {
+          "name": "Weatherwatch"
+        }
+      ]
+    },
+    {
+      "name": "IKO",
+      "leak_barrier": [
+        {
+          "name": "GoldShield"
+        },
+        {
+          "name": "ArmourGard"
+        },
+        {
+          "name": "StormShield"
+        },
+        {
+          "name": "GoldSeam - Sealing Tape"
+        }
+      ]
+    },
+    {
+      "name": "Owens Corning",
+      "leak_barrier": [
+        {
+          "name": "WeatherLock Flex"
+        },
+        {
+          "name": "WeatherLock Mat"
+        },
+        {
+          "name": "WeatherLock G Granulated"
+        }
+      ]
+    },
+    {
+      "name": "TAMKO",
+      "leak_barrier": [
+        {
+          "name": "Moisture Guard"
+        },
+        {
+          "name": "TW Underlayment"
+        },
+        {
+          "name": "TW Seam Tape"
+        }
+      ]
+    }
   ]
 }

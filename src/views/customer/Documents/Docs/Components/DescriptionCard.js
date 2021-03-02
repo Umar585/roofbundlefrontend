@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import Axios from "axios";
+import React from "react";
 
 import * as BsIcon from "react-icons/bs";
 
