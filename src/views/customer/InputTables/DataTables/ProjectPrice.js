@@ -1,9 +1,55 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { CCard, CCollapse } from "@coreui/react";
+import Axios from "axios";
+import { useParams, useHistory } from "react-router-dom";
 
 export default function ProjectPrice() {
   const [collapse, setCollapse] = useState(false);
   const [form, setForm] = useState([]);
+  const history = useHistory();
+  const { id } = useParams();
+  const email = localStorage.getItem("email");
+  const passToken = localStorage.getItem("passToken");
+  const [pricesData, setPricesData] = useState([]);
+  const [roof, setRoof] = useState([]);
+  const [eave, setEave] = useState([]);
+  const [selection, setSelection] = useState([]);
+
+  useEffect(() => {
+    if (!localStorage.getItem("authToken")) {
+      history.push("/signin");
+    }
+
+    Axios.post("/api/measure/addallmeasure", { id, email, passToken })
+      .then((res) => {
+        //add chimney for test
+        let roofs = res.data.roof;
+        let t = [];
+        roofs.map((n) => {
+          t.push(parseInt(n.chimney));
+          return t;
+        });
+        console.log(t.reduce((a, b) => a + b, 0));
+        //setEave(res.data.eave);
+        //setSelection(res.data.selection);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [id, email, passToken, history]);
+
+  useEffect(() => {
+    Axios.post("/api/price/materials", { email, passToken })
+      .then((res) => {
+        let response = res.data.data;
+        response.map((n) => {
+          setPricesData(n);
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   return (
     <div>
       <form>
@@ -63,7 +109,7 @@ export default function ProjectPrice() {
               </div>
               <div className="col-12">
                 <CustomInput
-                  type="text"
+                  type="number"
                   id="square"
                   sideLabel="$"
                   placeholder="$/Square"
@@ -77,7 +123,7 @@ export default function ProjectPrice() {
               </div>
               <div className="col-12">
                 <CustomInput
-                  type="text"
+                  type="number"
                   id="profitIn"
                   sideLabel="$"
                   placeholder="Profit in %"
@@ -91,7 +137,7 @@ export default function ProjectPrice() {
               </div>
               <div className="col-12">
                 <CustomInput
-                  type="text"
+                  type="number"
                   id="margin"
                   sideLabel="$"
                   placeholder="Margin %"
@@ -153,6 +199,7 @@ const CustomInput = (props) => {
           id={props.id}
           name={props.id}
           placeholder={props.placeholder}
+          autoComplete="off"
           style={props.sideLabel ? moneyInputStyle : inputStyle}
           value={props.value}
           onChange={props.onChange}

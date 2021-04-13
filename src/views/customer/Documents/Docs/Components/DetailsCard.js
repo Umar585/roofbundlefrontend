@@ -28,7 +28,10 @@ export default function DescriptionCard(props) {
         title: "Ice & Water Protection",
         subtitle: `${n.ice_water_protection}****`,
       },
-      { title: "Venting", subtitle: `*****` },
+      {
+        title: "Venting",
+        subtitle: `Replace ${n.Replace_ventilation} vent **`,
+      },
       { title: "Plumbing Stack", subtitle: `*****` },
       { title: "Chimney", subtitle: `${n.chimney}` },
       { title: "Wall Flashing", subtitle: `${n.shingle_roof}` },

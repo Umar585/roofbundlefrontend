@@ -225,14 +225,7 @@ export default function Document() {
           <div className="list-inline-item h4">Materials List</div>
         </div>
       </div>
-      <div className="pages-list">
-        <div className="list-inline">
-          <div className="list-inline-item">
-            <FaIcon.FaFileContract style={{ fontSize: "60px" }} />
-          </div>
-          <div className="list-inline-item h4">Change Order</div>
-        </div>
-      </div>*/}
+      */}
     </div>
   );
 }
